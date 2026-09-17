@@ -128,10 +128,6 @@
       '<div class="topbar__left">' +
         '<span class="fifpro-badge">' + ico("shield") + '<span data-i18n="top.member">' + t("top.member") + '</span></span>' +
         '<a href="' + PAGES.docs + '" data-i18n="top.docs">' + t("top.docs") + '</a>' +
-        /* "Namoyish maketi" belgisi faqat onlayn taqdimot havolasida ko'rinadi;
-           topshiriladigan fayllar (file:// yoki mijoz serveri) toza qoladi */
-        (/claude\.ai|netlify|vercel|github\.io|pages\.dev/.test(location.hostname)
-          ? '<span class="demo-chip" data-i18n="top.demo">' + t("top.demo") + '</span>' : '') +
       '</div>' +
       '<div class="topbar__right">' +
         '<a href="tel:+998712000047">+998 71 200 00 47</a>' +

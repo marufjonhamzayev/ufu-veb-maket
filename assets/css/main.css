@@ -204,9 +204,6 @@ ul,ol{margin:0;padding:0;list-style:none}
 .ic-red{background:var(--red-soft);color:var(--red)}
 .ic-dark{background:rgba(255,255,255,.1);color:#fff}
 
-.demo-chip{display:inline-flex;align-items:center;gap:7px;padding:3px 10px;border-radius:var(--r-pill);
-  background:rgba(201,162,39,.16);color:#E4C25F;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.demo-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:#E4C25F}
 
 .skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--navy);color:#fff;
   padding:12px 20px;border-radius:0 0 var(--r-sm) 0;font-size:14px;font-weight:600}

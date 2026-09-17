@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="assets/css/fx.css">
 <style>
   body{background:#fff}
+  .ds button.sw,.ds button.rad,.ds button.sh,.ds .icg button{-webkit-appearance:none;appearance:none;margin:0;font:inherit;color:inherit}
   .ds{max-width:1180px;margin-inline:auto;padding:0 24px 90px}
   .ds-head{background:var(--navy);color:#fff;position:relative;overflow:hidden;isolation:isolate}
   .ds-head::before{content:"";position:absolute;z-index:-1;width:720px;height:720px;right:-200px;top:-320px;border-radius:50%;
@@ -20,10 +21,14 @@
   .ds-head p{color:rgba(255,255,255,.72);max-width:64ch;margin-top:14px;line-height:1.65}
   .ds-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line)}
-  .ds-nav .ds{display:flex;gap:4px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+  .ds-nav .ds{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding-block:10px}
+  @media(max-width:760px){.ds-nav .ds{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-right:48px;
+    -webkit-mask:linear-gradient(90deg,#000 calc(100% - 48px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 48px),transparent)}
+    .ds-nav .ds::-webkit-scrollbar{display:none}}
   .ds-nav a{white-space:nowrap;font-size:13.5px;font-weight:600;color:var(--ink-2);padding:7px 12px;border-radius:999px}
   .ds-nav a:hover{background:var(--sky)}
-  .ds section{padding-top:58px;scroll-margin-top:60px}
+  .ds-nav a.is-on{background:var(--navy);color:#fff}
+  .ds section{padding-top:58px;scroll-margin-top:var(--navh,64px)}
   .ds section > h2{font-size:clamp(24px,2.6vw,32px);margin-bottom:6px}
   .ds .sub{color:var(--muted);margin-bottom:24px;max-width:72ch;line-height:1.6}
   .ds section > h3,.ds section > div > h3{font-size:15px;margin:28px 0 12px;font-family:var(--ff);font-weight:700;letter-spacing:.01em}
@@ -32,12 +37,16 @@
   .g4{grid-template-columns:repeat(4,minmax(0,1fr))}.g6{grid-template-columns:repeat(6,minmax(0,1fr))}
   @media(max-width:900px){.g4,.g6{grid-template-columns:repeat(3,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(max-width:560px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}.g6{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  .sw{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
-  .sw i{display:block;height:84px}
-  .sw div{padding:10px 12px}
+  .sw{display:flex;flex-direction:column;align-items:stretch;width:100%;height:100%;padding:0;text-align:left;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;cursor:pointer;
+    transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s var(--ease)}
+  .sw:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:#D3D9CF}
+  .sw:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .sw i{display:block;flex:none;height:88px;width:100%;box-shadow:inset 0 -1px 0 rgba(11,42,31,.08)}
+  .sw div{flex:1;padding:12px 14px 14px;display:flex;flex-direction:column;gap:2px}
   .sw b{display:block;font-size:13px}
   .sw code,.spec code{font-family:var(--fm);font-size:11.5px;color:var(--muted)}
-  .sw span{display:block;font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+  .sw span{display:block;font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .sw code{display:block}
   .row-ty{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-2)}
   .row-ty .meta{font-family:var(--fm);font-size:11.5px;color:var(--muted);line-height:1.6}
   @media(max-width:700px){.row-ty{grid-template-columns:minmax(0,1fr);gap:6px}}
@@ -48,8 +57,8 @@
   .stage--photo{background:url(assets/img/photos/photo-2.webp) center/cover;min-height:220px;position:relative}
   .cap{font-family:var(--fm);font-size:11px;color:var(--muted);margin-top:8px}
   .stage--dark .cap{color:rgba(255,255,255,.55)}
-  .sh{height:96px;border-radius:14px;background:#fff;display:grid;place-items:center;font-family:var(--fm);font-size:12px;color:var(--muted)}
-  .rad{height:74px;background:var(--sky);border:1px solid #D3E8DA;display:grid;place-items:center;font-family:var(--fm);font-size:12px;color:var(--blue-2)}
+  .sh{padding:0;height:96px;border-radius:14px;background:#fff;display:grid;place-items:center;font-family:var(--fm);font-size:12px;color:var(--muted)}
+  .rad{width:100%;padding:0;height:74px;background:var(--sky);border:1px solid #D3E8DA;display:grid;place-items:center;font-family:var(--fm);font-size:12px;color:var(--blue-2)}
   .icg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
   .icg button{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 6px 10px;display:grid;justify-items:center;gap:8px;
     font-family:var(--fm);font-size:11px;color:var(--muted);cursor:pointer;transition:.2s}
@@ -59,6 +68,23 @@
   .spec th{text-align:left;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);background:#F8FAF6}
   .spec td{padding:11px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;line-height:1.5}
   .spec-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  .spec code{overflow-wrap:anywhere}
+  /* telefonda jadval qatorlari kartochkaga aylanadi — hech narsa kesilmaydi */
+  @media(max-width:640px){
+    .spec-wrap{border:0;border-radius:0;overflow:visible}
+    .spec,.spec tbody,.spec tr,.spec td{display:block;width:100%}
+    .spec thead{display:none}
+    .spec tr{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;background:#fff}
+    .spec td{border:0;padding:3px 0}
+    .spec td:first-child{font-weight:600;color:var(--ink)}
+    .spec td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:10.5px;letter-spacing:.07em;
+      text-transform:uppercase;color:var(--muted-2);font-weight:600;margin-top:6px}
+  }
+  /* sayt telefonda .hero__float'ni yashiradi — namunada ko'rinib tursin */
+  .stage--photo .hero__float{display:flex!important}
+  /* menyu surilganda chap chekka ham yumshoq */
+  @media(max-width:760px){.ds-nav .ds.is-scrolled{-webkit-mask:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 48px),transparent);
+    mask:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 48px),transparent)}}
   .glass-demo{padding:18px 20px;border-radius:18px;min-width:220px}
   .glass-demo b{display:block;font-size:14px}.glass-demo span{font-size:12.5px;opacity:.75}
   .ball-row{display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
@@ -175,7 +201,7 @@
         <div class="wrap" style="width:100%">
           <a href="#glass" class="brand"><span id="dsMark"></span><span class="brand__txt"><b>UFU</b><span>Futbolchilar uyushmasi</span></span></a>
           <div class="hdr__actions" style="margin-left:auto">
-            <div class="lang"><button class="lang__btn" type="button"><span data-ico="globe"></span><span>UZ</span></button></div>
+            <div class="lang"><button class="lang__btn" type="button" id="dsLang"><span>UZ</span></button></div>
             <a href="#glass" class="btn btn--dark btn--sm"><span data-ico="telegram"></span><span>Kirish</span></a>
           </div>
         </div>
@@ -364,8 +390,8 @@
   document.querySelectorAll('[data-tokens]').forEach(function(g){
     g.innerHTML = g.getAttribute('data-tokens').split(',').map(function(n){
       var v = hex(tok(n));
-      return '<button class="sw" type="button" data-copy="' + v + '" style="text-align:left;cursor:pointer">' +
-        '<i style="background:var(--' + n + ')' + (n === 'white' || n === 'paper' ? ';border-bottom:1px solid var(--line)' : '') + '"></i>' +
+      return '<button class="sw" type="button" data-copy="' + v + '" aria-label="' + v + ' — nusxalash">' +
+        '<i style="background:var(--' + n + ')"></i>' +
         '<div><b>' + v + '</b><code>--' + n + '</code>' + (NOTE[n] ? '<span>' + NOTE[n] + '</span>' : '') + '</div></button>';
     }).join('');
   });
@@ -424,6 +450,32 @@
     return '<button type="button" data-copy="' + n + '" title="' + n + '"><span data-ico="' + n + '"></span>' + n + '</button>';
   }).join('');
   var ih = document.querySelector('#ikonkalar .sub'); ih.innerHTML = ih.innerHTML.replace('SVG toʻplam', 'SVG toʻplam (' + names.length + ' ta)');
+
+  /* menyuda joriy bo'lim */
+  var navEl = document.querySelector('.ds-nav'), navBox = navEl.querySelector('.ds'), links = [].slice.call(navEl.querySelectorAll('a'));
+  function navH(){ document.documentElement.style.setProperty('--navh', (navEl.offsetHeight + 14) + 'px'); }
+  navH(); addEventListener('resize', navH);
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }), lastOn = -1;
+  function mark(){
+    var y = navEl.offsetHeight + 48, cur = 0;
+    secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top <= y) cur = i; });
+    if (cur === lastOn) return; lastOn = cur;
+    links.forEach(function(a, i){ a.classList.toggle('is-on', i === cur); });
+    if (navBox.scrollWidth > navBox.clientWidth) navBox.scrollTo({ left: Math.max(0, links[cur].offsetLeft - 40), behavior: 'smooth' });
+  }
+  addEventListener('scroll', mark, { passive: true }); mark();
+  navBox.addEventListener('scroll', function(){ navBox.classList.toggle('is-scrolled', navBox.scrollLeft > 4); }, { passive: true });
+
+  /* jadvallar: telefondagi kartochka ko'rinishi uchun ustun nomlari */
+  document.querySelectorAll('.spec').forEach(function(t){
+    var heads = [].slice.call(t.querySelectorAll('thead th')).map(function(th){ return th.textContent.trim(); });
+    t.querySelectorAll('tbody tr').forEach(function(tr){
+      [].slice.call(tr.children).forEach(function(td, i){ if (heads[i]) td.setAttribute('data-label', heads[i]); });
+    });
+  });
+
+  /* til tugmasi saytdagidek: ikonkalar tugmaning bevosita bolalari */
+  var dl = document.getElementById('dsLang'); if (dl && window.ico) { dl.insertAdjacentHTML('afterbegin', ico('globe')); dl.insertAdjacentHTML('beforeend', ico('chevronDown')); }
 
   document.getElementById('dsMark').outerHTML = window.BRAND_MARK || '';
   document.addEventListener('click', function(e){

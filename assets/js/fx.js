@@ -140,7 +140,7 @@
 
   /* ---------- header ichida skroll bo'yicha dumalaydigan to'p ---------- */
   function scrollBall() {
-    var wrap = doc.querySelector(".hdr>.wrap");
+    var wrap = doc.querySelector("#hdr>.wrap");   /* faqat saytning haqiqiy header'i */
     if (!wrap) return;
     var track = doc.createElement("div");
     track.className = "fx-track";

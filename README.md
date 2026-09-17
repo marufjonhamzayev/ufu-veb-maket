@@ -136,7 +136,6 @@ Header va footer barcha sahifalarda `app.js` orqali bitta manbadan chiziladi.
 - Identika: maydon yashili + lime, asosiy qismlarda liquid glass (header, kartochkalar, menyular, oynalar)
 - Hero'dagi to'pni bosib tepish, sudrab otish mumkin (sichqoncha va barmoq)
 - Shriftlar loyiha ichida (282 KB) — internetsiz ham bir xil koʻrinish, tashqi soʻrov umuman yoʻq
-- «Namoyish maketi» belgisi faqat onlayn taqdimot havolasida chiqadi; topshiriladigan fayllarda koʻrinmaydi
 - Avtomatik audit skripti bilan tekshirilgan: buzilgan havola yoʻq, yoʻqolgan rasm yoʻq,
   tarjimasiz kalit yoʻq, uch tilda toʻliqlik
 
