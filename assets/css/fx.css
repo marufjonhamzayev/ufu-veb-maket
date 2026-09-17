@@ -58,7 +58,7 @@
 .hdr{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
   border-bottom:0!important;box-shadow:none!important;padding-top:10px;pointer-events:none}
 .hdr>.wrap{pointer-events:auto;position:relative;width:calc(100% - 32px);max-width:1296px;
-  height:64px;padding:0 10px 0 22px;border-radius:999px}
+  height:64px;padding:0 12px 0 22px;border-radius:999px}
 .hdr>.wrap::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
   background:
     radial-gradient(60% 140% at var(--mx,12%) var(--my,0%),rgba(255,255,255,.7),rgba(255,255,255,0) 60%),
@@ -67,8 +67,7 @@
   box-shadow:var(--glass-rim),0 10px 30px -12px rgba(11,42,31,.22);transition:box-shadow .35s var(--ease),background .35s var(--ease)}
 .hdr.is-scrolled>.wrap::before{box-shadow:var(--glass-rim),0 16px 40px -14px rgba(11,42,31,.32)}
 .hdr .nav__link{border-radius:999px}
-.hdr .lang__btn{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.8)}
-.burger{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.8)}
+.hdr .lang__btn,.hdr .burger{background:rgba(255,255,255,.62);border:1px solid rgba(11,42,31,.10);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 2px 6px -2px rgba(11,42,31,.12)}
 
 /* skroll bo'yicha dumalaydigan mini to'p (header kapsulasi ichida) */
 .fx-track{position:absolute;left:30px;right:30px;bottom:5px;height:2px;border-radius:2px;pointer-events:none;
@@ -83,9 +82,12 @@
 .hdr{margin-bottom:-74px}
 #main>:first-child{border-top:74px solid transparent}
 @media (max-width:760px){
-  .hdr{padding-top:8px;margin-bottom:-64px}
-  #main>:first-child{border-top-width:64px}
-  .hdr>.wrap{width:calc(100% - 20px);height:56px;padding:0 6px 0 14px}
+  .hdr{padding-top:8px;margin-bottom:-66px}
+  #main>:first-child{border-top-width:66px}
+  .hdr>.wrap{width:calc(100% - 20px);height:58px;padding:0 9px 0 16px}
+  .hdr .hdr__actions{gap:6px}
+  .hdr .lang__btn{height:40px}
+  .hdr .burger{width:40px;height:40px;border-radius:50%}
   .fx-track{left:22px;right:22px;bottom:4px}
 }
 
@@ -133,6 +135,7 @@
 .fx-kick:active{cursor:grabbing}
 .fx-kick .fx-ball{width:100%;height:100%}
 .fx-kick:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+@media (max-width:1079px){.hero__visual{margin-top:30px}}
 .fx-shadow{position:absolute;left:0;top:0;width:64px;height:14px;border-radius:50%;pointer-events:none;transform-origin:50% 50%;
   background:radial-gradient(closest-side,rgba(6,22,14,.42),rgba(6,22,14,.18) 55%,rgba(6,22,14,0));will-change:transform,opacity}
 .fx-ground{position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
@@ -166,7 +169,9 @@
 /* ---------- 6. Intro: penalti ---------- */
 html.fx-intro body{overflow:hidden}
 html.fx-intro body::before{content:"";position:fixed;inset:0;z-index:9998;background:#010403}
-.fx-intro{position:fixed;inset:0;z-index:9999;overflow:hidden;color:#fff;background:#010403}
+html.fx-intro-run,html.fx-intro-run body{overflow:hidden}
+.fx-intro{position:fixed;inset:0;z-index:9999;overflow:hidden;color:#fff;font-family:var(--ff);-webkit-font-smoothing:antialiased;background:transparent;pointer-events:none}
+.fx-intro__skip{pointer-events:auto}
 .fx-intro__cv{position:absolute;inset:0;width:100%;height:100%;display:block}
 .fx-intro__brand{position:absolute;left:50%;top:calc(30px + env(safe-area-inset-top,0px));transform:translateX(-50%);
   display:flex;align-items:center;gap:10px;white-space:nowrap;font-family:var(--fd);font-weight:600;font-size:14px;

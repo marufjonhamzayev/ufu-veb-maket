@@ -203,6 +203,8 @@
 
   /* =========================================================
      HERO ICHIDAGI TO'P — 2D fizika + 3D aylanish
+     Kompyuterda: rasmning o'ng pastida (hero tubida).
+     Telefon/planshetda: rasm kartochkasining ustki qirrasida — ekranda ko'rinib turadi.
      ========================================================= */
   var Kick = null;
   function heroBall() {
@@ -215,7 +217,8 @@
 
     var layer = doc.createElement("div");
     layer.className = "fx-play";
-    layer.innerHTML = '<div class="fx-ground"></div>';
+    var ground = doc.createElement("div"); ground.className = "fx-ground";
+    layer.appendChild(ground);
     var shadow = doc.createElement("div"); shadow.className = "fx-shadow";
     var el = doc.createElement("div");
     el.className = "fx-kick";
@@ -231,39 +234,41 @@
     layer.appendChild(hint);
     hero.appendChild(layer);
 
-    var W = 0, H = 0, R = 32;
+    var W = 0, H = 0, R = 32, FL = 0;
     var bel = null, ball = null;
-    var s = { x: 0, y: -80, vx: 0, vy: 0, w: [0, 0, 0], run: false, drag: false, touched: false };
+    var s = { x: 0, y: -80, vx: 0, vy: 0, w: [0, 0, 0], run: false, drag: false, touched: false, placed: false };
     var G = 2300, BOUNCE = 0.62, AIR = 0.9985, ROLL = 0.985;
     var last = 0, raf = 0, hintTimer = 0, hintShown = false;
 
+    function offsetIn(node) {           // transformlarsiz, hero ichidagi joylashuv
+      var x = 0, y = 0, n = node;
+      while (n && n !== hero) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+      return n === hero ? { x: x, y: y, w: node.offsetWidth, h: node.offsetHeight } : null;
+    }
     function measure() {
       W = layer.clientWidth; H = layer.clientHeight;
       var css = el.offsetWidth || 64;
       R = css / 2;
       if (!bel) { bel = ballEl(css, 2); ball = bel.ball; el.appendChild(bel); }
       else if (Math.abs(ball.px - css * DPR(2)) > 1) { ball.setSize(css); ball.render(); }
+      var vis = hero.querySelector(".hero__visual"), v = vis && offsetIn(vis);
+      if (W < 1080 && v) FL = v.y - R - 1;          // rasm ustki qirrasi — "yer"
+      else FL = H - R - 2;                           // hero tubi
+      ground.style.top = (FL + R + 1) + "px";
     }
     function restX() {
-      if (W >= 1080) {
-        var vis = hero.querySelector(".hero__visual");
-        if (vis) {
-          var left = 0, n = vis;
-          while (n && n !== hero) { left += n.offsetLeft; n = n.offsetParent; }
-          if (n === hero) return Math.max(R + 8, left - R - 26);
-        }
-        return W * 0.52;
-      }
+      var vis = hero.querySelector(".hero__visual"), v = vis && offsetIn(vis);
+      if (v) return Math.min(W - R - 12, v.x + v.w - R - 14);
       return W - R - 22;
     }
-    function floor() { return H - R - 2; }
+    function floor() { return FL; }
 
     function draw(renderBall) {
       el.style.transform = "translate3d(" + (s.x - R).toFixed(1) + "px," + (s.y - R).toFixed(1) + "px,0)";
       if (renderBall) ball.render();
       var h = Math.max(0, floor() - s.y);
       var k = Math.max(0.2, 1 - h / 380);
-      shadow.style.transform = "translate3d(" + (s.x - R).toFixed(1) + "px," + (H - 9) + "px,0) scale(" + k.toFixed(2) + "," + (0.6 + 0.4 * k).toFixed(2) + ")";
+      shadow.style.transform = "translate3d(" + (s.x - R).toFixed(1) + "px," + (FL + R - 7).toFixed(1) + "px,0) scale(" + k.toFixed(2) + "," + (0.6 + 0.4 * k).toFixed(2) + ")";
       shadow.style.opacity = (0.15 + 0.85 * k).toFixed(2);
       if (hint.classList.contains("is-on")) {
         hint.style.transform = "translate3d(" + Math.min(W - hint.offsetWidth - 8, Math.max(8, s.x - hint.offsetWidth / 2)).toFixed(0) + "px," + (s.y - R - 46).toFixed(0) + "px,0)";
@@ -281,7 +286,6 @@
           s.y = fl;
           if (Math.abs(s.vy) > 120) {
             s.vy = -s.vy * BOUNCE;
-            /* yerga urilganda aylanish dumalashga moslashadi (ishqalanish) */
             s.w[0] *= 0.55; s.w[1] *= 0.55; s.w[2] = s.w[2] * 0.4 + (s.vx / R) * 0.6;
           } else { s.vy = 0; }
           s.vx *= ROLL;
@@ -363,7 +367,7 @@
     if (finePointer) {
       var pm = null;
       hero.addEventListener("pointermove", function (e) {
-        if (s.drag) return;
+        if (s.drag || !s.placed) return;
         var r = layer.getBoundingClientRect(), now = performance.now();
         var px = e.clientX - r.left, py = e.clientY - r.top;
         if (pm) {
@@ -382,20 +386,56 @@
       hero.addEventListener("pointerleave", function () { pm = null; });
     }
 
+    /* O'lcham o'zgarishi: telefonda skroll paytida manzil satri yashirinib-chiqadi va "resize" keladi.
+       To'p hech qachon boshlang'ich joyiga qaytarilmaydi — faqat chegaralar ichida ushlab turiladi
+       va yangi "yer" balandligiga moslashtiriladi. */
+    var lastW = 0;
     addEventListener("resize", function () {
+      var oldFL = FL;
       measure();
+      if (W === lastW && Math.abs(FL - oldFL) < 1) return;
+      lastW = W;
       s.x = Math.max(R, Math.min(W - R, s.x));
-      if (!s.run) { s.x = restX(); s.y = floor(); draw(false); }
+      if (!s.placed) { draw(false); return; }
+      if (!s.run && !s.drag) {
+        if (!s.touched && !reduce) s.x = restX();
+        s.y = floor();
+        draw(false);
+      } else if (s.y > floor()) { s.y = floor(); }
     });
 
     measure();
+    lastW = W;
+    el.style.visibility = "hidden"; shadow.style.opacity = 0;
     s.x = restX(); s.y = -R * 2;
     draw(false);
 
     return {
+      layer: layer,
+      size: function () { measure(); return R * 2; },
+      /* intro to'pi qayerga "tushishi" kerak — ekran koordinatalarida (transformlarsiz) */
+      target: function () {
+        measure();
+        var h = offsetIn(layer) || { x: 0, y: 0 }, hr = hero.getBoundingClientRect(), bt = doc.body.getBoundingClientRect().top + scrollY;
+        void h; void bt;
+        return { x: restX(), floor: floor(), heroTop: hero.offsetTop, heroLeft: hr.left };
+      },
+      /* intro to'pidan qabul qilish: ekrandagi joy, tezlik, aylanish matritsasi */
+      enter: function (sx, sy, vx, vy, R3, w) {
+        measure();
+        var r = layer.getBoundingClientRect();
+        s.x = Math.max(R, Math.min(W - R, sx - r.left)); s.y = sy - r.top;
+        s.vx = vx; s.vy = vy; s.w = w ? w.slice() : [2.5, -1.5, -0.8];
+        if (R3) ball.R = R3.slice();
+        s.placed = true;
+        el.style.visibility = ""; ball.render(); draw(false);
+        wake();
+        setTimeout(showHint, 1600);
+      },
       drop: function (delay) {
         setTimeout(function () {
           measure();
+          s.placed = true; el.style.visibility = "";
           s.x = restX(); s.y = -R * 2; s.vx = reduce ? 0 : -40; s.vy = 0; s.w = [2.5, -1.5, -0.8];
           if (reduce) { s.y = floor(); draw(false); showHint(); return; }
           wake();
@@ -406,65 +446,104 @@
   }
 
   /* =========================================================
-     Sarlavha so'zlari zarba nuqtasidan uchib keladi
-     ========================================================= */
-  function splitWords(el) {
-    var words = [];
-    (function walk(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-        if (n.nodeType === 3) {
-          var parts = n.nodeValue.split(/(\s+)/);
-          var frag = doc.createDocumentFragment();
-          parts.forEach(function (p) {
-            if (!p) return;
-            if (/^\s+$/.test(p)) { frag.appendChild(doc.createTextNode(p)); return; }
-            var sp = doc.createElement("span"); sp.className = "fx-w"; sp.textContent = p;
-            frag.appendChild(sp); words.push(sp);
-          });
-          node.replaceChild(frag, n);
-        } else if (n.nodeType === 1 && n.tagName !== "BR") {
-          walk(n);
-        }
-      });
-    })(el);
-    return words;
-  }
-
-  function burst(hero, cx, cy, instant) {
-    var title = hero.querySelector(".hero__title");
-    var parts = [hero.querySelector(".eyebrow")];
-    var words = title ? splitWords(title) : [];
-    var rest = [hero.querySelector(".lead"), hero.querySelector(".hero__cta"), hero.querySelector(".hero__trust"), hero.querySelector(".hero__visual")];
-    var all = parts.concat(words, rest).filter(Boolean);
-    [title].concat(parts, rest).forEach(function (n) { if (n) { n.classList.remove("reveal", "fx-pre"); n.classList.add("is-in"); } });
-    if (instant) return;
-    if (title) { title.classList.add("fx-mark-off"); setTimeout(function () { title.classList.remove("fx-mark-off"); }, 250 + words.length * 30 + 650); }
-    all.forEach(function (n, i) {
-      var r = n.getBoundingClientRect();
-      var ex = r.left + r.width / 2, ey = r.top + r.height / 2;
-      var far = n.classList.contains("fx-w") ? 0.85 : 0.3;
-      n.style.setProperty("--dx", ((cx - ex) * far).toFixed(0) + "px");
-      n.style.setProperty("--dy", ((cy - ey) * far).toFixed(0) + "px");
-      n.style.setProperty("--rot", ((Math.random() - 0.5) * 30).toFixed(0) + "deg");
-      var dl = n.classList.contains("fx-w") ? 0.02 + i * 0.03 : 0.2 + (rest.indexOf(n) + 1) * 0.07 + words.length * 0.015;
-      n.style.setProperty("--dl", dl.toFixed(2) + "s");
-      n.classList.add("fx-fly");
-    });
-    void hero.offsetWidth;
-    requestAnimationFrame(function () {
-      all.forEach(function (n) { n.classList.add("fx-land"); n.classList.remove("fx-fly"); });
-      setTimeout(function () {
-        all.forEach(function (n) { n.classList.remove("fx-land"); ["--dx", "--dy", "--rot", "--dl"].forEach(function (p) { n.style.removeProperty(p); }); });
-      }, 2200);
-    });
-  }
-
-  /* =========================================================
-     INTRO — penalti: kechki stadion, to'p darvozaga, to'r silkinadi
-     Dunyo birliklari metrda. Kamera to'p orqasida, darvozaga qaraydi.
+     INTRO — kamera tushayotgan 3D to'pga ergashadi:
+     kechki osmon → projektor minoralari → tribunalar → sayt.
+     Sahna saytning "tepasidagi davomi": oxirida sahna tubi saytning
+     tepa qatori bilan bir xil rangda tugaydi va sayt pastdan ko'tariladi.
      ========================================================= */
   function intro(hero) {
-    var W = innerWidth, H = innerHeight, small = W < 700, dpr = DPR(small ? 2 : 1.75);
+    var W = innerWidth, H = innerHeight, small = W < 700;
+    var DUR = 1800;                                   // umumiy davomiylik (ms)
+    var CAM0 = 120, CAM1 = DUR;                       // kamera harakati oralig'i
+    var SH = Math.round(H * (small ? 1.9 : 1.7));   // sahna balandligi (px)
+    var body = doc.body;
+
+    window.scrollTo(0, 0);
+    html.classList.add("fx-intro-run");
+
+    /* ---- qatlam tuvallari (fon xira bo'lgani uchun past aniqlikda) ---- */
+    var LS = small ? 1 : 0.6;
+    function layerCanvas(h) { var c = doc.createElement("canvas"); c.width = Math.round(W * LS); c.height = Math.round(h * LS); var x = c.getContext("2d"); x.scale(LS, LS); return { c: c, x: x, h: h }; }
+    var rnd = (function (seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; })(20260917);
+
+    /* 1) osmon va tuman — sekin (0.55) */
+    var PF = 0.55, far = layerCanvas(SH * PF + H);
+    (function () {
+      var x = far.x, h = far.h;
+      var g = x.createLinearGradient(0, 0, 0, h);
+      g.addColorStop(0, "#010302"); g.addColorStop(0.55, "#03100a"); g.addColorStop(1, "#0a2a1c");
+      x.fillStyle = g; x.fillRect(0, 0, W, h);
+      for (var i = 0; i < 9; i++) {
+        var cx = rnd() * W, cy = h * (0.25 + rnd() * 0.7), r = Math.max(W, H) * (0.25 + rnd() * 0.35);
+        var rg = x.createRadialGradient(cx, cy, 0, cx, cy, r);
+        rg.addColorStop(0, "rgba(90,140,110," + (0.05 + rnd() * 0.05) + ")"); rg.addColorStop(1, "rgba(90,140,110,0)");
+        x.fillStyle = rg; x.fillRect(cx - r, cy - r, r * 2, r * 2);
+      }
+      for (var s = 0; s < (small ? 60 : 140); s++) {
+        x.fillStyle = "rgba(255,255,255," + (0.15 + rnd() * 0.45) + ")";
+        x.beginPath(); x.arc(rnd() * W, rnd() * h * 0.45, 0.4 + rnd() * 0.9, 0, 7); x.fill();
+      }
+    })();
+
+    /* 2) projektor minoralari, nurlar, tribunalar — asosiy (0.9) */
+    var MF = 0.9, mid = layerCanvas(SH * MF + H);
+    var lampsY = H * 0.95, standTop = mid.h - H * 1.05;
+    (function () {
+      var x = mid.x, h = mid.h, i, j;
+      /* nur konuslari */
+      x.globalCompositeOperation = "lighter";
+      [[W * 0.06, 1], [W * 0.94, -1]].forEach(function (L) {
+        var lx = L[0], dir = L[1];
+        var cone = x.createLinearGradient(lx, lampsY, lx + dir * W * 0.5, lampsY + H * 1.3);
+        cone.addColorStop(0, "rgba(225,255,215,.20)"); cone.addColorStop(0.5, "rgba(210,245,200,.06)"); cone.addColorStop(1, "rgba(210,245,200,0)");
+        x.fillStyle = cone; x.beginPath();
+        x.moveTo(lx - dir * 10, lampsY); x.lineTo(lx + dir * W * 0.15, lampsY + H * 1.5); x.lineTo(lx + dir * W * 0.95, lampsY + H * 1.2); x.lineTo(lx + dir * 40, lampsY - 6);
+        x.closePath(); x.fill();
+      });
+      x.globalCompositeOperation = "source-over";
+      /* minoralar (siluet) */
+      [[W * 0.06, 1], [W * 0.94, -1]].forEach(function (L) {
+        var lx = L[0], pw = Math.max(5, W * 0.006);
+        x.fillStyle = "#020805"; x.fillRect(lx - pw / 2, lampsY + 26, pw, standTop - lampsY);
+        var bw = Math.min(W * 0.2, 150), bh = bw * 0.45, bx = lx - bw / 2, by = lampsY - bh / 2;
+        x.fillStyle = "#050d09"; x.fillRect(bx - 4, by - 4, bw + 8, bh + 8);
+        var cols = 6, rows = 3, cw = bw / cols, ch = bh / rows;
+        for (i = 0; i < cols; i++) for (j = 0; j < rows; j++) {
+          x.fillStyle = "rgba(255,255,248,.96)";
+          x.beginPath(); x.arc(bx + cw * (i + 0.5), by + ch * (j + 0.5), Math.min(cw, ch) * 0.34, 0, 7); x.fill();
+        }
+        x.globalCompositeOperation = "lighter";
+        var bl = x.createRadialGradient(lx, lampsY, 0, lx, lampsY, bw * 2.4);
+        bl.addColorStop(0, "rgba(240,255,230,.55)"); bl.addColorStop(0.25, "rgba(210,245,200,.18)"); bl.addColorStop(1, "rgba(210,245,200,0)");
+        x.fillStyle = bl; x.fillRect(lx - bw * 2.4, lampsY - bw * 2.4, bw * 4.8, bw * 4.8);
+        x.globalCompositeOperation = "source-over";
+      });
+      /* tribunalar: pog'onali, xira chiroqlar */
+      var tg = x.createLinearGradient(0, standTop, 0, h);
+      tg.addColorStop(0, "rgba(4,12,8,0)"); tg.addColorStop(0.12, "#06130c"); tg.addColorStop(1, "#0B2A1F");
+      x.fillStyle = tg; x.fillRect(0, standTop, W, h - standTop);
+      x.strokeStyle = "rgba(200,240,190,.10)"; x.lineWidth = 1;
+      for (i = 0; i < 9; i++) { var yy = standTop + H * 0.12 + i * H * 0.075; x.beginPath(); x.moveTo(0, yy); x.lineTo(W, yy); x.stroke(); }
+      x.globalCompositeOperation = "lighter";
+      for (i = 0; i < (small ? 160 : 420); i++) {
+        var py = standTop + H * 0.1 + rnd() * H * 0.72, px = rnd() * W, rr = 0.6 + rnd() * 1.8;
+        var warm = rnd() < 0.8;
+        x.fillStyle = (warm ? "rgba(255,238,205," : "rgba(200,240,60,") + (0.08 + rnd() * 0.3) + ")";
+        x.beginPath(); x.arc(px, py, rr, 0, 7); x.fill();
+      }
+      /* tribuna tomining qirrasi */
+      var re = x.createLinearGradient(0, standTop + H * 0.08, 0, standTop + H * 0.12);
+      re.addColorStop(0, "rgba(220,255,210,0)"); re.addColorStop(1, "rgba(220,255,210,.14)");
+      x.fillStyle = re; x.fillRect(0, standTop + H * 0.08, W, H * 0.04);
+      x.globalCompositeOperation = "source-over";
+    })();
+
+    /* 3) yaqin chang zarralari — fokusdan tashqarida, tez (1.35) */
+    var NF = 1.35, dust = [];
+    for (var d = 0; d < (small ? 16 : 26); d++) dust.push({ x: rnd() * W, y: rnd() * (SH * NF + H), r: 6 + rnd() * (small ? 22 : 34), a: 0.03 + rnd() * 0.08, lime: rnd() < 0.25 });
+
+    /* ---- asosiy tuval ---- */
+    var dpr = DPR(2);
     var ov = doc.createElement("div");
     ov.className = "fx-intro";
     ov.setAttribute("aria-hidden", "true");
@@ -474,284 +553,131 @@
     ov.appendChild(cv);
     var brand = doc.createElement("div");
     brand.className = "fx-intro__brand";
-    brand.innerHTML = (window.BRAND_MARK || "") + '<span data-i18n="brand.full">' + T("brand.full", "Oʻzbekiston futbolchilar uyushmasi") + '</span>';
+    brand.innerHTML = (window.BRAND_MARK || "") + '<span data-i18n="brand.full">' + T_("brand.full", "Oʻzbekiston futbolchilar uyushmasi") + '</span>';
     ov.appendChild(brand);
     var skip = doc.createElement("button");
     skip.type = "button"; skip.className = "fx-intro__skip";
-    skip.innerHTML = '<span data-i18n="fx.skip">' + T("fx.skip", "Oʻtkazib yuborish") + '</span><span aria-hidden="true">→</span>';
+    skip.innerHTML = '<span data-i18n="fx.skip">' + T_("fx.skip", "Oʻtkazib yuborish") + '</span><span aria-hidden="true">→</span>';
     ov.appendChild(skip);
-    doc.body.appendChild(ov);
+    html.appendChild(ov);                            // body'dan tashqarida: body siljiganda sahna joyida qoladi
     var ctx = cv.getContext("2d");
+    function T_(k, fb) { return T(k, fb); }
 
-    /* ---- kamera ---- */
-    var z0 = 1.15, BD = 0.22, GW = 3.66, GH = 2.44, Zg = 11 + z0, DEP = 2.0;
-    var S0 = small ? Math.min(W * 0.27, 108) : Math.min(H * 0.22, W * 0.14, 200);
-    var f = S0 * z0 / BD;
-    var hy = H * (small ? 0.46 : 0.5);
-    var ballBottom = H * (small ? 0.83 : 0.88);
-    var hc = (ballBottom - hy) * z0 / f;
-    function P(X, Y, Z) { return [W / 2 + f * X / Z, hy + f * (hc - Y) / Z]; }
+    /* ---- to'p va uning manzili (sayt ichida) ---- */
+    var hero3 = Kick;
+    var endSize = hero3.size();
+    var tgt = hero3.target();
+    var heroRect = hero.getBoundingClientRect();     // body hali siljimagan
+    var endX = heroRect.left + tgt.x;
+    var floorY = heroRect.top + tgt.floor;           // "yer" (to'p markazi) ekranda, kamera yetib kelganda
+    var endY = Math.min(floorY - endSize * 2.2, H * 0.72);
+    endY = Math.max(endY, H * 0.34);
+    var startSize = endSize * (small ? 2.3 : 2.6);
+    var ball = new Ball3D(2);
+    ball.rotate(0.3, 1, 0.2, 0.8);
+    var W_SPIN = [3.2, -2.2, 1.6];
+    var x0 = small ? W * 0.58 : W * 0.56, midY = H * 0.42;
 
-    /* ---- statik fon (bir marta chiziladi) ---- */
-    var bg = doc.createElement("canvas"); bg.width = cv.width; bg.height = cv.height;
-    var b = bg.getContext("2d"); b.scale(dpr, dpr);
-    (function paintBackground() {
-      var far = P(0, 0, 60)[1];
-      var sky = b.createLinearGradient(0, 0, 0, far);
-      sky.addColorStop(0, "#010403"); sky.addColorStop(1, "#08180f");
-      b.fillStyle = sky; b.fillRect(0, 0, W, far + 2);
-      /* tribunalar va chiroqlar */
-      var standTop = far - H * 0.2;
-      var st = b.createLinearGradient(0, standTop, 0, far);
-      st.addColorStop(0, "rgba(10,24,16,0)"); st.addColorStop(1, "rgba(12,30,20,.95)");
-      b.fillStyle = st; b.fillRect(0, standTop, W, far - standTop);
-      for (var i = 0; i < (small ? 90 : 220); i++) {
-        var x = Math.random() * W, y = standTop + Math.pow(Math.random(), 0.7) * (far - standTop - 6);
-        var rr = 0.5 + Math.random() * 1.4, a = 0.08 + Math.random() * 0.35;
-        b.fillStyle = Math.random() < 0.18 ? "rgba(200,240,60," + a + ")" : "rgba(255,244,220," + a + ")";
-        b.beginPath(); b.arc(x, y, rr, 0, 7); b.fill();
-      }
-      /* projektorlar */
-      b.globalCompositeOperation = "lighter";
-      [[W * 0.1, -H * 0.02], [W * 0.9, -H * 0.02]].forEach(function (L) {
-        var g = b.createRadialGradient(L[0], L[1], 0, L[0], L[1], Math.max(W, H) * 0.75);
-        g.addColorStop(0, "rgba(235,255,225,.30)"); g.addColorStop(0.18, "rgba(200,240,190,.10)"); g.addColorStop(1, "rgba(0,0,0,0)");
-        b.fillStyle = g; b.fillRect(0, 0, W, H);
-        var cone = b.createLinearGradient(L[0], L[1], W / 2, H * 0.7);
-        cone.addColorStop(0, "rgba(230,255,220,.09)"); cone.addColorStop(1, "rgba(230,255,220,0)");
-        b.fillStyle = cone; b.beginPath(); b.moveTo(L[0], L[1]); b.lineTo(W * 0.3, H); b.lineTo(W * 0.7, H); b.closePath(); b.fill();
-        b.fillStyle = "rgba(255,255,245,.9)"; b.beginPath(); b.arc(L[0], L[1] + H * 0.035, small ? 3 : 4, 0, 7); b.fill();
-      });
-      b.globalCompositeOperation = "source-over";
-      /* LED reklama paneli darvoza ortida */
-      var zl = Zg + 9, t1 = P(0, 1.0, zl)[1], t0 = P(0, 0, zl)[1];
-      var led = b.createLinearGradient(0, t1, 0, t0);
-      led.addColorStop(0, "#0c2a1b"); led.addColorStop(1, "#06140d");
-      b.fillStyle = led; b.fillRect(0, t1, W, t0 - t1);
-      b.fillStyle = "rgba(200,240,60,.45)"; b.fillRect(0, t1, W, Math.max(1, (t0 - t1) * 0.05));
-      b.font = "700 " + Math.max(7, (t0 - t1) * 0.46).toFixed(1) + "px Manrope, Inter, sans-serif";
-      b.textBaseline = "middle"; b.fillStyle = "rgba(220,255,140,.34)";
-      var label = "UFU  ·  " + T("brand.full", "Oʻzbekiston futbolchilar uyushmasi").toUpperCase() + "  ·  FIFPRO  ·  ";
-      var lw = b.measureText(label).width, lx = -((W / 2) % lw);
-      for (; lx < W; lx += lw) b.fillText(label, lx, (t1 + t0) / 2 + 1);
-      /* maysa */
-      var g0 = t0;
-      var grass = b.createLinearGradient(0, g0, 0, H);
-      grass.addColorStop(0, "#0d321d"); grass.addColorStop(0.35, "#155a31"); grass.addColorStop(1, "#1b6b3a");
-      b.fillStyle = grass; b.fillRect(0, g0, W, H - g0);
-      /* o'rilgan maysa chiziqlari (chuqurlik bo'yicha) */
-      for (var z = 0.55, k = 0; z < zl; z += 1.9, k++) {
-        if (k % 2) continue;
-        var ya = Math.max(g0, P(0, 0, z + 1.9)[1]), yb = Math.min(H, P(0, 0, z)[1]);
-        b.fillStyle = "rgba(255,255,255,.035)"; b.fillRect(0, ya, W, yb - ya);
-      }
-      /* projektor dog'i darvoza atrofida */
-      b.globalCompositeOperation = "lighter";
-      var gp = P(0, 0, Zg);
-      var pool = b.createRadialGradient(gp[0], gp[1], 0, gp[0], gp[1], W * 0.55);
-      pool.addColorStop(0, "rgba(160,220,150,.14)"); pool.addColorStop(1, "rgba(0,0,0,0)");
-      b.fillStyle = pool; b.fillRect(0, g0, W, H - g0);
-      b.globalCompositeOperation = "source-over";
-      /* chiziqlar (perspektivada qalinligi to'g'ri) */
-      function gline(x1, z1, x2, z2) {
-        var dx = x2 - x1, dz = z2 - z1, l = Math.hypot(dx, dz), ox = -dz / l * 0.06, oz = dx / l * 0.06;
-        z1 = Math.max(0.45, z1); z2 = Math.max(0.45, z2);
-        var a = P(x1 + ox, 0, z1 + oz), c = P(x2 + ox, 0, z2 + oz), d = P(x2 - ox, 0, z2 - oz), e = P(x1 - ox, 0, z1 - oz);
-        b.beginPath(); b.moveTo(a[0], a[1]); b.lineTo(c[0], c[1]); b.lineTo(d[0], d[1]); b.lineTo(e[0], e[1]); b.closePath(); b.fill();
-      }
-      b.fillStyle = "rgba(236,246,232,.62)";
-      gline(-34, Zg, 34, Zg);
-      gline(-9.16, Zg, -9.16, Zg - 5.5); gline(9.16, Zg, 9.16, Zg - 5.5); gline(-9.16, Zg - 5.5, 9.16, Zg - 5.5);
-      gline(-20.16, Zg, -20.16, 0.5); gline(20.16, Zg, 20.16, 0.5);
-      /* darvoza soyasi */
-      var s1 = P(-GW, 0, Zg), s2 = P(GW, 0, Zg), s3 = P(GW * 1.05, 0, Zg + DEP + 0.6), s4 = P(-GW * 1.05, 0, Zg + DEP + 0.6);
-      b.fillStyle = "rgba(0,0,0,.22)"; b.beginPath(); b.moveTo(s1[0], s1[1]); b.lineTo(s2[0], s2[1]); b.lineTo(s3[0], s3[1]); b.lineTo(s4[0], s4[1]); b.closePath(); b.fill();
-      /* vinyetka */
-      var vg = b.createRadialGradient(W / 2, H * 0.55, Math.min(W, H) * 0.25, W / 2, H * 0.55, Math.max(W, H) * 0.8);
-      vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.6)");
-      b.fillStyle = vg; b.fillRect(0, 0, W, H);
-    })();
+    body.style.willChange = "transform";
+    body.style.transform = "translate3d(0," + SH + "px,0)";
+    html.classList.remove("fx-intro");               // qora qopqoq endi kerak emas — sahna uni almashtiradi
 
-    /* ---- to'r va darvoza (har kadrda: to'r silkinadi) ---- */
-    var hitU = 0.72, hitV = 0.3, TOPD = 0.8;
-    function netPt(u, v, amp) {          // orqa to'r: u -1..1, v 0(tepa)..1(past)
-      var g = amp ? amp * Math.exp(-((u - hitU) * (u - hitU)) / 0.16 - ((v - hitV) * (v - hitV)) / 0.2) : 0;
-      return P(u * GW + g * (u - hitU) * GW * 0.22, GH * (1 - v) + g * (hitV - v) * GH * 0.3, Zg + TOPD + (DEP - TOPD) * v + g * 1.2);
-    }
-    function topPt(u, w, amp) {          // tepa to'r: w 0(ustun)..1(orqa)
-      var g = amp ? amp * w * Math.exp(-((u - hitU) * (u - hitU)) / 0.16 - (hitV * hitV) / 0.2) : 0;
-      return P(u * GW + g * (u - hitU) * GW * 0.15, GH + g * 0.12, Zg + TOPD * w + g * w);
-    }
-    function sidePt(side, s, v) {        // yon to'r
-      return P(side * GW, GH * (1 - v), Zg + s * (TOPD + (DEP - TOPD) * v));
-    }
-    function drawNet(amp) {
-      ctx.lineWidth = Math.max(0.6, f * 0.012 / Zg);
-      ctx.strokeStyle = "rgba(235,245,232," + (0.3 + 0.28 * Math.min(1, Math.abs(amp))).toFixed(2) + ")";
-      var cols = small ? 16 : 22, rows = 8, i, j, p;
-      ctx.beginPath();
-      for (j = 0; j <= rows; j++) { for (i = 0; i <= cols; i++) { p = netPt(-1 + 2 * i / cols, j / rows, amp); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } }
-      for (i = 0; i <= cols; i++) { for (j = 0; j <= rows; j++) { p = netPt(-1 + 2 * i / cols, j / rows, amp); if (j) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } }
-      for (j = 0; j <= 3; j++) { for (i = 0; i <= cols; i++) { p = topPt(-1 + 2 * i / cols, j / 3, amp); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } }
-      for (i = 0; i <= cols; i++) { for (j = 0; j <= 3; j++) { p = topPt(-1 + 2 * i / cols, j / 3, amp); if (j) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } }
-      [-1, 1].forEach(function (sd) {
-        for (j = 0; j <= rows; j++) { for (i = 0; i <= 4; i++) { p = sidePt(sd, i / 4, j / rows); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } }
-        for (i = 0; i <= 4; i++) { for (j = 0; j <= rows; j++) { p = sidePt(sd, i / 4, j / rows); if (j) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } }
-      });
-      ctx.stroke();
-      /* orqa tayanch ramka */
-      ctx.strokeStyle = "rgba(160,170,165,.55)"; ctx.lineWidth = Math.max(1, f * 0.05 / (Zg + DEP));
-      ctx.beginPath();
-      [-1, 1].forEach(function (sd) {
-        var a = P(sd * GW, GH, Zg + TOPD), c = P(sd * GW, 0, Zg + DEP);
-        ctx.moveTo(a[0], a[1]); ctx.lineTo(c[0], c[1]);
-      });
-      var c1 = P(-GW, 0, Zg + DEP), c2 = P(GW, 0, Zg + DEP); ctx.moveTo(c1[0], c1[1]); ctx.lineTo(c2[0], c2[1]);
-      ctx.stroke();
-    }
-    function drawFrame() {
-      var th = f * 0.12 / Zg;
-      var a = P(-GW, 0, Zg), bb = P(-GW, GH, Zg), c = P(GW, GH, Zg), d = P(GW, 0, Zg);
-      ctx.lineCap = "round"; ctx.lineJoin = "round";
-      ctx.strokeStyle = "rgba(0,0,0,.35)"; ctx.lineWidth = th + 2;
-      ctx.beginPath(); ctx.moveTo(a[0] + 1.5, a[1]); ctx.lineTo(bb[0] + 1.5, bb[1] + 1.5); ctx.lineTo(c[0] + 1.5, c[1] + 1.5); ctx.lineTo(d[0] + 1.5, d[1]); ctx.stroke();
-      var gr = ctx.createLinearGradient(bb[0], bb[1] - th, bb[0], bb[1] + th);
-      gr.addColorStop(0, "#ffffff"); gr.addColorStop(1, "#cfd8d2");
-      ctx.strokeStyle = gr; ctx.lineWidth = th;
-      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(bb[0], bb[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(d[0], d[1]); ctx.stroke();
-      ctx.strokeStyle = "rgba(255,255,255,.55)"; ctx.lineWidth = Math.max(0.6, th * 0.28);
-      ctx.beginPath(); ctx.moveTo(a[0] - th * 0.2, a[1]); ctx.lineTo(bb[0] - th * 0.2, bb[1] - th * 0.2); ctx.lineTo(c[0], c[1] - th * 0.2); ctx.stroke();
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function ballAt(t) {                              // ekran koordinatalari va o'lcham
+      var x, y, sz;
+      var p = Math.min(1, t / DUR);
+      x = x0 + (endX - x0) * ease(Math.max(0, (t - 350) / (DUR - 350)));
+      sz = startSize + (endSize - startSize) * ease(p);
+      if (t < 420) { var a = t / 420; y = -startSize + (midY + startSize) * a * a; }
+      else if (t < DUR - 380) { var b = (t - 420) / (DUR - 800); y = midY + H * 0.05 * b; }
+      else { var c = (t - (DUR - 380)) / 380; y = midY + H * 0.05 + (endY - midY - H * 0.05) * c * c; }
+      return { x: x, y: y, s: sz };
     }
 
-    /* ---- to'p ---- */
-    var ball = new Ball3D(small ? 2 : 1.75);
-    var Xt = hitU * GW, Yt = GH * (1 - hitV), Zt = Zg + TOPD + (DEP - TOPD) * hitV;
-    var st = { X: 0, Y: BD / 2, Z: z0 };
-    var W0 = [-9, 16, 7];
-    function drawBall(behindFrame) {
-      var p = P(st.X, st.Y, st.Z), size = f * BD / st.Z;
-      /* soya */
-      var gp = P(st.X, 0, st.Z), sa = Math.max(0, 0.5 * (1 - st.Y / 2.6));
-      if (sa > 0.01) {
-        ctx.save(); ctx.translate(gp[0], gp[1]); ctx.scale(1, 0.28);
-        var sg = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 0.62);
-        sg.addColorStop(0, "rgba(0,0,0," + sa + ")"); sg.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(0, 0, size * 0.62, 0, 7); ctx.fill(); ctx.restore();
-      }
-      var want = size * dpr;
-      if (!ball.px || Math.abs(want - ball.px) / ball.px > 0.12) ball.setPx(Math.min(want, small ? 240 : 300));
-      ball.render();
-      ctx.drawImage(ball.cv, p[0] - size / 2, p[1] - size / 2, size, size);
-      void behindFrame;
-      return p;
-    }
-
-    /* ---- chaqnoqlar (tribunada fotoaparatlar) ---- */
-    var flashes = [];
-    function addFlashes(t) {
-      var far = P(0, 0, 60)[1];
-      for (var i = 0; i < (small ? 10 : 18); i++) { var fx = Math.random() * W; if (Math.abs(fx - W / 2) < f * GW / Zg * 1.1) fx = fx < W / 2 ? fx - f * GW / Zg * 1.2 : fx + f * GW / Zg * 1.2; flashes.push({ x: fx, y: far - 8 - Math.random() * H * 0.16, t: t + Math.random() * 380, r: 0.8 + Math.random() * 1.4 }); }
-    }
-    var grass = [];
-
-    /* ---- vaqt jadvali (ms) ---- */
-    var KICK = 230, FLY = 560, HIT = KICK + FLY, REVEAL = HIT + 230, END = REVEAL + 380;
-    var t0 = performance.now(), raf = 0, done = false, hitScreen = null, revealed = false;
-    var hdr = doc.querySelector(".hdr");
-    if (hdr) hdr.classList.add("fx-drop");
-
+    var t0 = 0, raf = 0, done = false, hist = [];
     function frame(now) {
+      if (!t0) t0 = now;
       var t = window.__fxT != null ? window.__fxT : now - t0;   /* __fxT — faqat avtomatik test uchun */
+      if (t > DUR) t = DUR;
+      var cp = ease(Math.max(0, Math.min(1, (t - CAM0) / (CAM1 - CAM0))));
+      var cam = cp * SH;
+      body.style.transform = "translate3d(0," + (SH - cam).toFixed(1) + "px,0)";
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, cv.width, cv.height);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      /* kamera: yengil yaqinlashish + zarbada silkinish */
-      var push = 1 + Math.min(1, t / (HIT + 300)) * 0.05;
-      var shx = 0, shy = 0;
-      if (t > KICK && t < KICK + 90) { shx = (Math.random() - 0.5) * 5; shy = (Math.random() - 0.5) * 4; }
-      if (t > HIT && t < HIT + 120) { shx = (Math.random() - 0.5) * 3; shy = (Math.random() - 0.5) * 2; }
-      var gc = P(0, GH * 0.5, Zg);
-      ctx.translate(gc[0] + shx, gc[1] + shy); ctx.scale(push, push); ctx.translate(-gc[0], -gc[1]);
-      ctx.drawImage(bg, 0, 0, W, H);
+      var bottom = SH - cam;                          // sahna tubi ekranda (undan pasti — sayt)
+      ctx.save();
+      ctx.beginPath(); ctx.rect(0, 0, W, Math.max(0, bottom)); ctx.clip();
+      ctx.drawImage(far.c, 0, -cam * PF, W, far.h);
+      ctx.drawImage(mid.c, 0, -cam * MF, W, mid.h);
+      /* chang zarralari */
+      ctx.globalCompositeOperation = "lighter";
+      dust.forEach(function (q) {
+        var y = q.y - cam * NF; if (y < -q.r || y > H + q.r) return;
+        var g = ctx.createRadialGradient(q.x, y, 0, q.x, y, q.r);
+        g.addColorStop(0, (q.lime ? "rgba(200,240,60," : "rgba(230,255,225,") + q.a + ")"); g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g; ctx.fillRect(q.x - q.r, y - q.r, q.r * 2, q.r * 2);
+      });
+      ctx.globalCompositeOperation = "source-over";
+      /* sahna tubi saytning tepa qatori bilan bir xil rangga o'tadi */
+      var seam = ctx.createLinearGradient(0, bottom - H * 0.18, 0, bottom);
+      seam.addColorStop(0, "rgba(11,42,31,0)"); seam.addColorStop(1, "rgba(11,42,31,1)");
+      ctx.fillStyle = seam; ctx.fillRect(0, bottom - H * 0.18, W, H * 0.18);
+      /* vinyetka */
+      var vg = ctx.createRadialGradient(W / 2, H * 0.45, Math.min(W, H) * 0.3, W / 2, H * 0.45, Math.max(W, H) * 0.85);
+      vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.5)");
+      ctx.fillStyle = vg; ctx.fillRect(0, 0, W, bottom);
+      ctx.restore();
+      if (t < 160) { ctx.fillStyle = "rgba(1,4,3," + (1 - t / 160) + ")"; ctx.fillRect(0, 0, W, H); }
 
-      /* to'p holati */
-      var amp = 0, behind = false;
-      if (t < KICK) {
-        st.X = 0; st.Z = z0; st.Y = BD / 2;
-        var sq = t > KICK - 60 ? 1 - (t - (KICK - 60)) / 60 * 0.08 : 1; void sq;
-      } else if (t < HIT) {
-        var p = (t - KICK) / FLY, e = 1 - Math.pow(1 - p, 1.35);
-        st.Z = z0 + (Zt - z0) * e;
-        st.X = Xt * (0.3 * e + 0.7 * e * e);
-        st.Y = BD / 2 + (Yt - BD / 2) * Math.pow(e, 0.85) + 0.32 * Math.sin(Math.PI * e);
-        ball.spin(W0, 1 / 60);
-        if (!grass.length) for (var g = 0; g < 12; g++) grass.push({ x: (Math.random() - 0.5) * 0.2, y: 0.01, z: z0 + 0.02 + Math.random() * 0.12, vx: (Math.random() - 0.5) * 1.2, vy: 0.6 + Math.random() * 1.4, vz: 0.2 + Math.random() * 1.2, a: Math.random() * 3 });
-      } else {
-        var tau = (t - HIT) / 1000;
-        amp = 1.25 * (1 - Math.exp(-tau * 30)) * Math.exp(-tau * 3.6) * Math.cos(tau * 12);
-        st.Z = Zt + 0.3 * Math.min(1, tau * 6) - 0.12 * Math.min(1, tau * 2);
-        st.X = Xt - 0.2 * Math.min(1, tau * 3);
-        st.Y = Math.max(BD / 2, Yt - 0.5 * 9.8 * tau * tau * 1.6);
-        ball.spin([W0[0] * 0.3, W0[1] * 0.3, W0[2] * 0.3], 1 / 60);
-        if (!hitScreen) { hitScreen = P(Xt, Yt, Zt + 0.3); addFlashes(t); }
+      /* to'p: harakat xiraligi + projektorlar yonidan o'tganda yorqinlik */
+      var B = ballAt(t);
+      if (!reduce) ball.spin(W_SPIN, 1 / 60);
+      var want = B.s * dpr;
+      if (!ball.px || Math.abs(want - ball.px) / ball.px > 0.1) ball.setPx(want);
+      ball.render();
+      hist.unshift(B); if (hist.length > 6) hist.pop();
+      for (var i = hist.length - 1; i >= 1; i -= 2) {
+        var q = hist[i];
+        ctx.globalAlpha = 0.07 * (hist.length - i);
+        ctx.drawImage(ball.cv, q.x - q.s / 2, q.y - q.s / 2 - (B.y - q.y) * 0.4, q.s, q.s);
       }
-      behind = st.Z > Zg;
-      drawNet(amp);
-      if (behind) { drawBall(true); drawFrame(); } else { drawFrame(); drawBall(false); }
-
-      /* zarbada uchgan maysa zarralari */
-      if (grass.length && t < KICK + 320) {
-        var dt = (t - KICK) / 1000;
-        ctx.fillStyle = "rgba(110,175,100," + (0.8 * (1 - (t - KICK) / 320)).toFixed(2) + ")";
-        grass.forEach(function (q) {
-          var y = q.y + q.vy * dt - 4.9 * dt * dt; if (y < 0) return;
-          var s = P(q.x + q.vx * dt, y, q.z + q.vz * dt);
-          var gw = Math.max(0.8, f * 0.0035 / q.z), gh = Math.max(1.2, f * 0.011 / q.z); ctx.save(); ctx.translate(s[0], s[1]); ctx.rotate(q.a + dt * 9); ctx.fillRect(-gw / 2, -gh / 2, gw, gh); ctx.restore();
-        });
-      }
-      /* chaqnoqlar */
-      if (flashes.length) {
+      ctx.globalAlpha = 1;
+      var lampScreen = lampsY - cam * MF, near = Math.max(0, 1 - Math.abs(B.y - lampScreen) / (H * 0.6));
+      if (near > 0.02) {
         ctx.globalCompositeOperation = "lighter";
-        flashes.forEach(function (q) {
-          var k = (t - q.t) / 120; if (k < 0 || k > 1) return;
-          var a = (1 - k) * 0.85, rg = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.r * 5);
-          rg.addColorStop(0, "rgba(255,255,255," + a + ")"); rg.addColorStop(1, "rgba(255,255,255,0)");
-          ctx.fillStyle = rg; ctx.fillRect(q.x - q.r * 5, q.y - q.r * 5, q.r * 10, q.r * 10);
-        });
-        if (hitScreen && t < HIT + 260) {
-          var fk = 1 - (t - HIT) / 260, fr = ctx.createRadialGradient(hitScreen[0], hitScreen[1], 0, hitScreen[0], hitScreen[1], Math.max(W, H) * 0.5);
-          fr.addColorStop(0, "rgba(230,255,190," + (0.32 * fk) + ")"); fr.addColorStop(1, "rgba(230,255,190,0)");
-          ctx.fillStyle = fr; ctx.fillRect(0, 0, W, H);
-        }
+        var gl = ctx.createRadialGradient(B.x - B.s * 0.15, B.y - B.s * 0.2, 0, B.x, B.y, B.s * 1.2);
+        gl.addColorStop(0, "rgba(230,255,220," + (0.22 * near) + ")"); gl.addColorStop(1, "rgba(230,255,220,0)");
+        ctx.fillStyle = gl; ctx.fillRect(B.x - B.s * 1.2, B.y - B.s * 1.2, B.s * 2.4, B.s * 2.4);
         ctx.globalCompositeOperation = "source-over";
       }
-      /* chiroqlar yonishi */
-      if (t < 200) { ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.fillStyle = "rgba(1,4,3," + (1 - t / 200) + ")"; ctx.fillRect(0, 0, W, H); }
+      ctx.drawImage(ball.cv, B.x - B.s / 2, B.y - B.s / 2, B.s, B.s);
 
-      if (t >= REVEAL && !revealed) {
-        revealed = true;
-        var hs = hitScreen || [W / 2, H * 0.4];
-        ov.animate([{ opacity: 1 }, { opacity: 0 }], { duration: END - REVEAL, easing: "ease-in", fill: "forwards" });
-        burst(hero, hs[0], hs[1], false);
-        if (hdr) { hdr.classList.add("fx-drop--in"); }
+      if (t >= DUR && window.__fxT == null) {
+        var prev = ballAt(DUR - 16);
+        var vy = (B.y - prev.y) / 0.016, vx = (B.x - prev.x) / 0.016;
+        finish(false, B, vx, vy);
+        return;
       }
-      if (t >= END) { finish(false); return; }
       raf = requestAnimationFrame(frame);
     }
 
-    function finish(skipped) {
+    function finish(skipped, B, vx, vy) {
       if (done) return; done = true;
       cancelAnimationFrame(raf);
-      html.classList.remove("fx-intro");
-      if (hdr) { hdr.classList.add("fx-drop--in"); setTimeout(function () { hdr.classList.remove("fx-drop", "fx-drop--in"); }, 1000); }
-      if (skipped) burst(hero, 0, 0, true);
+      body.style.transform = ""; body.style.willChange = "";
+      html.classList.remove("fx-intro", "fx-intro-run");
       ov.remove();
-      if (Kick) Kick.drop(skipped ? 80 : 350);
+      if (skipped || !B) { if (Kick) Kick.drop(80); return; }
+      Kick.enter(B.x, B.y, vx * 0.9, Math.min(vy, 2200), ball.R, [W_SPIN[0], W_SPIN[1], W_SPIN[2]]);
     }
     skip.addEventListener("click", function () { finish(true); });
     doc.addEventListener("keydown", function esc(e) { if (e.key === "Escape") { doc.removeEventListener("keydown", esc); finish(true); } });
-    brand.animate([{ opacity: 0, transform: "translate(-50%,-6px)" }, { opacity: 1, transform: "translate(-50%,0)", offset: 0.25 }, { opacity: 1, offset: 0.7 }, { opacity: 0 }],
-      { duration: HIT + 150, easing: "ease-out", fill: "forwards" });
+    brand.animate([{ opacity: 0, transform: "translate(-50%,-6px)" }, { opacity: 1, transform: "translate(-50%,0)", offset: 0.2 }, { opacity: 1, offset: 0.55 }, { opacity: 0 }],
+      { duration: DUR * 0.75, easing: "ease-out", fill: "forwards" });
     raf = requestAnimationFrame(frame);
-    setTimeout(function () { finish(true); }, 5000);   // xavfsizlik
+    setTimeout(function () { finish(true); }, 5500);   // xavfsizlik
   }
 
   /* ---------- ishga tushirish ---------- */
@@ -766,9 +692,8 @@
     window.__fxIntro = true;
     try { sessionStorage.setItem("ufu-intro", "1"); } catch (e) {}
     if (wantIntro) {
-      [".eyebrow", ".hero__title", ".lead", ".hero__cta", ".hero__trust", ".hero__visual"].forEach(function (q) {
-        var n = hero.querySelector(q); if (n) n.classList.add("fx-pre");
-      });
+      /* hero matni sayt ko'tarilib kelganda allaqachon joyida bo'lsin */
+      hero.querySelectorAll(".reveal").forEach(function (n) { n.classList.add("is-in"); });
       var go = function () { intro(hero); };
       if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(go, go); else go();
     } else {

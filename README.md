@@ -132,7 +132,7 @@ Header va footer barcha sahifalarda `app.js` orqali bitta manbadan chiziladi.
 - `prefers-reduced-motion` qoʻllab-quvvatlanadi
 - Telefonlarga moslashtirilgan: iPhone SE (320px) dan iPhone Pro Max / Samsung Galaxy (430px) gacha, yotqizilgan telefon va planshetda tekshirilgan; iOS'da maydonga bosilganda sahifa kattalashib ketmaydi
 - Identika: maydon yashili + lime, asosiy qismlarda liquid glass (header, kartochkalar, menyular, oynalar)
-- Bosh sahifa intro (~1,4 s): kechki stadiondan penalti — 3D toʻp darvozaga uchadi, toʻr silkinadi, sarlavha soʻzlari gol nuqtasidan joylashadi; sessiyada bir marta, "Oʻtkazib yuborish" bor, harakatni kamaytirish sozlamasi hurmat qilinadi
+- Bosh sahifa intro (~1,8 s): kamera tushayotgan 3D toʻpga ergashadi — kechki osmon, projektor minoralari, tribunalar — va hech qanday kesilmasdan saytga kiradi; toʻp oʻng tomonda saytdagi oʻyin toʻpiga aylanadi. Sessiyada bir marta, "Oʻtkazib yuborish" bor, harakatni kamaytirish sozlamasi hurmat qilinadi
 - Hero'dagi to'pni bosib tepish, sudrab otish mumkin (sichqoncha va barmoq)
 - Shriftlar loyiha ichida (282 KB) — internetsiz ham bir xil koʻrinish, tashqi soʻrov umuman yoʻq
 - «Namoyish maketi» belgisi faqat onlayn taqdimot havolasida chiqadi; topshiriladigan fayllarda koʻrinmaydi
