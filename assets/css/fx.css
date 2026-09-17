@@ -80,10 +80,15 @@
 
 /* kontent kapsula ostidan boshlanadi: birinchi bo'lim foni header ortiga ham yoyiladi */
 .hdr{margin-bottom:-74px}
-#main>:first-child{border-top:74px solid transparent}
+:root{--hdr-gap:74px}
+/* header ostidagi joy padding bilan: border bilan qilinsa overflow:hidden fondagi yorug'likni kesib, chiziq hosil qiladi */
+#main>.hero:first-child{padding-top:calc(var(--hdr-gap) + clamp(44px,6vw,90px))}
+#main>.page-head:first-child{padding-top:calc(var(--hdr-gap) + clamp(18px,2.6vw,36px))}
+#main>.section--tight:first-child{padding-top:calc(var(--hdr-gap) + clamp(40px,5vw,72px))}
+#main>.auth:first-child{padding-top:var(--hdr-gap)}
 @media (max-width:760px){
   .hdr{padding-top:8px;margin-bottom:-66px}
-  #main>:first-child{border-top-width:66px}
+  :root{--hdr-gap:66px}
   .hdr>.wrap{width:calc(100% - 20px);height:58px;padding:0 9px 0 16px}
   .hdr .hdr__actions{gap:6px}
   .hdr .lang__btn{height:40px}
@@ -99,11 +104,6 @@
 .hero::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:-12%;bottom:-30%;
   width:min(760px,80vw);height:min(760px,80vw);border-radius:50%;
   background:radial-gradient(closest-side,rgba(31,157,87,.16),rgba(31,157,87,0) 70%)}
-.hero__pitch{position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.55;
-  background:
-    radial-gradient(circle at 76% 58%,transparent 0 160px,rgba(31,122,77,.10) 161px 162px,transparent 163px),
-    linear-gradient(90deg,transparent calc(76% - 1px),rgba(31,122,77,.08) calc(76% - 1px) 76%,transparent 76%);
-  -webkit-mask:linear-gradient(180deg,#000 40%,transparent);mask:linear-gradient(180deg,#000 40%,transparent)}
 .h-hero b{background:linear-gradient(180deg,transparent 64%,rgba(200,240,60,.85) 64% 90%,transparent 90%) no-repeat 0 0/100% 100%;
   transition:background-size .8s cubic-bezier(.6,0,.2,1);
   -webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .04em}
@@ -136,11 +136,9 @@
 .fx-kick:active{cursor:grabbing}
 .fx-kick .fx-ball{width:100%;height:100%}
 .fx-kick:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
-@media (max-width:1079px){.hero{padding-bottom:96px}.hero__pitch{display:none}}
+@media (max-width:1079px){.hero{padding-bottom:96px}}
 .fx-shadow{position:absolute;left:0;top:0;width:64px;height:14px;border-radius:50%;pointer-events:none;transform-origin:50% 50%;
   background:radial-gradient(closest-side,rgba(6,22,14,.42),rgba(6,22,14,.18) 55%,rgba(6,22,14,0));will-change:transform,opacity}
-.fx-ground{position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(31,122,77,.22) 20%,rgba(31,122,77,.22) 80%,transparent)}
 .fx-hint{position:absolute;left:0;top:0;z-index:5;pointer-events:none;white-space:nowrap;
   padding:8px 13px 8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.6);
   font-size:13px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:7px;

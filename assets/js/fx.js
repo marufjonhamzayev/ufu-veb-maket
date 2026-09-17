@@ -211,14 +211,8 @@
     var hero = doc.querySelector(".hero");
     if (!hero) return null;
 
-    var pitch = doc.createElement("div");
-    pitch.className = "hero__pitch";
-    hero.insertBefore(pitch, hero.firstChild);
-
     var layer = doc.createElement("div");
     layer.className = "fx-play";
-    var ground = doc.createElement("div"); ground.className = "fx-ground";
-    layer.appendChild(ground);
     var shadow = doc.createElement("div"); shadow.className = "fx-shadow";
     var el = doc.createElement("div");
     el.className = "fx-kick";
@@ -252,7 +246,6 @@
       if (!bel) { bel = ballEl(css, 2); ball = bel.ball; el.appendChild(bel); }
       else if (Math.abs(ball.px - css * DPR(2)) > 1) { ball.setSize(css); ball.render(); }
       FL = H - R - 2;                                // hero tubi — klublar qatori ustida
-      ground.style.top = (FL + R + 1) + "px";
     }
     function restX() {
       var vis = hero.querySelector(".hero__visual"), v = vis && offsetIn(vis);
