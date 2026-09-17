@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aloqa — UFU</title>
+<meta name="description" content="Uyushma bilan bogʻlanish: huquqiy murojaat, anonim kanal, Telegram-bot va ofis manzili.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Aloqa — UFU">
+<meta property="og:description" content="Uyushma bilan bogʻlanish: huquqiy murojaat, anonim kanal, Telegram-bot va ofis manzili.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .cch{display:flex;gap:16px;padding:22px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;
+    transition:.28s var(--ease);align-items:flex-start}
+  .cch:hover{box-shadow:var(--sh-2);transform:translateY(-2px);border-color:#D5D5CE}
+  .map{border-radius:var(--r-lg);overflow:hidden;position:relative;aspect-ratio:16/10;background:#DDE3EC}
+  .map__grid{position:absolute;inset:0;background-image:
+    linear-gradient(rgba(10,26,51,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(10,26,51,.07) 1px,transparent 1px);
+    background-size:44px 44px}
+  .map__road{position:absolute;background:#fff}
+  .map__pin{position:absolute;left:50%;top:48%;transform:translate(-50%,-100%);z-index:3;text-align:center}
+  .map__pin .dot{width:46px;height:46px;border-radius:50% 50% 50% 8px;background:var(--blue);transform:rotate(-45deg);
+    display:grid;place-items:center;box-shadow:0 10px 24px rgba(27,92,255,.4);margin:0 auto}
+  .map__pin .dot svg{transform:rotate(45deg);color:#fff;width:20px;height:20px}
+  .map__pin b{display:inline-block;margin-top:10px;background:#fff;padding:6px 12px;border-radius:var(--r-pill);
+    font-size:12.5px;box-shadow:var(--sh-2);white-space:nowrap}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="contact">
+
+<div id="shell-header"></div>
+
+<main id="main"><section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs">
+      <a href="index.html" data-i18n="brand.name">UFU</a><span data-ico="chevronRight"></span>
+      <span data-i18n="nav.contact">Aloqa</span>
+    </nav>
+    <h1 class="h-1" data-i18n="ct.title">Bogʻlanish —<br><b>qaysi yoʻl qulay boʻlsa</b></h1>
+    <p class="lead mt-s" data-i18n="ct.lead">Shoshilinch huquqiy masala boʻlsa, murojaat shaklini toʻldiring — u darhol navbatga tushadi. Umumiy savollar uchun quyidagi kanallar ishlaydi.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="row row-3">
+      <a href="murojaat.html" class="cch reveal"><span class="ic-box ic-blue" data-ico="filePlus"></span>
+        <div><b class="h-4" data-i18n="ct.1.t">Huquqiy murojaat</b>
+          <p class="small muted mt-s" data-i18n="ct.1.d">Kontrakt, oylik, transfer yoki intizomiy masala boʻyicha rasmiy ish oching.</p>
+          <span class="link-arrow" style="margin-top:10px" data-ico="arrowRight"><span data-i18n="cta.appeal">Murojaat yuborish</span></span></div></a>
+      <a href="anonim.html" class="cch reveal" data-d="1"><span class="ic-box ic-amber" data-ico="mask"></span>
+        <div><b class="h-4" data-i18n="ct.2.t">Anonim kanal</b>
+          <p class="small muted mt-s" data-i18n="ct.2.d">Ismingizni koʻrsatmasdan xabar bering — javobni maxfiy kod orqali olasiz.</p>
+          <span class="link-arrow" style="margin-top:10px" data-ico="arrowRight"><span data-i18n="an.f.send">Anonim yuborish</span></span></div></a>
+      <a href="#" class="cch reveal" data-d="2"><span class="ic-box ic-green" data-ico="telegram"></span>
+        <div><b class="h-4" data-i18n="ct.3.t">Telegram-bot</b>
+          <p class="small muted mt-s" data-i18n="ct.3.d">@futbolchilar_bot — holat kuzatuvi, tez savollar va xabarnomalar.</p>
+          <span class="link-arrow" style="margin-top:10px" data-ico="arrowRight"><span data-i18n="an.tg.cta">Botni ochish</span></span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="row row-side-r" style="align-items:start">
+      <div class="card card--pad">
+        <h2 class="h-2" data-i18n="ct.f.t">Savol yuborish</h2>
+        <p class="small muted mt-s" data-i18n="ct.f.d">Umumiy savollarga ish kunlari ichida javob beramiz. Huquqiy ish uchun murojaat shaklidan foydalaning.</p>
+        <div class="form-grid mt-m">
+          <div class="field"><label class="field__lbl" data-i18n="ct.f.name">Ism <span class="req">*</span></label><input class="inp" id="cName"></div>
+          <div class="field"><label class="field__lbl" data-i18n="ct.f.contact">Telefon yoki email <span class="req">*</span></label><input class="inp" id="cTel"></div>
+          <div class="field full"><label class="field__lbl" data-i18n="ct.f.topic">Mavzu</label>
+            <select class="sel"><option data-i18n="ct.f.t1">Aʼzolik va roʻyxatdan oʻtish</option><option data-i18n="ct.f.t2">Huquqiy savol</option>
+              <option data-i18n="ct.f.t3">Free Agent Camp</option><option data-i18n="ct.f.t4">Hamkorlik</option><option data-i18n="ct.f.t5">Media soʻrovi</option></select></div>
+          <div class="field full"><label class="field__lbl" data-i18n="ct.f.msg">Xabar <span class="req">*</span></label>
+            <textarea class="txt" id="cMsg" data-i18n-ph="ct.f.msg.ph" placeholder="Savolingizni yozing"></textarea></div>
+        </div>
+        <button class="btn btn--dark btn--block mt-m" id="cSend" data-i18n="cta.send">Yuborish</button>
+      </div>
+
+      <div class="stack">
+        <div class="card card--pad">
+          <b class="h-4" data-i18n="ct.i.t">Kontaktlar</b>
+          <div class="stack-sm mt-m">
+            <a href="tel:+998712000047" class="flex" style="gap:12px" data-ico="phone"><span class="small">+998 71 200 00 47</span></a>
+            <a href="mailto:info@futbolchilar.uz" class="flex" style="gap:12px" data-ico="mail"><span class="small">info@futbolchilar.uz</span></a>
+            <a href="mailto:legal@futbolchilar.uz" class="flex" style="gap:12px" data-ico="scale"><span class="small">legal@futbolchilar.uz — <span data-i18n="ct.i.legal">yuridik boʻlim</span></span></a>
+            <a href="mailto:partners@futbolchilar.uz" class="flex" style="gap:12px" data-ico="handshake"><span class="small">partners@futbolchilar.uz — <span data-i18n="ct.i.part">hamkorlik</span></span></a>
+          </div>
+          <hr class="divider" style="margin:18px 0">
+          <div class="flex" style="gap:12px;align-items:flex-start"><span data-ico="mapPin" style="color:var(--blue);margin-top:2px"></span>
+            <span class="small" data-i18n="ftr.addr">Toshkent shahri, Mirobod tumani,<br>Bunyodkor shoh koʻchasi, 47</span></div>
+          <div class="flex mt-s" style="gap:12px;align-items:flex-start"><span data-ico="clock" style="color:var(--blue);margin-top:2px"></span>
+            <span class="small" data-i18n="ct.i.time">Dushanba–juma · 09:00–19:00<br>Ishonch liniyasi — 24/7 (Telegram)</span></div>
+        </div>
+
+        <div class="map">
+          <div class="map__grid"></div>
+          <div class="map__road" style="left:0;right:0;top:52%;height:14px"></div>
+          <div class="map__road" style="top:0;bottom:0;left:38%;width:10px"></div>
+          <div class="map__road" style="top:0;bottom:0;left:74%;width:6px"></div>
+          <div class="map__pin"><span class="dot" data-ico="shield"></span><b data-i18n="ct.map">UFU ofisi · Bunyodkor 47</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="shell-footer"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'ct.title':'Bogʻlanish —<br><b>qaysi yoʻl qulay boʻlsa</b>',
+  'ct.lead':'Shoshilinch huquqiy masala boʻlsa, murojaat shaklini toʻldiring — u darhol navbatga tushadi. Umumiy savollar uchun quyidagi kanallar ishlaydi.',
+  'ct.1.t':'Huquqiy murojaat','ct.1.d':'Kontrakt, oylik, transfer yoki intizomiy masala boʻyicha rasmiy ish oching.',
+  'ct.2.t':'Anonim kanal','ct.2.d':'Ismingizni koʻrsatmasdan xabar bering — javobni maxfiy kod orqali olasiz.',
+  'ct.3.t':'Telegram-bot','ct.3.d':'@futbolchilar_bot — holat kuzatuvi, tez savollar va xabarnomalar.',
+  'ct.f.t':'Savol yuborish','ct.f.d':'Umumiy savollarga ish kunlari ichida javob beramiz. Huquqiy ish uchun murojaat shaklidan foydalaning.',
+  'ct.f.name':'Ism','ct.f.contact':'Telefon yoki email','ct.f.topic':'Mavzu','ct.f.msg':'Xabar','ct.f.msg.ph':'Savolingizni yozing',
+  'ct.f.t1':'Aʼzolik va roʻyxatdan oʻtish','ct.f.t2':'Huquqiy savol','ct.f.t3':'Free Agent Camp','ct.f.t4':'Hamkorlik','ct.f.t5':'Media soʻrovi',
+  'ct.i.t':'Kontaktlar','ct.i.legal':'yuridik boʻlim','ct.i.part':'hamkorlik',
+  'ct.i.time':'Dushanba–juma · 09:00–19:00<br>Ishonch liniyasi — 24/7 (Telegram)','ct.map':'UFU ofisi · Bunyodkor 47',
+  'ct.ok':'Xabar yuborildi','ct.ok.d':'Ish kunlari ichida javob beramiz'
+ },
+ ru:{
+  'ct.title':'Связаться —<br><b>как вам удобнее</b>',
+  'ct.lead':'Если вопрос срочный и юридический, заполните форму обращения — она сразу попадает в очередь. Для общих вопросов работают каналы ниже.',
+  'ct.1.t':'Правовое обращение','ct.1.d':'Откройте официальное дело по контракту, зарплате, трансферу или дисциплинарному вопросу.',
+  'ct.2.t':'Анонимный канал','ct.2.d':'Сообщите, не называя имени — ответ получите по секретному коду.',
+  'ct.3.t':'Telegram-бот','ct.3.d':'@futbolchilar_bot — отслеживание статуса, быстрые вопросы и уведомления.',
+  'ct.f.t':'Задать вопрос','ct.f.d':'На общие вопросы отвечаем в течение рабочего дня. Для правового дела используйте форму обращения.',
+  'ct.f.name':'Имя','ct.f.contact':'Телефон или email','ct.f.topic':'Тема','ct.f.msg':'Сообщение','ct.f.msg.ph':'Напишите ваш вопрос',
+  'ct.f.t1':'Членство и регистрация','ct.f.t2':'Правовой вопрос','ct.f.t3':'Free Agent Camp','ct.f.t4':'Партнёрство','ct.f.t5':'Запрос СМИ',
+  'ct.i.t':'Контакты','ct.i.legal':'юридический отдел','ct.i.part':'партнёрство',
+  'ct.i.time':'Понедельник–пятница · 09:00–19:00<br>Линия доверия — 24/7 (Telegram)','ct.map':'Офис UFU · Бунёдкор 47',
+  'ct.ok':'Сообщение отправлено','ct.ok.d':'Ответим в течение рабочего дня'
+ },
+ en:{
+  'ct.title':'Get in touch —<br><b>whichever way suits you</b>',
+  'ct.lead':'If the matter is urgent and legal, use the case form — it goes straight into the queue. For general questions, the channels below are open.',
+  'ct.1.t':'Legal case','ct.1.d':'Open a formal case about a contract, wages, a transfer or a disciplinary matter.',
+  'ct.2.t':'Anonymous channel','ct.2.d':'Report without giving your name — you read the reply through a secret code.',
+  'ct.3.t':'Telegram bot','ct.3.d':'@futbolchilar_bot — status tracking, quick questions and notifications.',
+  'ct.f.t':'Ask a question','ct.f.d':'General questions are answered within a working day. For a legal case, use the case form.',
+  'ct.f.name':'Name','ct.f.contact':'Phone or email','ct.f.topic':'Topic','ct.f.msg':'Message','ct.f.msg.ph':'Write your question',
+  'ct.f.t1':'Membership and registration','ct.f.t2':'Legal question','ct.f.t3':'Free Agent Camp','ct.f.t4':'Partnership','ct.f.t5':'Media request',
+  'ct.i.t':'Contacts','ct.i.legal':'legal department','ct.i.part':'partnerships',
+  'ct.i.time':'Monday–Friday · 09:00–19:00<br>Trust line — 24/7 (Telegram)','ct.map':'UFU office · Bunyodkor 47',
+  'ct.ok':'Message sent','ct.ok.d':'We reply within a working day'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  document.getElementById('cSend').addEventListener('click',function(){
+    var ok=true;
+    [['cName',2],['cTel',5],['cMsg',10]].forEach(function(p){
+      var el=document.getElementById(p[0]), bad=el.value.trim().length<p[1];
+      el.closest('.field').classList.toggle('is-error',bad); if(bad) ok=false;
+    });
+    if(ok){ App.toast(App.t('ct.ok'),App.t('ct.ok.d')); ['cName','cTel','cMsg'].forEach(function(i){document.getElementById(i).value='';}); }
+  });
+})();
+</script>
+</body>
+</html>

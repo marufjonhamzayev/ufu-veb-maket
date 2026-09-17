@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaxsiy kabinet — Oʻzbekiston futbolchilar uyushmasi</title>
+<meta name="description" content="Futbolchining shaxsiy kabineti: anketa, murojaatlar holati, hujjatlar, xabarnomalar va yurist bilan aloqa.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Shaxsiy kabinet — Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:description" content="Futbolchining shaxsiy kabineti: anketa, murojaatlar holati, hujjatlar, xabarnomalar va yurist bilan aloqa.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .prof{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+  .prof__av{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:top center;
+    border:3px solid rgba(255,255,255,.2);background:#16305A;flex:none}
+  .kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .kpi .card{padding:22px}
+  .kpi .n{font-family:var(--fd);font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1}
+  .note{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;padding:16px;border:1px solid var(--line);
+    border-radius:var(--r-md);background:#fff;transition:.24s var(--ease);align-items:start}
+  .note:hover{border-color:#D5D5CE;box-shadow:var(--sh-2)}
+  .note.is-unread{background:var(--sky-2);border-color:#DCE6FF}
+  .chat{display:grid;gap:12px;max-height:280px;overflow-y:auto;padding-right:6px}
+  .msg{max-width:78%;padding:12px 15px;border-radius:14px;font-size:14px;line-height:1.5}
+  .msg--in{background:#F1F1EC;border-bottom-left-radius:4px}
+  .msg--out{background:var(--navy);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+  .msg .t{display:block;font-size:11px;opacity:.6;margin-top:6px}
+  @media(max-width:900px){.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:560px){.kpi{gap:10px}.note{grid-template-columns:36px minmax(0,1fr);gap:10px}.note>*:last-child{grid-column:2}}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="cabinet">
+
+<div id="shell-header"></div>
+
+<!-- PROFILE HEAD -->
+<main id="main"><section class="page-head page-head--dark" style="padding-bottom:clamp(30px,4vw,52px)">
+  <div class="wrap">
+    <nav class="crumbs">
+      <a href="index.html" data-i18n="brand.name">UFU</a><span data-ico="chevronRight"></span>
+      <span data-i18n="k.crumb">Shaxsiy kabinet</span>
+    </nav>
+    <div class="row row-side" style="align-items:center">
+      <div class="prof">
+        <span class="prof__av avatar-initials">JR</span>
+        <div>
+          <div class="flex" style="gap:10px;flex-wrap:wrap">
+            <span class="tag tag--dark" data-i18n="k.member">Aʼzo · UFU-01842</span>
+            <span class="status status--done" data-i18n="k.active">Faol aʼzolik</span>
+          </div>
+          <h1 class="h-1" style="margin-top:12px" data-nm>Jasurbek Rahimov</h1>
+          <p class="small" style="color:rgba(255,255,255,.72);margin-top:8px">
+            <span data-i18n="k.club">Navbahor · Superliga</span> · <span data-i18n="k.pos">Yarim himoyachi</span> ·
+            <span data-i18n="k.contract">Kontrakt 30.06.2027 gacha</span>
+          </p>
+        </div>
+      </div>
+      <div style="justify-self:end">
+        <div class="card card--dark card--pad" style="min-width:270px">
+          <div class="flex" style="justify-content:space-between">
+            <b class="small" data-i18n="k.fill">Anketa toʻldirilgan</b><b class="small">85%</b>
+          </div>
+          <div class="bar mt-s" style="background:rgba(255,255,255,.14)"><i style="width:85%"></i></div>
+          <p class="tiny muted mt-s" data-i18n="k.fill.d">Pasport nusxasi va karyera statistikasi yetishmayapti.</p>
+          <button class="btn btn--white btn--sm btn--block mt-s" data-goto="anketa" data-i18n="k.fill.cta">Toʻldirishni yakunlash</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" data-tabs id="cab">
+  <div class="wrap">
+    <div class="tabs" style="margin-bottom:28px">
+      <button class="tab is-active" data-tab="over" data-i18n="k.t1">Umumiy</button>
+      <button class="tab" data-tab="cases" data-i18n="k.t2">Murojaatlarim</button>
+      <button class="tab" data-tab="anketa" data-i18n="k.t3">Anketa</button>
+      <button class="tab" data-tab="docs" data-i18n="k.t4">Hujjatlarim</button>
+      <button class="tab" data-tab="notif" data-i18n="k.t5">Xabarnomalar <span class="tag tag--blue" style="margin-left:6px">3</span></button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="tabpane is-active" data-pane="over">
+      <div class="kpi">
+        <div class="card card--pad"><span class="ic-box ic-blue" data-ico="folder"></span>
+          <div class="n mt-s">2</div><div class="small muted" data-i18n="k.k1">faol murojaat</div></div>
+        <div class="card card--pad"><span class="ic-box ic-green" data-ico="checkCircle"></span>
+          <div class="n mt-s">1</div><div class="small muted" data-i18n="k.k2">hal qilingan ish</div></div>
+        <div class="card card--pad"><span class="ic-box ic-amber" data-ico="fileText"></span>
+          <div class="n mt-s">7</div><div class="small muted" data-i18n="k.k3">saqlangan hujjat</div></div>
+        <div class="card card--pad"><span class="ic-box ic-blue" data-ico="trophy"></span>
+          <div class="n mt-s">1</div><div class="small muted" data-i18n="k.k4">ochiq ovoz berish</div></div>
+      </div>
+
+      <div class="row row-side-r mt-l" style="align-items:start">
+        <div class="card card--pad">
+          <div class="flex" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
+            <div>
+              <span class="mono muted">UFU-2026-184402</span>
+              <h3 class="h-3 mt-s" data-i18n="k.case.t">Oylik qarzdorligi · Navbahor</h3>
+            </div>
+            <span class="status status--review" data-i18n="c.review">Koʻrib chiqilmoqda</span>
+          </div>
+          <hr class="divider" style="margin:20px 0">
+          <div class="tl">
+            <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+              <div><div class="tl__t" data-i18n="k.tl1">Murojaat qabul qilindi</div><div class="tl__m">12.09.2026 · 14:20</div></div></div>
+            <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+              <div><div class="tl__t" data-i18n="k.tl2">Yurist biriktirildi — A. Ergashev</div><div class="tl__m">13.09.2026 · 09:05</div></div></div>
+            <div class="tl__i is-current"><span class="tl__d" data-ico="clock"></span>
+              <div><div class="tl__t" data-i18n="k.tl3">Qoʻshimcha maʼlumot soʻraldi</div><div class="tl__m">15.09.2026 · 11:40</div>
+                <div class="tl__msg" data-i18n="k.tl3.msg">Iltimos, soʻnggi ikki oylik bank koʻchirmasini biriktiring — daʼvoni shu hafta yuboramiz.</div>
+                <div class="flex" style="gap:10px;margin-top:12px">
+                  <button class="btn btn--dark btn--sm" data-ico="upload"><span data-i18n="k.tl3.up">Hujjat yuklash</span></button>
+                  <button class="btn btn--ghost btn--sm" data-modal-open="mCase" data-i18n="k.tl3.chat">Yuristga yozish</button>
+                </div>
+              </div></div>
+            <div class="tl__i"><span class="tl__d" data-ico="scale"></span>
+              <div><div class="tl__t muted" data-i18n="c.done">Hal qilindi</div></div></div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <a href="murojaat.html" class="card card--pad card--hover">
+            <span class="ic-box ic-blue" data-ico="filePlus"></span>
+            <b class="h-4 mt-s" style="display:block" data-i18n="k.q1">Yangi murojaat</b>
+            <p class="small muted mt-s" data-i18n="k.q1.d">Yangi masala boʻyicha ish oching.</p>
+          </a>
+          <a href="symbolic-xi.html" class="card card--pad card--hover" style="background:#0A1A33;color:#fff;border:0">
+            <span class="ic-box ic-dark" data-ico="trophy"></span>
+            <b class="h-4 mt-s" style="display:block;color:#fff" data-i18n="k.q2">Symbolic XI · ovoz bering</b>
+            <p class="small mt-s" style="color:rgba(255,255,255,.7)" data-i18n="k.q2.d">14 kun qoldi. Tarkibingiz saqlanmagan.</p>
+          </a>
+          <a href="free-agent-camp.html" class="card card--pad card--hover">
+            <span class="ic-box ic-green" data-ico="pitch"></span>
+            <b class="h-4 mt-s" style="display:block" data-i18n="k.q3">Free Agent Camp</b>
+            <p class="small muted mt-s" data-i18n="k.q3.d">Yanvar yigʻiniga arizalar ochiq.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASES -->
+    <div class="tabpane" data-pane="cases">
+      <div class="flex flex-wrap" style="justify-content:space-between;gap:14px;margin-bottom:20px">
+        <div class="flex flex-wrap" style="gap:8px" data-chips="#caseList">
+          <button class="chip is-active" data-val="all" data-i18n="c.all">Barchasi</button>
+          <button class="chip" data-val="new" data-i18n="c.new">Yangi</button>
+          <button class="chip" data-val="review" data-i18n="c.review">Koʻrib chiqilmoqda</button>
+          <button class="chip" data-val="info" data-i18n="c.info">Qoʻshimcha maʼlumot soʻraldi</button>
+          <button class="chip" data-val="done" data-i18n="c.done">Hal qilindi</button>
+          <button class="chip" data-val="closed" data-i18n="c.closed">Yopildi</button>
+        </div>
+        <a href="murojaat.html" class="btn btn--dark btn--sm" data-ico="plus"><span data-i18n="k.new">Yangi murojaat</span></a>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl" id="caseList">
+          <thead><tr>
+            <th data-i18n="k.th1">Raqam</th><th data-i18n="c.category">Kategoriya</th>
+            <th data-i18n="k.th2">Klub</th><th data-i18n="c.date">Sana</th>
+            <th data-i18n="k.th3">Yurist</th><th data-i18n="c.status">Holat</th>
+          </tr></thead>
+          <tbody>
+            <tr data-cat="review" data-modal-open="mCase">
+              <td class="mono">UFU-2026-184402</td><td data-i18n="m.cat.1">Oylik qarzdorligi</td><td data-nm>Navbahor</td>
+              <td>12.09.2026</td><td data-nm>A. Ergashev</td><td><span class="status status--review" data-i18n="c.review">Koʻrib chiqilmoqda</span></td>
+            </tr>
+            <tr data-cat="info">
+              <td class="mono">UFU-2026-179115</td><td data-i18n="m.cat.2">Kontrakt shartlari / imzolash</td><td data-nm>Navbahor</td>
+              <td>28.08.2026</td><td data-nm>D. Yusupova</td><td><span class="status status--info" data-i18n="c.info">Qoʻshimcha maʼlumot soʻraldi</span></td>
+            </tr>
+            <tr data-cat="done">
+              <td class="mono">UFU-2025-166208</td><td data-i18n="m.cat.5">Jarohat / sugʻurta</td><td data-nm>Qizilqum</td>
+              <td>14.03.2025</td><td data-nm>A. Ergashev</td><td><span class="status status--done" data-i18n="c.done">Hal qilindi</span></td>
+            </tr>
+            <tr data-cat="closed">
+              <td class="mono">UFU-2024-141077</td><td data-i18n="m.cat.4">Transfer masalasi</td><td data-nm>Qizilqum</td>
+              <td>02.07.2024</td><td data-nm>S. Qodirov</td><td><span class="status status--closed" data-i18n="c.closed">Yopildi</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tiny muted mt-s" data-i18n="k.hint">Batafsil koʻrish uchun qatorni bosing.</p>
+    </div>
+
+    <!-- ANKETA -->
+    <div class="tabpane" data-pane="anketa">
+      <div class="row row-side-r" style="align-items:start">
+        <div class="card card--pad">
+          <h3 class="h-3" data-i18n="k.an.t">Futbolchi anketasi</h3>
+          <p class="small muted mt-s" data-i18n="k.an.d">Bu maʼlumotlar faqat uyushma yuristlariga koʻrinadi va ish yuritishda ishlatiladi.</p>
+          <div class="form-grid mt-m">
+            <div class="field"><label class="field__lbl" data-i18n="k.an.name">F.I.Sh.</label><input class="inp" value="Rahimov Jasurbek Baxtiyorovich"></div>
+            <div class="field"><label class="field__lbl" data-i18n="k.an.bd">Tugʻilgan sana</label><input class="inp" type="date" value="1999-04-17"></div>
+            <div class="field"><label class="field__lbl" data-i18n="k.an.club">Klub</label>
+              <select class="sel"><option data-nm>Navbahor</option><option data-nm>Paxtakor</option><option data-nm>Neftchi</option><option data-nm>Nasaf</option></select></div>
+            <div class="field"><label class="field__lbl" data-i18n="k.an.league">Liga</label>
+              <select class="sel"><option data-nm>Superliga</option><option data-nm>Pro Liga</option><option data-nm>Birinchi liga</option></select></div>
+            <div class="field"><label class="field__lbl" data-i18n="k.an.pos">Amplua</label>
+              <select class="sel"><option data-i18n="k.pos">Yarim himoyachi</option><option data-i18n="x.gk">Darvozabon</option><option data-i18n="x.df">Himoyachi</option><option data-i18n="x.fw">Hujumchi</option></select></div>
+            <div class="field"><label class="field__lbl" data-i18n="k.an.cst">Kontrakt holati</label>
+              <select class="sel"><option data-i18n="k.an.cst1">Amalda · 30.06.2027 gacha</option><option data-i18n="k.an.cst2">Tugagan / erkin agent</option><option data-i18n="k.an.cst3">Ijarada</option></select></div>
+            <div class="field full"><label class="field__lbl" data-i18n="k.an.doc">Pasport / ID <span class="req">*</span></label>
+              <div class="drop" style="padding:20px"><span class="ic" data-ico="upload"></span>
+                <b class="small" data-i18n="k.an.doc.d">Hujjat skanini yuklang — PDF yoki JPG</b></div></div>
+            <div class="field full"><label class="field__lbl" data-i18n="k.an.stat">Karyera statistikasi</label>
+              <div class="form-grid">
+                <input class="inp" data-i18n-ph="k.an.st1" placeholder="Umumiy oʻyinlar — 187">
+                <input class="inp" data-i18n-ph="k.an.st2" placeholder="Gollar — 24">
+                <input class="inp" data-i18n-ph="k.an.st3" placeholder="Terma jamoa — U21, 9 oʻyin">
+                <input class="inp" data-i18n-ph="k.an.st4" placeholder="Oldingi klublar — Qizilqum, Xorazm">
+              </div></div>
+          </div>
+          <div class="flex" style="gap:12px;margin-top:24px">
+            <button class="btn btn--dark" id="save" data-i18n="cta.save">Saqlash</button>
+            <button class="btn btn--ghost" data-i18n="cta.cancel">Bekor qilish</button>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="card card--pad center">
+            <span class="avatar-initials" style="width:120px;height:120px;font-size:38px;margin:0 auto">JR</span>
+            <b class="h-4" style="display:block;margin-top:14px" data-i18n="k.an.photo">Profil fotosi</b>
+            <p class="tiny muted mt-s" data-i18n="k.an.photo.d">Klub formasida, kamida 600×600 px.</p>
+            <button class="btn btn--ghost btn--sm btn--block mt-s" data-i18n="k.an.photo.cta">Almashtirish</button>
+          </div>
+          <div class="card card--pad">
+            <b class="h-4" data-i18n="k.an.priv">Maʼlumot maxfiyligi</b>
+            <div class="stack-sm mt-m">
+              <label class="switch"><input type="checkbox" checked><span class="switch__tr"></span>
+                <span class="small" data-i18n="k.an.priv1">Ismim Symbolic XI natijalarida koʻrinsin</span></label>
+              <label class="switch"><input type="checkbox"><span class="switch__tr"></span>
+                <span class="small" data-i18n="k.an.priv2">Free Agent Camp roʻyxatida skautlarga ochiq</span></label>
+              <label class="switch"><input type="checkbox" checked><span class="switch__tr"></span>
+                <span class="small" data-i18n="k.an.priv3">Telegram-bot xabarnomalari</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCS -->
+    <div class="tabpane" data-pane="docs">
+      <div class="stack">
+        <div class="doc-row"><span class="ic" data-ico="fileText"></span>
+          <div><b class="small" data-i18n="k.d1">Mehnat shartnomasi — Navbahor (2024–2027)</b>
+            <p class="tiny muted">PDF · 2,4 MB · 12.09.2026</p></div>
+          <span class="meta"><button class="btn btn--ghost btn--sm" data-ico="download"><span data-i18n="cta.download">Yuklab olish</span></button></span></div>
+        <div class="doc-row"><span class="ic" data-ico="fileText"></span>
+          <div><b class="small" data-i18n="k.d2">Bank koʻchirmasi — iyul–avgust 2026</b>
+            <p class="tiny muted">PDF · 480 KB · 15.09.2026</p></div>
+          <span class="meta"><button class="btn btn--ghost btn--sm" data-ico="download"><span data-i18n="cta.download">Yuklab olish</span></button></span></div>
+        <div class="doc-row"><span class="ic" data-ico="fileText"></span>
+          <div><b class="small" data-i18n="k.d3">Klubga yuborilgan daʼvo nusxasi</b>
+            <p class="tiny muted">PDF · 210 KB · 16.09.2026</p></div>
+          <span class="meta"><button class="btn btn--ghost btn--sm" data-ico="download"><span data-i18n="cta.download">Yuklab olish</span></button></span></div>
+        <div class="doc-row"><span class="ic" data-ico="fileText"></span>
+          <div><b class="small" data-i18n="k.d4">Aʼzolik guvohnomasi UFU-01842</b>
+            <p class="tiny muted">PDF · 96 KB · 04.02.2026</p></div>
+          <span class="meta"><button class="btn btn--ghost btn--sm" data-ico="download"><span data-i18n="cta.download">Yuklab olish</span></button></span></div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="tabpane" data-pane="notif">
+      <div class="stack">
+        <div class="note is-unread"><span class="ic-box ic-amber" style="width:42px;height:42px;border-radius:11px" data-ico="alert"></span>
+          <div><b class="small" data-i18n="k.n1">Qoʻshimcha maʼlumot soʻraldi — UFU-2026-184402</b>
+            <p class="tiny muted mt-s" data-i18n="k.n1.d">Yurist A. Ergashev ikki oylik bank koʻchirmasini soʻradi.</p></div>
+          <span class="tiny muted">1 <span data-i18n="k.ago">soat oldin</span></span></div>
+        <div class="note is-unread"><span class="ic-box ic-blue" style="width:42px;height:42px;border-radius:11px" data-ico="trophy"></span>
+          <div><b class="small" data-i18n="k.n2">Symbolic XI ovoz berishi ochildi</b>
+            <p class="tiny muted mt-s" data-i18n="k.n2.d">30-noyabrgacha tarkibingizni tanlab qoʻying.</p></div>
+          <span class="tiny muted">2 <span data-i18n="k.days">kun oldin</span></span></div>
+        <div class="note is-unread"><span class="ic-box ic-green" style="width:42px;height:42px;border-radius:11px" data-ico="checkCircle"></span>
+          <div><b class="small" data-i18n="k.n3">Yurist biriktirildi</b>
+            <p class="tiny muted mt-s" data-i18n="k.n3.d">UFU-2026-184402 ishi A. Ergashevga topshirildi.</p></div>
+          <span class="tiny muted">4 <span data-i18n="k.days">kun oldin</span></span></div>
+        <div class="note"><span class="ic-box ic-blue" style="width:42px;height:42px;border-radius:11px" data-ico="book"></span>
+          <div><b class="small" data-i18n="k.n4">Bilim bazasi yangilandi</b>
+            <p class="tiny muted mt-s" data-i18n="k.n4.d">«FIFA RSTP 2027 — 12 oʻzgarish» materiali qoʻshildi.</p></div>
+          <span class="tiny muted">1 <span data-i18n="k.week">hafta oldin</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE MODAL -->
+<div class="modal" id="mCase">
+  <div class="modal__bg"></div>
+  <div class="modal__box modal__box--wide">
+    <div class="modal__head">
+      <span class="ic-box ic-blue" style="width:42px;height:42px;border-radius:11px" data-ico="folder"></span>
+      <div><b class="h-4">UFU-2026-184402</b><p class="tiny muted" data-i18n="k.case.t">Oylik qarzdorligi · Navbahor</p></div>
+      <button class="modal__x" data-modal-close data-ico="x"></button>
+    </div>
+    <div class="modal__body">
+      <div class="row row-2" style="gap:26px">
+        <div>
+          <b class="small muted" data-i18n="k.m.hist">Ish tarixi</b>
+          <div class="tl mt-s">
+            <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+              <div><div class="tl__t" data-i18n="k.tl1">Murojaat qabul qilindi</div><div class="tl__m">12.09.2026</div></div></div>
+            <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+              <div><div class="tl__t" data-i18n="k.tl2">Yurist biriktirildi — A. Ergashev</div><div class="tl__m">13.09.2026</div></div></div>
+            <div class="tl__i is-current"><span class="tl__d" data-ico="clock"></span>
+              <div><div class="tl__t" data-i18n="k.tl3">Qoʻshimcha maʼlumot soʻraldi</div><div class="tl__m">15.09.2026</div></div></div>
+          </div>
+          <hr class="divider" style="margin:18px 0">
+          <div class="stack-sm">
+            <div class="flex" style="justify-content:space-between"><span class="small muted" data-i18n="m.sum.cat">Kategoriya</span><b class="small" data-i18n="m.cat.1">Oylik qarzdorligi</b></div>
+            <div class="flex" style="justify-content:space-between"><span class="small muted" data-i18n="k.m.amount">Summa</span><b class="small" data-i18n="k.m.amount.v">84 000 000 soʻm</b></div>
+            <div class="flex" style="justify-content:space-between"><span class="small muted" data-i18n="k.m.period">Davr</span><b class="small">04.2026 — 09.2026</b></div>
+            <div class="flex" style="justify-content:space-between"><span class="small muted" data-i18n="m.sum.files">Hujjatlar</span><b class="small">3</b></div>
+          </div>
+        </div>
+        <div>
+          <b class="small muted" data-i18n="k.m.chat">Yurist bilan yozishma</b>
+          <div class="chat mt-s">
+            <div class="msg msg--in" data-i18n="k.m.c1">Assalomu alaykum, Jasurbek. Ishingizni qabul qildim. Shartnomangizni koʻrib chiqdim — toʻlov muddati aniq belgilangan, bu bizning foydamizga.<span class="t">13.09 · 09:20</span></div>
+            <div class="msg msg--out" data-i18n="k.m.c2">Rahmat. Klub yana «keyingi oy» deyapti.<span class="t">13.09 · 10:02</span></div>
+            <div class="msg msg--in" data-i18n="k.m.c3">Ogʻzaki vaʼdalarni hisobga olmaymiz. Ikki oylik bank koʻchirmasini yuboring — daʼvoni shu hafta rasmiylashtiramiz.<span class="t">15.09 · 11:40</span></div>
+          </div>
+          <div class="flex" style="gap:10px;margin-top:14px">
+            <input class="inp" data-i18n-ph="k.m.ph" placeholder="Xabar yozing…" id="msgIn">
+            <button class="btn btn--dark" id="msgSend" data-ico="arrowRight" data-i18n-aria="cta.send"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal__foot">
+      <button class="btn btn--ghost" data-ico="download"><span data-i18n="k.m.export">Ish hujjatlarini yuklash</span></button>
+      <button class="btn btn--dark" data-modal-close data-i18n="k.m.close">Yopish</button>
+    </div>
+  </div>
+</div>
+
+</main>
+<div id="shell-footer"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'k.m.amount.v':'84 000 000 soʻm',
+  'k.crumb':'Shaxsiy kabinet','k.member':'Aʼzo · UFU-01842','k.active':'Faol aʼzolik','k.club':'Navbahor · Superliga',
+  'k.pos':'Yarim himoyachi','k.contract':'Kontrakt 30.06.2027 gacha','k.fill':'Anketa toʻldirilgan',
+  'k.fill.d':'Pasport nusxasi va karyera statistikasi yetishmayapti.','k.fill.cta':'Toʻldirishni yakunlash',
+  'k.t1':'Umumiy','k.t2':'Murojaatlarim','k.t3':'Anketa','k.t4':'Hujjatlarim','k.t5':'Xabarnomalar',
+  'k.k1':'faol murojaat','k.k2':'hal qilingan ish','k.k3':'saqlangan hujjat','k.k4':'ochiq ovoz berish',
+  'k.case.t':'Oylik qarzdorligi · Navbahor','k.tl1':'Murojaat qabul qilindi','k.tl2':'Yurist biriktirildi — A. Ergashev',
+  'k.tl3':'Qoʻshimcha maʼlumot soʻraldi','k.tl3.msg':'Iltimos, soʻnggi ikki oylik bank koʻchirmasini biriktiring — daʼvoni shu hafta yuboramiz.',
+  'k.tl3.up':'Hujjat yuklash','k.tl3.chat':'Yuristga yozish',
+  'k.q1':'Yangi murojaat','k.q1.d':'Yangi masala boʻyicha ish oching.','k.q2':'Symbolic XI · ovoz bering',
+  'k.q2.d':'14 kun qoldi. Tarkibingiz saqlanmagan.','k.q3':'Free Agent Camp','k.q3.d':'Yanvar yigʻiniga arizalar ochiq.',
+  'k.new':'Yangi murojaat','k.th1':'Raqam','k.th2':'Klub','k.th3':'Yurist','k.hint':'Batafsil koʻrish uchun qatorni bosing.',
+  'k.an.t':'Futbolchi anketasi','k.an.d':'Bu maʼlumotlar faqat uyushma yuristlariga koʻrinadi va ish yuritishda ishlatiladi.',
+  'k.an.name':'F.I.Sh.','k.an.bd':'Tugʻilgan sana','k.an.club':'Klub','k.an.league':'Liga','k.an.pos':'Amplua',
+  'k.an.cst':'Kontrakt holati','k.an.cst1':'Amalda · 30.06.2027 gacha','k.an.cst2':'Tugagan / erkin agent','k.an.cst3':'Ijarada',
+  'k.an.doc':'Pasport / ID','k.an.doc.d':'Hujjat skanini yuklang — PDF yoki JPG','k.an.stat':'Karyera statistikasi',
+  'k.an.st1':'Umumiy oʻyinlar — 187','k.an.st2':'Gollar — 24','k.an.st3':'Terma jamoa — U21, 9 oʻyin','k.an.st4':'Oldingi klublar — Qizilqum, Xorazm',
+  'k.an.photo':'Profil fotosi','k.an.photo.d':'Klub formasida, kamida 600×600 px.','k.an.photo.cta':'Almashtirish',
+  'k.an.priv':'Maʼlumot maxfiyligi','k.an.priv1':'Ismim Symbolic XI natijalarida koʻrinsin',
+  'k.an.priv2':'Free Agent Camp roʻyxatida skautlarga ochiq','k.an.priv3':'Telegram-bot xabarnomalari',
+  'k.d1':'Mehnat shartnomasi — Navbahor (2024–2027)','k.d2':'Bank koʻchirmasi — iyul–avgust 2026',
+  'k.d3':'Klubga yuborilgan daʼvo nusxasi','k.d4':'Aʼzolik guvohnomasi UFU-01842',
+  'k.n1':'Qoʻshimcha maʼlumot soʻraldi — UFU-2026-184402','k.n1.d':'Yurist A. Ergashev ikki oylik bank koʻchirmasini soʻradi.',
+  'k.n2':'Symbolic XI ovoz berishi ochildi','k.n2.d':'30-noyabrgacha tarkibingizni tanlab qoʻying.',
+  'k.n3':'Yurist biriktirildi','k.n3.d':'UFU-2026-184402 ishi A. Ergashevga topshirildi.',
+  'k.n4':'Bilim bazasi yangilandi','k.n4.d':'«FIFA RSTP 2027 — 12 oʻzgarish» materiali qoʻshildi.',
+  'k.ago':'soat oldin','k.days':'kun oldin','k.week':'hafta oldin',
+  'k.m.hist':'Ish tarixi','k.m.amount':'Summa','k.m.period':'Davr','k.m.chat':'Yurist bilan yozishma',
+  'k.m.c1':'Assalomu alaykum, Jasurbek. Ishingizni qabul qildim. Shartnomangizni koʻrib chiqdim — toʻlov muddati aniq belgilangan, bu bizning foydamizga.',
+  'k.m.c2':'Rahmat. Klub yana «keyingi oy» deyapti.',
+  'k.m.c3':'Ogʻzaki vaʼdalarni hisobga olmaymiz. Ikki oylik bank koʻchirmasini yuboring — daʼvoni shu hafta rasmiylashtiramiz.',
+  'k.m.ph':'Xabar yozing…','k.m.export':'Ish hujjatlarini yuklash','k.m.close':'Yopish',
+  'k.saved':'Anketa saqlandi','k.saved.d':'Oʻzgarishlar yuristga koʻrinadi','k.sent':'Xabar yuborildi'
+ },
+ ru:{
+  'k.m.amount.v':'84 000 000 сум',
+  'k.crumb':'Личный кабинет','k.member':'Член · UFU-01842','k.active':'Активное членство','k.club':'Навбахор · Суперлига',
+  'k.pos':'Полузащитник','k.contract':'Контракт до 30.06.2027','k.fill':'Анкета заполнена',
+  'k.fill.d':'Не хватает копии паспорта и статистики карьеры.','k.fill.cta':'Завершить заполнение',
+  'k.t1':'Обзор','k.t2':'Мои обращения','k.t3':'Анкета','k.t4':'Мои документы','k.t5':'Уведомления',
+  'k.k1':'активных обращения','k.k2':'решённое дело','k.k3':'сохранённых документа','k.k4':'открытое голосование',
+  'k.case.t':'Задолженность по зарплате · Навбахор','k.tl1':'Обращение принято','k.tl2':'Назначен юрист — А. Эргашев',
+  'k.tl3':'Запрошена дополнительная информация','k.tl3.msg':'Пожалуйста, приложите банковскую выписку за два месяца — претензию отправим на этой неделе.',
+  'k.tl3.up':'Загрузить документ','k.tl3.chat':'Написать юристу',
+  'k.q1':'Новое обращение','k.q1.d':'Откройте дело по новому вопросу.','k.q2':'Symbolic XI · голосуйте',
+  'k.q2.d':'Осталось 14 дней. Состав не сохранён.','k.q3':'Free Agent Camp','k.q3.d':'Заявки на январский сбор открыты.',
+  'k.new':'Новое обращение','k.th1':'Номер','k.th2':'Клуб','k.th3':'Юрист','k.hint':'Нажмите на строку, чтобы открыть детали.',
+  'k.an.t':'Анкета футболиста','k.an.d':'Эти данные видят только юристы ассоциации и используют для ведения дела.',
+  'k.an.name':'ФИО','k.an.bd':'Дата рождения','k.an.club':'Клуб','k.an.league':'Лига','k.an.pos':'Амплуа',
+  'k.an.cst':'Статус контракта','k.an.cst1':'Действует · до 30.06.2027','k.an.cst2':'Истёк / свободный агент','k.an.cst3':'В аренде',
+  'k.an.doc':'Паспорт / ID','k.an.doc.d':'Загрузите скан документа — PDF или JPG','k.an.stat':'Статистика карьеры',
+  'k.an.st1':'Всего матчей — 187','k.an.st2':'Голы — 24','k.an.st3':'Сборная — U21, 9 матчей','k.an.st4':'Прежние клубы — Кызылкум, Хорезм',
+  'k.an.photo':'Фото профиля','k.an.photo.d':'В клубной форме, минимум 600×600 px.','k.an.photo.cta':'Заменить',
+  'k.an.priv':'Приватность данных','k.an.priv1':'Показывать моё имя в результатах Symbolic XI',
+  'k.an.priv2':'Открыт скаутам в списке Free Agent Camp','k.an.priv3':'Уведомления Telegram-бота',
+  'k.d1':'Трудовой договор — Навбахор (2024–2027)','k.d2':'Банковская выписка — июль–август 2026',
+  'k.d3':'Копия претензии, направленной клубу','k.d4':'Свидетельство о членстве UFU-01842',
+  'k.n1':'Запрошена информация — UFU-2026-184402','k.n1.d':'Юрист А. Эргашев запросил выписку за два месяца.',
+  'k.n2':'Открылось голосование Symbolic XI','k.n2.d':'Выберите состав до 30 ноября.',
+  'k.n3':'Назначен юрист','k.n3.d':'Дело UFU-2026-184402 передано А. Эргашеву.',
+  'k.n4':'База знаний обновлена','k.n4.d':'Добавлен материал «FIFA RSTP 2027 — 12 изменений».',
+  'k.ago':'час назад','k.days':'дня назад','k.week':'неделю назад',
+  'k.m.hist':'История дела','k.m.amount':'Сумма','k.m.period':'Период','k.m.chat':'Переписка с юристом',
+  'k.m.c1':'Здравствуйте, Жасурбек. Дело принял. Контракт изучил — срок выплат прописан чётко, это в нашу пользу.',
+  'k.m.c2':'Спасибо. Клуб снова говорит «в следующем месяце».',
+  'k.m.c3':'Устные обещания не учитываем. Пришлите выписку за два месяца — оформим претензию на этой неделе.',
+  'k.m.ph':'Напишите сообщение…','k.m.export':'Скачать документы дела','k.m.close':'Закрыть',
+  'k.saved':'Анкета сохранена','k.saved.d':'Изменения видны юристу','k.sent':'Сообщение отправлено'
+ },
+ en:{
+  'k.m.amount.v':'UZS 84,000,000',
+  'k.crumb':'Dashboard','k.member':'Member · UFU-01842','k.active':'Active membership','k.club':'Navbahor · Superliga',
+  'k.pos':'Midfielder','k.contract':'Contract until 30.06.2027','k.fill':'Profile completed',
+  'k.fill.d':'A passport copy and career statistics are still missing.','k.fill.cta':'Finish the profile',
+  'k.t1':'Overview','k.t2':'My cases','k.t3':'Profile','k.t4':'My documents','k.t5':'Notifications',
+  'k.k1':'active cases','k.k2':'resolved case','k.k3':'stored documents','k.k4':'open vote',
+  'k.case.t':'Unpaid wages · Navbahor','k.tl1':'Case received','k.tl2':'Lawyer assigned — A. Ergashev',
+  'k.tl3':'More information requested','k.tl3.msg':'Please attach two months of bank statements — we will file the claim this week.',
+  'k.tl3.up':'Upload a document','k.tl3.chat':'Message the lawyer',
+  'k.q1':'New case','k.q1.d':'Open a case on a new matter.','k.q2':'Symbolic XI · cast your vote',
+  'k.q2.d':'14 days left. Your eleven is not saved yet.','k.q3':'Free Agent Camp','k.q3.d':'Applications for the January camp are open.',
+  'k.new':'New case','k.th1':'Number','k.th2':'Club','k.th3':'Lawyer','k.hint':'Click a row to see the details.',
+  'k.an.t':'Player profile','k.an.d':'This data is visible only to union lawyers and is used to handle your case.',
+  'k.an.name':'Full name','k.an.bd':'Date of birth','k.an.club':'Club','k.an.league':'League','k.an.pos':'Position',
+  'k.an.cst':'Contract status','k.an.cst1':'Active · until 30.06.2027','k.an.cst2':'Expired / free agent','k.an.cst3':'On loan',
+  'k.an.doc':'Passport / ID','k.an.doc.d':'Upload a scan — PDF or JPG','k.an.stat':'Career statistics',
+  'k.an.st1':'Total appearances — 187','k.an.st2':'Goals — 24','k.an.st3':'National team — U21, 9 caps','k.an.st4':'Previous clubs — Qizilqum, Xorazm',
+  'k.an.photo':'Profile photo','k.an.photo.d':'In club kit, at least 600×600 px.','k.an.photo.cta':'Replace',
+  'k.an.priv':'Data privacy','k.an.priv1':'Show my name in the Symbolic XI results',
+  'k.an.priv2':'Visible to scouts in the Free Agent Camp list','k.an.priv3':'Telegram bot notifications',
+  'k.d1':'Employment contract — Navbahor (2024–2027)','k.d2':'Bank statement — July–August 2026',
+  'k.d3':'Copy of the claim sent to the club','k.d4':'Membership certificate UFU-01842',
+  'k.n1':'Information requested — UFU-2026-184402','k.n1.d':'Lawyer A. Ergashev asked for two months of statements.',
+  'k.n2':'Symbolic XI voting is open','k.n2.d':'Pick your eleven before 30 November.',
+  'k.n3':'Lawyer assigned','k.n3.d':'Case UFU-2026-184402 was handed to A. Ergashev.',
+  'k.n4':'Knowledge base updated','k.n4.d':'“FIFA RSTP 2027 — 12 changes” has been added.',
+  'k.ago':'hour ago','k.days':'days ago','k.week':'week ago',
+  'k.m.hist':'Case history','k.m.amount':'Amount','k.m.period':'Period','k.m.chat':'Messages with your lawyer',
+  'k.m.c1':'Hello Jasurbek. I have taken the case. I read your contract — the payment dates are clearly set, which works in our favour.',
+  'k.m.c2':'Thank you. The club keeps saying “next month”.',
+  'k.m.c3':'Verbal promises do not count. Send two months of bank statements and we will file the claim this week.',
+  'k.m.ph':'Write a message…','k.m.export':'Download case documents','k.m.close':'Close',
+  'k.saved':'Profile saved','k.saved.d':'Your lawyer can see the changes','k.sent':'Message sent'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  document.getElementById('save').addEventListener('click',function(){
+    App.toast(App.t('k.saved'),App.t('k.saved.d'));
+  });
+  document.querySelectorAll('[data-goto]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.querySelector('.tab[data-tab="'+b.dataset.goto+'"]'); if(t) t.click();
+      document.getElementById('cab').scrollIntoView({behavior:'smooth'});
+    });
+  });
+  var inp=document.getElementById('msgIn'), send=document.getElementById('msgSend');
+  function push(){
+    var v=inp.value.trim(); if(!v) return;
+    var box=document.querySelector('.chat');
+    var d=document.createElement('div'); d.className='msg msg--out';
+    d.innerHTML=v+'<span class="t">'+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})+'</span>';
+    box.appendChild(d); box.scrollTop=box.scrollHeight; inp.value='';
+    App.toast(App.t('k.sent'),'',"message");
+  }
+  send.addEventListener('click',push);
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter') push(); });
+})();
+</script>
+</body>
+</html>

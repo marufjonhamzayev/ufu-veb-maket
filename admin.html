@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boshqaruv paneli — murojaatlar · UFU</title>
+<meta name="description" content="Uyushma boshqaruv paneli: murojaatlarni koʻrib chiqish, holatni oʻzgartirish va futbolchiga xabar yuborish.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Boshqaruv paneli — murojaatlar · UFU">
+<meta property="og:description" content="Uyushma boshqaruv paneli: murojaatlarni koʻrib chiqish, holatni oʻzgartirish va futbolchiga xabar yuborish.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  body{background:#F6F7F9}
+  .adm{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh;min-height:100dvh}
+  .adm__side{background:var(--navy);color:rgba(255,255,255,.72);padding:22px 16px;position:sticky;top:0;height:100vh;
+    display:flex;flex-direction:column;gap:6px}
+  .adm__side .brand{margin:6px 8px 22px}
+  .adm__side .brand__txt b,.adm__side .brand__txt span{color:#fff}
+  .adm__side .brand__txt span{color:rgba(255,255,255,.5)}
+  .anav{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--r-sm);font-size:14.5px;
+    transition:.2s;cursor:pointer}
+  .anav:hover{background:rgba(255,255,255,.07);color:#fff}
+  .anav.is-on{background:var(--blue);color:#fff}
+  .anav .cnt{margin-left:auto;font-size:12px;background:rgba(255,255,255,.14);padding:2px 8px;border-radius:var(--r-pill)}
+  .adm__main{padding:clamp(18px,2.4vw,32px)}
+  .abar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:#fff;box-shadow:var(--sh-4);z-index:180;
+    transform:translateX(100%);transition:.4s var(--ease-out);overflow-y:auto}
+  .drawer.is-open{transform:none}
+  .drawer__head{position:sticky;top:0;background:#fff;padding:20px 24px;border-bottom:1px solid var(--line);z-index:2}
+  .scrim{position:fixed;inset:0;background:rgba(8,16,30,.4);z-index:170;opacity:0;visibility:hidden;transition:.3s}
+  .scrim.is-open{opacity:1;visibility:visible}
+  .kpi4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}
+  .kpi4 .card{padding:18px}
+  .kpi4 .n{font-family:var(--fd);font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .barrow{display:grid;grid-template-columns:140px minmax(0,1fr) 44px;gap:12px;align-items:center;padding:7px 0;font-size:13.5px}
+  @media(max-width:980px){.adm{grid-template-columns:minmax(0,1fr)}.adm__main{min-width:0}.adm__side{position:static;height:auto;flex-direction:row;
+    overflow-x:auto;gap:4px}.adm__side .brand,.adm__side .sep{display:none}.kpi4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:520px){.kpi4 .n{font-size:22px}.barrow{grid-template-columns:96px minmax(0,1fr) 36px;gap:8px;font-size:12.5px}.abar>*{flex:1 1 100%}.abar .inp,.abar .sel{width:100%}.drawer__head{padding:16px 18px}}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="admin">
+
+<div class="adm">
+  <aside class="adm__side">
+    <a href="index.html" class="brand" id="brandMark"></a>
+    <div class="anav is-on" data-ico="folder"><span data-i18n="ad.n1">Murojaatlar</span><span class="cnt">42</span></div>
+    <div class="anav" data-ico="mask"><span data-i18n="ad.n2">Anonim kanal</span><span class="cnt">7</span></div>
+    <div class="anav" data-ico="users"><span data-i18n="ad.n3">Aʼzolar</span><span class="cnt">1240</span></div>
+    <div class="anav" data-ico="trophy"><span data-i18n="ad.n4">Symbolic XI</span></div>
+    <div class="anav" data-ico="pitch"><span data-i18n="ad.n5">Free Agent Camp</span></div>
+    <div class="anav" data-ico="fileText"><span data-i18n="ad.n6">Kontent</span></div>
+    <div class="anav" data-ico="chart"><span data-i18n="ad.n7">Hisobotlar</span></div>
+    <div style="margin-top:auto">
+      <div class="anav" data-ico="settings"><span data-i18n="ad.n8">Sozlamalar</span></div>
+      <div class="anav" data-ico="logout"><a href="index.html" data-i18n="ad.n9">Chiqish</a></div>
+    </div>
+  </aside>
+
+  <main class="adm__main">
+    <div class="flex" style="justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px">
+      <div>
+        <h1 class="h-2" data-i18n="ad.title">Murojaatlar</h1>
+        <p class="small muted mt-s" data-i18n="ad.sub">Yuridik boʻlim · A. Ergashev</p>
+      </div>
+      <div class="flex" style="gap:10px">
+        <button class="btn btn--ghost btn--sm" data-ico="download"><span data-i18n="ad.export">Eksport</span></button>
+        <button class="btn btn--dark btn--sm" data-ico="plus"><span data-i18n="ad.new">Qoʻlda qoʻshish</span></button>
+      </div>
+    </div>
+
+    <div class="kpi4">
+      <div class="card"><span class="small muted" data-i18n="ad.k1">Yangi (24 soat)</span><div class="n mt-s">6</div></div>
+      <div class="card"><span class="small muted" data-i18n="ad.k2">Ishda</span><div class="n mt-s">23</div></div>
+      <div class="card"><span class="small muted" data-i18n="ad.k3">Muddati oʻtgan</span><div class="n mt-s" style="color:var(--red)">3</div></div>
+      <div class="card"><span class="small muted" data-i18n="ad.k4">Bu oy hal qilindi</span><div class="n mt-s" style="color:var(--green)">11</div></div>
+    </div>
+
+    <div class="row row-side-r" style="gap:18px;margin-bottom:22px">
+      <div class="card card--pad">
+        <b class="small" data-i18n="ad.ch1">Kategoriyalar boʻyicha taqsimot</b>
+        <div class="mt-m" id="chart"></div>
+      </div>
+      <div class="card card--pad">
+        <b class="small" data-i18n="ad.ch2">Yuklama</b>
+        <div class="stack-sm mt-m">
+          <div><div class="flex" style="justify-content:space-between"><span class="small">A. Ergashev</span><b class="small">14</b></div>
+            <div class="bar mt-s"><i style="width:82%"></i></div></div>
+          <div><div class="flex" style="justify-content:space-between"><span class="small">D. Yusupova</span><b class="small">9</b></div>
+            <div class="bar mt-s"><i style="width:56%"></i></div></div>
+          <div><div class="flex" style="justify-content:space-between"><span class="small">S. Qodirov</span><b class="small">5</b></div>
+            <div class="bar mt-s"><i style="width:31%"></i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="abar">
+      <div class="flex flex-wrap" style="gap:7px" data-chips="#rows">
+        <button class="chip is-active" data-val="all" data-i18n="c.all">Barchasi</button>
+        <button class="chip" data-val="new" data-i18n="c.new">Yangi</button>
+        <button class="chip" data-val="review" data-i18n="c.review">Koʻrib chiqilmoqda</button>
+        <button class="chip" data-val="info" data-i18n="c.info">Qoʻshimcha maʼlumot soʻraldi</button>
+        <button class="chip" data-val="done" data-i18n="c.done">Hal qilindi</button>
+      </div>
+      <input class="inp" id="aq" style="max-width:260px;height:40px" data-i18n-ph="ad.search" placeholder="Raqam yoki ism boʻyicha">
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th data-i18n="k.th1">Raqam</th><th data-i18n="ad.th1">Futbolchi</th><th data-i18n="c.category">Kategoriya</th>
+          <th data-i18n="k.th2">Klub</th><th data-i18n="ad.th2">Muddat</th><th data-i18n="k.th3">Yurist</th><th data-i18n="c.status">Holat</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer__head">
+    <div class="flex" style="justify-content:space-between;gap:12px">
+      <div><b class="h-4 mono" id="dNum">—</b><p class="tiny muted" id="dCat">—</p></div>
+      <button class="modal__x" id="dClose" data-ico="x"></button>
+    </div>
+  </div>
+  <div style="padding:24px">
+    <div class="flex" style="gap:12px;margin-bottom:20px">
+      <span id="dAv" class="avatar-initials" style="width:52px;height:52px;font-size:17px">—</span>
+      <div><b class="small" id="dName">—</b><p class="tiny muted" id="dMeta">—</p></div>
+      <span class="status status--review" id="dStatus" style="margin-left:auto" data-i18n="c.review">Koʻrib chiqilmoqda</span>
+    </div>
+
+    <div class="card card--flat card--pad">
+      <b class="small muted" data-i18n="ad.d.desc">Murojaat matni</b>
+      <p class="small mt-s" id="dDesc">—</p>
+      <div class="flex flex-wrap mt-m" style="gap:8px">
+        <span class="tag tag--grey" data-ico="paperclip">contract.pdf</span>
+        <span class="tag tag--grey" data-ico="paperclip">bank_07-08.pdf</span>
+      </div>
+    </div>
+
+    <div class="field mt-m">
+      <label class="field__lbl" data-i18n="ad.d.status">Holatni oʻzgartirish</label>
+      <select class="sel" id="dSel">
+        <option value="new" data-i18n="c.new">Yangi</option>
+        <option value="review" data-i18n="c.review">Koʻrib chiqilmoqda</option>
+        <option value="info" data-i18n="c.info">Qoʻshimcha maʼlumot soʻraldi</option>
+        <option value="done" data-i18n="c.done">Hal qilindi</option>
+        <option value="closed" data-i18n="c.closed">Yopildi</option>
+      </select>
+    </div>
+    <div class="field mt-s">
+      <label class="field__lbl" data-i18n="ad.d.msg">Futbolchiga xabar</label>
+      <textarea class="txt" id="dMsg" style="min-height:90px" data-i18n-ph="ad.d.msg.ph" placeholder="Holat oʻzgarishi bilan birga yuboriladi (Telegram + kabinet)"></textarea>
+    </div>
+    <button class="btn btn--dark btn--block mt-s" id="dSave" data-i18n="ad.d.save">Saqlash va xabar yuborish</button>
+
+    <hr class="divider" style="margin:24px 0">
+    <b class="small muted" data-i18n="ad.d.log">Ish jurnali</b>
+    <div class="tl mt-s" id="dLog">
+      <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+        <div><div class="tl__t" data-i18n="k.tl1">Murojaat qabul qilindi</div><div class="tl__m">12.09.2026 · 14:20</div></div></div>
+      <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+        <div><div class="tl__t" data-i18n="k.tl2">Yurist biriktirildi — A. Ergashev</div><div class="tl__m">13.09.2026 · 09:05</div></div></div>
+      <div class="tl__i is-current"><span class="tl__d" data-ico="clock"></span>
+        <div><div class="tl__t" data-i18n="k.tl3">Qoʻshimcha maʼlumot soʻraldi</div><div class="tl__m">15.09.2026 · 11:40</div></div></div>
+    </div>
+  </div>
+</aside>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'ad.n1':'Murojaatlar','ad.n2':'Anonim kanal','ad.n3':'Aʼzolar','ad.n4':'Symbolic XI','ad.n5':'Free Agent Camp',
+  'ad.n6':'Kontent','ad.n7':'Hisobotlar','ad.n8':'Sozlamalar','ad.n9':'Chiqish',
+  'ad.title':'Murojaatlar','ad.sub':'Yuridik boʻlim · A. Ergashev','ad.export':'Eksport','ad.new':'Qoʻlda qoʻshish',
+  'ad.k1':'Yangi (24 soat)','ad.k2':'Ishda','ad.k3':'Muddati oʻtgan','ad.k4':'Bu oy hal qilindi',
+  'ad.ch1':'Kategoriyalar boʻyicha taqsimot','ad.ch2':'Yuklama','ad.search':'Raqam yoki ism boʻyicha',
+  'ad.th1':'Futbolchi','ad.th2':'Muddat',
+  'ad.d.desc':'Murojaat matni','ad.d.status':'Holatni oʻzgartirish','ad.d.msg':'Futbolchiga xabar',
+  'ad.d.msg.ph':'Holat oʻzgarishi bilan birga yuboriladi (Telegram + kabinet)','ad.d.save':'Saqlash va xabar yuborish','ad.d.log':'Ish jurnali',
+  'ad.saved':'Holat yangilandi','ad.saved.d':'Futbolchiga Telegram orqali xabar yuborildi',
+  'ad.txt1':'Aprel oyidan beri oylik toʻlanmayapti. Sport direktori bilan uch marta gaplashdim, yozma javob yoʻq. Shartnoma 2027-yil iyungacha amal qiladi.',
+  'ad.txt2':'Klub yangi shartnomada bir tomonlama uzaytirish bandini qoʻshmoqchi. Imzolashdan oldin tekshirib berishingizni soʻrayman.',
+  'ad.txt3':'Intizomiy qoʻmita toʻrt oʻyinlik jazo berdi. Video yozuvda hakam koʻrsatgan holat aks etmagan.',
+  'ad.txt4':'Jarohatdan keyin klub davolash xarajatini qoplashdan bosh tortdi, sugʻurta polisi nusxasini bermayapti.',
+  'ad.due':'kun qoldi','ad.over':'kun kechikdi'
+ },
+ ru:{
+  'ad.n1':'Обращения','ad.n2':'Анонимный канал','ad.n3':'Члены','ad.n4':'Symbolic XI','ad.n5':'Free Agent Camp',
+  'ad.n6':'Контент','ad.n7':'Отчёты','ad.n8':'Настройки','ad.n9':'Выйти',
+  'ad.title':'Обращения','ad.sub':'Юридический отдел · А. Эргашев','ad.export':'Экспорт','ad.new':'Добавить вручную',
+  'ad.k1':'Новые (24 часа)','ad.k2':'В работе','ad.k3':'Просрочено','ad.k4':'Решено за месяц',
+  'ad.ch1':'Распределение по категориям','ad.ch2':'Нагрузка','ad.search':'По номеру или имени',
+  'ad.th1':'Футболист','ad.th2':'Срок',
+  'ad.d.desc':'Текст обращения','ad.d.status':'Изменить статус','ad.d.msg':'Сообщение футболисту',
+  'ad.d.msg.ph':'Отправится вместе со сменой статуса (Telegram + кабинет)','ad.d.save':'Сохранить и отправить','ad.d.log':'Журнал дела',
+  'ad.saved':'Статус обновлён','ad.saved.d':'Футболисту отправлено уведомление в Telegram',
+  'ad.txt1':'С апреля не платят зарплату. Со спортивным директором говорил трижды, письменного ответа нет. Контракт действует до июня 2027 года.',
+  'ad.txt2':'Клуб хочет включить в новый договор пункт об одностороннем продлении. Прошу проверить до подписания.',
+  'ad.txt3':'Дисциплинарный комитет назначил четыре матча дисквалификации. На видеозаписи эпизод, указанный судьёй, не виден.',
+  'ad.txt4':'После травмы клуб отказался покрывать лечение и не выдаёт копию страхового полиса.',
+  'ad.due':'дней осталось','ad.over':'дней просрочки'
+ },
+ en:{
+  'ad.n1':'Cases','ad.n2':'Anonymous channel','ad.n3':'Members','ad.n4':'Symbolic XI','ad.n5':'Free Agent Camp',
+  'ad.n6':'Content','ad.n7':'Reports','ad.n8':'Settings','ad.n9':'Log out',
+  'ad.title':'Cases','ad.sub':'Legal department · A. Ergashev','ad.export':'Export','ad.new':'Add manually',
+  'ad.k1':'New (24 hours)','ad.k2':'In progress','ad.k3':'Overdue','ad.k4':'Resolved this month',
+  'ad.ch1':'Breakdown by category','ad.ch2':'Workload','ad.search':'By number or name',
+  'ad.th1':'Player','ad.th2':'Due',
+  'ad.d.desc':'Case description','ad.d.status':'Change status','ad.d.msg':'Message to the player',
+  'ad.d.msg.ph':'Sent together with the status change (Telegram + dashboard)','ad.d.save':'Save and notify','ad.d.log':'Case log',
+  'ad.saved':'Status updated','ad.saved.d':'The player was notified through Telegram',
+  'ad.txt1':'Wages unpaid since April. I spoke to the sporting director three times, no written reply. The contract runs to June 2027.',
+  'ad.txt2':'The club wants a unilateral extension clause in the new contract. Please review it before I sign.',
+  'ad.txt3':'The disciplinary committee imposed a four-match ban. The incident described by the referee is not visible on the footage.',
+  'ad.txt4':'After my injury the club refused to cover treatment and will not give me a copy of the insurance policy.',
+  'ad.due':'days left','ad.over':'days overdue'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  document.getElementById('brandMark').innerHTML=window.BRAND_MARK+
+    '<span class="brand__txt"><b>UFU</b><span>admin</span></span>';
+  App.icons();
+
+  var D=[
+    ['UFU-2026-184402','Jasurbek Rahimov','m.cat.1','Navbahor','review','A. Ergashev',2,3,'ad.txt1'],
+    ['UFU-2026-184390','Sanjar Kuvvatov','m.cat.2','Nasaf','new','—',5,1,'ad.txt2'],
+    ['UFU-2026-184377','Eldor Adhamov','m.cat.3','Buxoro','info','D. Yusupova',-2,4,'ad.txt3'],
+    ['UFU-2026-184361','Milan Mitrovich','m.cat.5','Navbahor','review','S. Qodirov',6,5,'ad.txt4'],
+    ['UFU-2026-184340','Javohir Sidiqov','m.cat.4','Lokomotiv','done','A. Ergashev',0,6,'ad.txt2'],
+    ['UFU-2026-184318','Farhad Rahmatov','m.cat.1','Neftchi','review','D. Yusupova',4,2,'ad.txt1'],
+    ['UFU-2026-184301','Aleksey Kozlov','m.cat.2','Surxon','new','—',7,3,'ad.txt2'],
+    ['UFU-2026-184288','Bobur Abduxoliqov','m.cat.1','Navbahor','done','A. Ergashev',0,4,'ad.txt1']
+  ];
+  var SL={new:'c.new',review:'c.review',info:'c.info',done:'c.done',closed:'c.closed'};
+
+  function rows(){
+    document.getElementById('rows').innerHTML=D.map(function(r,i){
+      var due = r[6]<0 ? '<span style="color:var(--red)">'+Math.abs(r[6])+' '+App.t('ad.over')+'</span>'
+              : (r[4]==='done' ? '—' : r[6]+' '+App.t('ad.due'));
+      return '<tr data-cat="'+r[4]+'" data-i="'+i+'">'+
+        '<td class="mono">'+r[0]+'</td><td>'+App.nm(r[1])+'</td><td>'+App.t(r[2])+'</td><td>'+App.nm(r[3])+'</td>'+
+        '<td class="small">'+due+'</td><td>'+App.nm(r[5])+'</td>'+
+        '<td><span class="status status--'+r[4]+'">'+App.t(SL[r[4]])+'</span></td></tr>';
+    }).join('');
+  }
+
+  var drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim');
+  function open(i){
+    var r=D[i];
+    document.getElementById('dNum').textContent=r[0];
+    document.getElementById('dCat').textContent=App.t(r[2])+' · '+App.nm(r[3]);
+    document.getElementById('dName').textContent=App.nm(r[1]);
+    document.getElementById('dMeta').textContent=App.nm(r[3])+' · Superliga';
+    document.getElementById('dAv').textContent=r[1].split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
+    document.getElementById('dDesc').textContent=App.t(r[8]);
+    document.getElementById('dSel').value=r[4];
+    var st=document.getElementById('dStatus');
+    st.className='status status--'+r[4]; st.style.marginLeft='auto'; st.textContent=App.t(SL[r[4]]);
+    drawer.classList.add('is-open'); scrim.classList.add('is-open');
+    drawer.dataset.i=i;
+  }
+  function close(){ drawer.classList.remove('is-open'); scrim.classList.remove('is-open'); }
+  document.getElementById('rows').addEventListener('click',function(e){
+    var tr=e.target.closest('tr'); if(tr) open(+tr.dataset.i);
+  });
+  document.getElementById('dClose').addEventListener('click',close);
+  scrim.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+
+  document.getElementById('dSave').addEventListener('click',function(){
+    var i=+drawer.dataset.i, v=document.getElementById('dSel').value;
+    D[i][4]=v; rows();
+    App.toast(App.t('ad.saved'),App.t('ad.saved.d'));
+    close();
+  });
+
+  document.getElementById('aq').addEventListener('input',function(e){
+    var v=e.target.value.toLowerCase();
+    document.querySelectorAll('#rows tr').forEach(function(tr){
+      tr.style.display = tr.textContent.toLowerCase().indexOf(v)>-1 ? '' : 'none';
+    });
+  });
+
+  /* kategoriya diagrammasi */
+  function chart(){
+    var c=[['m.cat.1',41],['m.cat.2',24],['m.cat.3',14],['m.cat.4',11],['m.cat.5',6],['m.cat.6',4]];
+    document.getElementById('chart').innerHTML=c.map(function(x){
+      return '<div class="barrow"><span class="muted">'+App.t(x[0])+'</span>'+
+        '<div class="bar"><i style="width:'+x[1]+'%"></i></div><b>'+x[1]+'%</b></div>';
+    }).join('');
+  }
+
+  document.addEventListener('langchange',function(){ rows(); chart(); });
+  rows(); chart();
+})();
+</script>
+</body>
+</html>

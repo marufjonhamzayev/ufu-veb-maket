@@ -1,0 +1,55 @@
+=========================================================
+  O'ZBEKISTON FUTBOLCHILAR UYUSHMASI — VEB-MAKET
+  Texnik topshiriq (03.08.2026) bo'yicha
+=========================================================
+
+MUHIM: ARXIVNI AVVAL TO'LIQ CHIQARING
+---------------------------------------------------------
+Fayllarni ZIP ichidan turib ochmang — dizayn ko'rinmaydi.
+
+  1. UFU-veb-maket.zip ustiga o'ng tugmani bosing
+  2. "Extract All..." / "Barchasini chiqarish" ni tanlang
+  3. Chiqqan papkani oching
+  4. index.html faylini ikki marta bosing
+
+Internet talab qilinmaydi. Hech narsa o'rnatish shart emas.
+Brauzer: Chrome, Edge, Firefox yoki Safari — farqi yo'q.
+
+
+QAYERDAN BOSHLASH
+---------------------------------------------------------
+  index.html     — maketning bosh sahifasi
+
+  hisobot.html   — TZ bo'yicha bajarilish hisoboti:
+                   qaysi band qaysi sahifada hal qilingan,
+                   havolalar bilan. Baholash uchun qulay.
+
+
+TAVSIYA ETILGAN KO'RISH TARTIBI
+---------------------------------------------------------
+  1. Bosh sahifa — to'liq pastga aylantiring
+  2. Til almashtiring (o'ng yuqorida): UZ / O'z / RU / EN
+  3. "Murojaat yuborish" — 5 qadamni oxirigacha bajaring
+  4. "Kabinet" — futbolchi tomoni
+  5. "Symbolic XI" — ovoz berish
+  6. Footerdagi "Boshqaruv paneli (demo)" — uyushma tomoni
+
+
+TARKIBI
+---------------------------------------------------------
+  20 ta HTML sahifa
+  4 ta til (o'zbek lotin va kirill, rus, ingliz)
+  assets/  — uslublar, skriptlar, shriftlar, rasmlar
+
+  README.md — texnik tavsif (ishlab chiquvchilar uchun)
+
+
+ESLATMA
+---------------------------------------------------------
+Statistika raqamlari, keys matnlari va ism-shariflar
+namoyish uchun yozilgan. Realizatsiya bosqichida
+buyurtmachi ma'lumotlari bilan almashtiriladi.
+
+Tashkilot, FIFPRO maqomi va Superliga klublari haqidagi
+ma'lumotlar ochiq manbalardan tekshirilgan — batafsil
+hisobot.html sahifasida.

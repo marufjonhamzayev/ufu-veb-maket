@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kirish va roʻyxatdan oʻtish — Oʻzbekiston futbolchilar uyushmasi</title>
+<meta name="description" content="Telegram orqali shaxsiy kabinetga kirish yoki uyushma aʼzoligiga roʻyxatdan oʻtish. Parol talab qilinmaydi.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Kirish va roʻyxatdan oʻtish — Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:description" content="Telegram orqali shaxsiy kabinetga kirish yoki uyushma aʼzoligiga roʻyxatdan oʻtish. Parol talab qilinmaydi.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .auth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);min-height:calc(100vh - var(--nav-h) - 38px)}
+  .auth__side{background:var(--navy);color:#fff;padding:clamp(32px,4vw,60px);display:flex;flex-direction:column;
+    justify-content:space-between;position:relative;overflow:hidden}
+  .auth__side img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.26}
+  .auth__side::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,26,51,.75),rgba(6,16,33,.97))}
+  .auth__side>*{position:relative;z-index:2}
+  .auth__side .lead{color:rgba(255,255,255,.78)}
+  .auth__form{padding:clamp(32px,4vw,64px);display:flex;align-items:center;justify-content:center;background:var(--paper)}
+  .auth__card{width:min(480px,100%)}
+  .tg-card{background:linear-gradient(140deg,#EAF6FD,#F7FBFE);border:1px solid #CFE8F6;border-radius:var(--r-lg);padding:26px}
+  .why li{display:flex;gap:12px;font-size:14.5px;color:var(--ink-2);padding:9px 0}
+  .why li svg{color:var(--green);flex:none;margin-top:3px}
+  @media(max-width:900px){.auth{grid-template-columns:minmax(0,1fr);min-height:0}.auth__form{padding:28px 16px 40px}.auth__side{min-height:280px}}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="login">
+
+<div id="shell-header"></div>
+
+<main id="main"><section class="auth">
+  <aside class="auth__side">
+    <img class="bg" src="assets/img/photos/photo-3.webp" alt="" loading="lazy" decoding="async">
+    <div>
+      <span class="eyebrow" style="color:rgba(255,255,255,.7)" data-i18n="a.eyebrow">Aʼzolik</span>
+      <h1 class="h-1" style="margin-top:18px;max-width:14ch" data-i18n="a.title">Bir marta roʻyxatdan oʻting — <b>umrbod himoyada</b> boʻling.</h1>
+      <p class="lead" style="margin-top:20px;max-width:46ch" data-i18n="a.lead">Aʼzolik bepul. Telegram orqali kirasiz, anketani toʻldirasiz va shu ondan boshlab yuridik xizmatlarning barchasi siz uchun ochiq.</p>
+    </div>
+
+    <ul class="why" style="margin-top:32px">
+      <li data-ico="checkCircle"><span data-i18n="a.w1" style="color:rgba(255,255,255,.85)">Kontrakt tahlili va imzolashda yuristning hamrohligi</span></li>
+      <li data-ico="checkCircle"><span data-i18n="a.w2" style="color:rgba(255,255,255,.85)">Oylik qarzdorligi boʻyicha daʼvo — klubdan FIFA gacha</span></li>
+      <li data-ico="checkCircle"><span data-i18n="a.w3" style="color:rgba(255,255,255,.85)">Symbolic XI ovoz berishi va Free Agent Campʼga kirish</span></li>
+      <li data-ico="checkCircle"><span data-i18n="a.w4" style="color:rgba(255,255,255,.85)">FIFPRO tarmogʻi orqali chet elda ham qoʻllab-quvvatlash</span></li>
+    </ul>
+
+    <div class="flex" style="gap:14px;margin-top:36px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)">
+      <span class="av" style="display:flex">
+        <img src="assets/img/players/player-2.webp" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid #0A1A33" loading="lazy" decoding="async">
+        <img src="assets/img/players/player-5.webp" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid #0A1A33;margin-left:-10px" loading="lazy" decoding="async">
+        <img src="assets/img/players/player-6.webp" alt="Shaxsiy kabinetga kirish" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid #0A1A33;margin-left:-10px" loading="lazy" decoding="async">
+      </span>
+      <span class="small" style="color:rgba(255,255,255,.7)" data-i18n="a.count">Shu oyda 47 futbolchi aʼzo boʻldi</span>
+    </div>
+  </aside>
+
+  <div class="auth__form">
+    <div class="auth__card">
+      <div class="tabs" data-tabs style="margin-bottom:26px">
+        <button class="tab is-active" data-tab="login" data-i18n="a.tab1">Kirish</button>
+        <button class="tab" data-tab="reg" data-i18n="a.tab2">Roʻyxatdan oʻtish</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="tabpane is-active" data-pane="login">
+        <h2 class="h-2" data-i18n="a.l.title">Shaxsiy kabinetga kirish</h2>
+        <p class="muted small mt-s" data-i18n="a.l.sub">Parol kerak emas. Telegram hisobingiz orqali tasdiqlaysiz — bu eng xavfsiz va tez yoʻl.</p>
+
+        <div class="tg-card mt-m">
+          <div class="flex" style="gap:14px">
+            <span class="ic-box" style="background:#229ED9;color:#fff" data-ico="telegram"></span>
+            <div>
+              <b class="h-4" data-i18n="a.l.tg">Telegram orqali kirish</b>
+              <p class="tiny muted" data-i18n="a.l.tg.d">@futbolchilar_bot bilan bogʻlanadi</p>
+            </div>
+          </div>
+          <button class="btn btn--tg btn--block mt-m" id="btnTg" data-ico="telegram"><span data-i18n="a.l.btn">Telegram bilan davom etish</span></button>
+          <p class="tiny muted center" style="margin-top:12px" data-i18n="a.l.note">Kirish orqali siz Foydalanuvchi kelishuvi va Maxfiylik siyosatini qabul qilasiz.</p>
+        </div>
+
+        <div class="flex" style="margin:22px 0;gap:14px">
+          <span class="divider" style="flex:1"></span>
+          <span class="tiny muted" data-i18n="a.or">yoki</span>
+          <span class="divider" style="flex:1"></span>
+        </div>
+
+        <div class="stack">
+          <div class="field">
+            <label class="field__lbl" data-i18n="a.l.phone">Telefon raqami</label>
+            <input class="inp" type="tel" value="+998 " data-i18n-ph="a.l.phone.ph" placeholder="+998 __ ___ __ __">
+          </div>
+          <button class="btn btn--ghost btn--block" id="btnSms" data-i18n="a.l.sms">SMS-kod olish</button>
+        </div>
+
+        <div class="card card--flat card--pad mt-m" style="border-style:dashed">
+          <div class="flex" style="gap:12px;align-items:flex-start">
+            <span class="ic-box ic-amber" style="width:38px;height:38px;border-radius:10px" data-ico="mask"></span>
+            <div>
+              <b class="small" data-i18n="a.anon.t">Hisobsiz ham murojaat qilish mumkin</b>
+              <p class="tiny muted mt-s" data-i18n="a.anon.d">Ism-sharifingizni koʻrsatmasdan xabar bering. Javobni maxfiy kod orqali olasiz.</p>
+              <a href="anonim.html" class="link-arrow" style="margin-top:10px" data-ico="arrowRight"><span data-i18n="a.anon.link">Anonim kanal</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="tabpane" data-pane="reg">
+        <h2 class="h-2" data-i18n="a.r.title">Uyushma aʼzoligiga ariza</h2>
+        <p class="muted small mt-s" data-i18n="a.r.sub">Toʻldirish 3 daqiqa. Maʼlumotlar faqat uyushma yuristlari uchun ochiq boʻladi.</p>
+
+        <div class="steps mt-m">
+          <div class="step">
+            <span class="step__n">1</span>
+            <div>
+              <b class="h-4" data-i18n="a.r.1.t">Telegram bilan tasdiqlash</b>
+              <p class="small muted mt-s" data-i18n="a.r.1.d">Bir bosishda — raqamingiz avtomatik tasdiqlanadi va bot ulanadi.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__n">2</span>
+            <div>
+              <b class="h-4" data-i18n="a.r.2.t">Anketa</b>
+              <p class="small muted mt-s" data-i18n="a.r.2.d">F.I.Sh., tugʻilgan sana, klub va liga, kontrakt holati, pasport/ID, karyera statistikasi va foto.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__n">3</span>
+            <div>
+              <b class="h-4" data-i18n="a.r.3.t">Tasdiqlash</b>
+              <p class="small muted mt-s" data-i18n="a.r.3.d">Uyushma kotibiyati 1 ish kunida tekshiradi — aʼzolik raqami kabinetda paydo boʻladi.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn--tg btn--block mt-m" id="btnTg2" data-ico="telegram"><span data-i18n="a.r.btn">Telegram bilan boshlash</span></button>
+        <p class="tiny muted center" style="margin-top:12px" data-i18n="a.r.note">Aʼzolik bepul. Yillik toʻlov yoʻq.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Telegram modal -->
+<div class="modal" id="mTg">
+  <div class="modal__bg"></div>
+  <div class="modal__box" style="width:min(430px,100%)">
+    <div class="modal__head">
+      <span class="ic-box" style="background:#229ED9;color:#fff;width:40px;height:40px;border-radius:11px" data-ico="telegram"></span>
+      <div><b class="h-4">Telegram</b><p class="tiny muted">@futbolchilar_bot</p></div>
+      <button class="modal__x" data-modal-close data-ico="x"></button>
+    </div>
+    <div class="modal__body center">
+      <div id="tgStep1">
+        <div class="ic-box ic-blue" style="width:64px;height:64px;border-radius:18px;margin:0 auto 18px" data-ico="lock"></div>
+        <h3 class="h-3" data-i18n="a.m.t">Kirishni tasdiqlaysizmi?</h3>
+        <p class="small muted mt-s" data-i18n="a.m.d">UFU platformasi Telegram profilingizdagi ism va raqamni oladi. Yozishmalaringizga kirish yoʻq.</p>
+        <div class="card card--flat card--pad mt-m" style="text-align:left">
+          <div class="flex"><span class="ic-box ic-blue" style="width:38px;height:38px;border-radius:10px" data-ico="user"></span>
+            <div><b class="small">Jasurbek Rahimov</b><p class="tiny muted">+998 90 ••• 42 17</p></div></div>
+        </div>
+        <button class="btn btn--tg btn--block mt-m" id="tgOk" data-i18n="a.m.ok">Tasdiqlash</button>
+        <button class="btn btn--ghost btn--block" style="margin-top:10px" data-modal-close data-i18n="cta.cancel">Bekor qilish</button>
+      </div>
+      <div id="tgStep2" hidden>
+        <div class="ic-box ic-green" style="width:64px;height:64px;border-radius:18px;margin:0 auto 18px" data-ico="checkCircle"></div>
+        <h3 class="h-3" data-i18n="a.m.ok.t">Tasdiqlandi</h3>
+        <p class="small muted mt-s" data-i18n="a.m.ok.d">Kabinetga yoʻnaltirilmoqda…</p>
+        <div class="bar mt-m"><i id="tgBar" style="width:8%"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+<div id="shell-footer"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'a.eyebrow':'Aʼzolik','a.title':'Bir marta roʻyxatdan oʻting — <b>umrbod himoyada</b> boʻling.',
+  'a.lead':'Aʼzolik bepul. Telegram orqali kirasiz, anketani toʻldirasiz va shu ondan boshlab yuridik xizmatlarning barchasi siz uchun ochiq.',
+  'a.w1':'Kontrakt tahlili va imzolashda yuristning hamrohligi','a.w2':'Oylik qarzdorligi boʻyicha daʼvo — klubdan FIFA gacha',
+  'a.w3':'Symbolic XI ovoz berishi va Free Agent Campʼga kirish','a.w4':'FIFPRO tarmogʻi orqali chet elda ham qoʻllab-quvvatlash',
+  'a.count':'Shu oyda 47 futbolchi aʼzo boʻldi','a.tab1':'Kirish','a.tab2':'Roʻyxatdan oʻtish',
+  'a.l.title':'Shaxsiy kabinetga kirish','a.l.sub':'Parol kerak emas. Telegram hisobingiz orqali tasdiqlaysiz — bu eng xavfsiz va tez yoʻl.',
+  'a.l.tg':'Telegram orqali kirish','a.l.tg.d':'@futbolchilar_bot bilan bogʻlanadi','a.l.btn':'Telegram bilan davom etish',
+  'a.l.note':'Kirish orqali siz Foydalanuvchi kelishuvi va Maxfiylik siyosatini qabul qilasiz.','a.or':'yoki',
+  'a.l.phone':'Telefon raqami','a.l.phone.ph':'+998 __ ___ __ __','a.l.sms':'SMS-kod olish',
+  'a.anon.t':'Hisobsiz ham murojaat qilish mumkin','a.anon.d':'Ism-sharifingizni koʻrsatmasdan xabar bering. Javobni maxfiy kod orqali olasiz.','a.anon.link':'Anonim kanal',
+  'a.r.title':'Uyushma aʼzoligiga ariza','a.r.sub':'Toʻldirish 3 daqiqa. Maʼlumotlar faqat uyushma yuristlari uchun ochiq boʻladi.',
+  'a.r.1.t':'Telegram bilan tasdiqlash','a.r.1.d':'Bir bosishda — raqamingiz avtomatik tasdiqlanadi va bot ulanadi.',
+  'a.r.2.t':'Anketa','a.r.2.d':'F.I.Sh., tugʻilgan sana, klub va liga, kontrakt holati, pasport/ID, karyera statistikasi va foto.',
+  'a.r.3.t':'Tasdiqlash','a.r.3.d':'Uyushma kotibiyati 1 ish kunida tekshiradi — aʼzolik raqami kabinetda paydo boʻladi.',
+  'a.r.btn':'Telegram bilan boshlash','a.r.note':'Aʼzolik bepul. Yillik toʻlov yoʻq.',
+  'a.m.t':'Kirishni tasdiqlaysizmi?','a.m.d':'UFU platformasi Telegram profilingizdagi ism va raqamni oladi. Yozishmalaringizga kirish yoʻq.',
+  'a.m.ok':'Tasdiqlash','a.m.ok.t':'Tasdiqlandi','a.m.ok.d':'Kabinetga yoʻnaltirilmoqda…'
+ },
+ ru:{
+  'a.eyebrow':'Членство','a.title':'Зарегистрируйтесь один раз — <b>будьте под защитой</b> всегда.',
+  'a.lead':'Членство бесплатное. Вы входите через Telegram, заполняете анкету — и все юридические услуги открыты для вас.',
+  'a.w1':'Разбор контракта и юрист рядом при подписании','a.w2':'Претензия по долгу — от клуба до ФИФА',
+  'a.w3':'Голосование Symbolic XI и участие в Free Agent Camp','a.w4':'Поддержка за рубежом через сеть FIFPRO',
+  'a.count':'В этом месяце вступили 47 футболистов','a.tab1':'Вход','a.tab2':'Регистрация',
+  'a.l.title':'Вход в личный кабинет','a.l.sub':'Пароль не нужен. Подтверждение через ваш Telegram — самый быстрый и безопасный способ.',
+  'a.l.tg':'Вход через Telegram','a.l.tg.d':'Связь с @futbolchilar_bot','a.l.btn':'Продолжить с Telegram',
+  'a.l.note':'Входя, вы принимаете Пользовательское соглашение и Политику конфиденциальности.','a.or':'или',
+  'a.l.phone':'Номер телефона','a.l.phone.ph':'+998 __ ___ __ __','a.l.sms':'Получить SMS-код',
+  'a.anon.t':'Обратиться можно и без аккаунта','a.anon.d':'Сообщите, не называя имени. Ответ получите по секретному коду.','a.anon.link':'Анонимный канал',
+  'a.r.title':'Заявка на членство','a.r.sub':'Заполнение — 3 минуты. Данные доступны только юристам ассоциации.',
+  'a.r.1.t':'Подтверждение через Telegram','a.r.1.d':'Один клик — номер подтверждается автоматически, бот подключается.',
+  'a.r.2.t':'Анкета','a.r.2.d':'ФИО, дата рождения, клуб и лига, статус контракта, паспорт/ID, статистика карьеры и фото.',
+  'a.r.3.t':'Подтверждение','a.r.3.d':'Секретариат проверяет за 1 рабочий день — номер членства появится в кабинете.',
+  'a.r.btn':'Начать с Telegram','a.r.note':'Членство бесплатное. Годовых взносов нет.',
+  'a.m.t':'Подтвердить вход?','a.m.d':'Платформа получит имя и номер из вашего профиля Telegram. Доступа к переписке нет.',
+  'a.m.ok':'Подтвердить','a.m.ok.t':'Подтверждено','a.m.ok.d':'Переходим в кабинет…'
+ },
+ en:{
+  'a.eyebrow':'Membership','a.title':'Register once — <b>stay protected</b> for good.',
+  'a.lead':'Membership is free. Sign in with Telegram, complete your profile, and every legal service is open to you from that moment.',
+  'a.w1':'Contract review and a lawyer beside you at signing','a.w2':'Wage claims — from the club up to FIFA',
+  'a.w3':'Symbolic XI voting and access to the Free Agent Camp','a.w4':'Support abroad through the FIFPRO network',
+  'a.count':'47 players joined this month','a.tab1':'Log in','a.tab2':'Register',
+  'a.l.title':'Sign in to your dashboard','a.l.sub':'No password needed. You confirm through your Telegram account — the fastest and safest way.',
+  'a.l.tg':'Sign in with Telegram','a.l.tg.d':'Connects to @futbolchilar_bot','a.l.btn':'Continue with Telegram',
+  'a.l.note':'By signing in you accept the Terms of Use and the Privacy Policy.','a.or':'or',
+  'a.l.phone':'Phone number','a.l.phone.ph':'+998 __ ___ __ __','a.l.sms':'Get an SMS code',
+  'a.anon.t':'You can also report without an account','a.anon.d':'Report without giving your name. You receive the reply through a secret code.','a.anon.link':'Anonymous channel',
+  'a.r.title':'Apply for membership','a.r.sub':'Three minutes to fill in. The data is visible only to union lawyers.',
+  'a.r.1.t':'Confirm with Telegram','a.r.1.d':'One tap — your number is verified automatically and the bot is connected.',
+  'a.r.2.t':'Profile','a.r.2.d':'Full name, date of birth, club and league, contract status, passport/ID, career stats and a photo.',
+  'a.r.3.t':'Approval','a.r.3.d':'The secretariat checks it within one working day — your membership number appears in the dashboard.',
+  'a.r.btn':'Start with Telegram','a.r.note':'Membership is free. No annual fee.',
+  'a.m.t':'Confirm sign-in?','a.m.d':'The platform receives the name and number from your Telegram profile. It has no access to your messages.',
+  'a.m.ok':'Confirm','a.m.ok.t':'Confirmed','a.m.ok.d':'Taking you to the dashboard…'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var dest='kabinet.html';
+  function open(to){ dest=to; App.modal('mTg',true); }
+  document.getElementById('btnTg').addEventListener('click',function(){open('kabinet.html');});
+  document.getElementById('btnTg2').addEventListener('click',function(){open('royxat.html');});
+  document.getElementById('btnSms').addEventListener('click',function(){
+    App.toast(App.t('a.l.sms'),'+998 90 ••• 42 17', 'message');
+  });
+  document.getElementById('tgOk').addEventListener('click',function(){
+    document.getElementById('tgStep1').hidden=true;
+    document.getElementById('tgStep2').hidden=false;
+    var b=document.getElementById('tgBar'),w=8;
+    var iv=setInterval(function(){ w+=9; b.style.width=Math.min(w,100)+'%';
+      if(w>=100){clearInterval(iv); location.href=dest;}},110);
+  });
+})();
+</script>
+</body>
+</html>

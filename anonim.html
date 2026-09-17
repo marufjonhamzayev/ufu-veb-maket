@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anonim kanal — ismingizni oshkor qilmasdan xabar bering</title>
+<meta name="description" content="Anonim kanal: ismingizni oshkor qilmasdan xabar bering va javobni maxfiy kod orqali oling.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Anonim kanal — ismingizni oshkor qilmasdan xabar bering">
+<meta property="og:description" content="Anonim kanal: ismingizni oshkor qilmasdan xabar bering va javobni maxfiy kod orqali oling.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .code{font-family:var(--fm);font-size:clamp(22px,3vw,34px);font-weight:500;letter-spacing:.16em;
+    padding:20px 26px;border:1.6px dashed var(--line);border-radius:var(--r-md);background:#fff;display:inline-block}
+  .shield-list li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;padding:10px 0;font-size:14.5px;color:rgba(255,255,255,.8)}
+  .shield-list svg{color:#7FA6FF;margin-top:3px}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="anon">
+
+<div id="shell-header"></div>
+
+<main id="main"><section class="page-head page-head--dark">
+  <div class="wrap">
+    <nav class="crumbs">
+      <a href="index.html" data-i18n="brand.name">UFU</a><span data-ico="chevronRight"></span>
+      <span data-i18n="nav.help.anon">Anonim kanal</span>
+    </nav>
+    <div class="row row-side" style="align-items:start">
+      <div>
+        <span class="eyebrow" style="color:rgba(255,255,255,.7)" data-i18n="an.eyebrow">Maxfiy kanal</span>
+        <h1 class="h-1" style="margin-top:16px" data-i18n="an.title">Ismingizni aytmasdan<br><b>xabar bering</b></h1>
+        <p class="lead" style="margin-top:18px" data-i18n="an.lead">Baʼzan gapirish qoʻrqinchli: kontrakt xavf ostida, jamoada munosabat buziladi. Shuning uchun uyushmada alohida anonim kanal ishlaydi — xabaringiz ismsiz keladi, javobni esa faqat sizda boʻlgan maxfiy kod orqali olasiz.</p>
+      </div>
+      <div class="card card--dark card--pad" style="justify-self:end;max-width:400px">
+        <b class="h-4" data-i18n="an.g.t">Kafolatlarimiz</b>
+        <ul class="shield-list mt-s">
+          <li data-ico="shield"><span data-i18n="an.g1">Ism, telefon va Telegram maʼlumotlari soʻralmaydi va saqlanmaydi.</span></li>
+          <li data-ico="eyeOff"><span data-i18n="an.g2">IP-manzil yozilmaydi; xabar shifrlangan holda saqlanadi.</span></li>
+          <li data-ico="users"><span data-i18n="an.g3">Xabarni faqat ikki nafar masʼul yurist koʻradi.</span></li>
+          <li data-ico="lock"><span data-i18n="an.g4">Kelishilgan oʻyin haqidagi signallar alohida tartibda koʻriladi.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="row row-side-r" style="align-items:start">
+      <!-- FORM -->
+      <div class="card card--pad" id="formCard">
+        <h2 class="h-2" data-i18n="an.f.t">Anonim xabar</h2>
+        <p class="small muted mt-s" data-i18n="an.f.d">Faqat holatni tasvirlang. Qancha aniq yozsangiz, shunchalik tez yordam bera olamiz.</p>
+
+        <div class="stack mt-m">
+          <div class="field">
+            <label class="field__lbl" data-i18n="an.f.cat">Mavzu <span class="req">*</span></label>
+            <select class="sel" id="aCat">
+              <option value="" data-i18n="an.f.cat.ph">Mavzuni tanlang</option>
+              <option data-i18n="m.cat.1">Oylik qarzdorligi</option>
+              <option data-i18n="m.cat.2">Kontrakt shartlari / imzolash</option>
+              <option data-i18n="an.f.fix">Kelishilgan oʻyin boʻyicha signal</option>
+              <option data-i18n="an.f.pressure">Bosim / tahdid</option>
+              <option data-i18n="an.f.discr">Kamsitish yoki zoʻravonlik</option>
+              <option data-i18n="m.cat.6">Boshqa</option>
+            </select>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label class="field__lbl" data-i18n="an.f.league">Liga</label>
+              <select class="sel"><option data-i18n="an.f.nosay">Koʻrsatmayman</option><option data-nm>Superliga</option><option data-nm>Pro Liga</option><option data-nm>Birinchi liga</option><option data-nm>U21 / U19</option></select>
+            </div>
+            <div class="field">
+              <label class="field__lbl" data-i18n="an.f.region">Hudud</label>
+              <select class="sel"><option data-i18n="an.f.nosay">Koʻrsatmayman</option><option data-nm>Toshkent</option><option>Fargʻona vodiysi</option><option>Samarqand–Buxoro</option><option>Qashqadaryo–Surxondaryo</option><option>Xorazm–Qoraqalpogʻiston</option></select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__lbl" data-i18n="an.f.desc">Nima boʻldi? <span class="req">*</span></label>
+            <textarea class="txt" id="aDesc" data-i18n-ph="an.f.desc.ph" placeholder="Sanalar, summalar va holatni yozing. Klub nomini yozmaslik ham mumkin — lekin u boʻlsa, ish ancha tezlashadi."></textarea>
+            <span class="field__err" data-ico="alert"><span data-i18n="an.err">Kamida 40 belgi yozing.</span></span>
+          </div>
+
+          <div class="field">
+            <label class="field__lbl" data-i18n="an.f.files">Dalillar (ixtiyoriy)</label>
+            <div class="drop" id="aDrop" style="padding:22px">
+              <span class="ic" data-ico="paperclip"></span>
+              <b class="small" data-i18n="an.f.files.d">Skrinshot, kvitansiya yoki shartnoma sahifasi</b>
+              <p class="tiny muted mt-s" data-i18n="an.f.files.h">Fayllardagi metamaʼlumot avtomatik tozalanadi.</p>
+              <input type="file" id="aFile" multiple hidden>
+            </div>
+            <div class="stack-sm mt-s" id="aFiles"></div>
+          </div>
+
+          <label class="opt"><input type="checkbox" id="aAgree"><span class="opt__box" style="border-radius:6px"></span>
+            <span class="small" data-i18n="an.f.agree">Xabar haqiqiy holatga asoslanganini tasdiqlayman va yolgʻon maʼlumot berish uyushma reglamentiga zid ekanini tushunaman.</span></label>
+          <div class="field__err" id="aErr" data-ico="alert"><span data-i18n="m.err.agree">Davom etish uchun rozilik kerak.</span></div>
+
+          <button class="btn btn--dark btn--lg btn--block" id="aSend" data-ico="mask"><span data-i18n="an.f.send">Anonim yuborish</span></button>
+          <p class="tiny muted center" data-i18n="an.f.note">Yuborgach sizga 8 belgidan iborat maxfiy kod beriladi. Uni saqlang — javobni faqat shu kod orqali koʻrasiz.</p>
+        </div>
+      </div>
+
+      <!-- SIDE -->
+      <div class="stack">
+        <div class="card card--pad">
+          <span class="ic-box ic-blue" data-ico="search"></span>
+          <h3 class="h-3 mt-s" data-i18n="an.ch.t">Kod boʻyicha tekshirish</h3>
+          <p class="small muted mt-s" data-i18n="an.ch.d">Ilgari anonim xabar yuborgan boʻlsangiz, holatini shu yerda koʻring.</p>
+          <div class="flex mt-m" style="gap:10px">
+            <input class="inp" id="chCode" placeholder="UFU-XXXX-XXXX" style="font-family:var(--fm);letter-spacing:.08em">
+            <button class="btn btn--dark" id="chBtn" data-ico="arrowRight" data-i18n-aria="c.search"></button>
+          </div>
+          <div id="chRes" class="mt-m" hidden>
+            <div class="card card--flat card--pad">
+              <div class="flex" style="justify-content:space-between;flex-wrap:wrap;gap:8px">
+                <b class="small mono">UFU-7K2M-9QD4</b>
+                <span class="status status--review" data-i18n="c.review">Koʻrib chiqilmoqda</span>
+              </div>
+              <div class="tl mt-m">
+                <div class="tl__i is-done"><span class="tl__d" data-ico="check"></span>
+                  <div><div class="tl__t" data-i18n="an.ch.1">Xabar qabul qilindi</div><div class="tl__m">09.09.2026</div></div></div>
+                <div class="tl__i is-current"><span class="tl__d" data-ico="clock"></span>
+                  <div><div class="tl__t" data-i18n="an.ch.2">Yurist tekshirmoqda</div>
+                    <div class="tl__msg" data-i18n="an.ch.msg">Xabaringiz boʻyicha klubga soʻrov yuborildi. Ismingiz oshkor qilinmadi.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card--pad">
+          <span class="ic-box ic-green" data-ico="telegram"></span>
+          <h3 class="h-3 mt-s" data-i18n="an.tg.t">Telegram orqali anonim</h3>
+          <p class="small muted mt-s" data-i18n="an.tg.d">@futbolchilar_anon_bot botida «Anonim rejim» tugmasini bosing — bot sizning profilingizni yuristga uzatmaydi.</p>
+          <a href="#" class="btn btn--tg btn--block mt-m" data-ico="telegram"><span data-i18n="an.tg.cta">Botni ochish</span></a>
+        </div>
+
+        <div class="card card--pad" style="background:var(--sky-2);border-color:#DCE6FF">
+          <b class="h-4" data-i18n="an.w.t">Qachon anonimlik yetarli emas?</b>
+          <p class="small muted mt-s" data-i18n="an.w.d">Klubdan pul undirish yoki federatsiya qarorini bekor qilish uchun rasmiy daʼvo kerak, daʼvoda esa ism koʻrsatiladi. Anonim bosqichda biz vaziyatni baholaymiz va keyingi qadamni birga hal qilamiz — oshkor boʻlish har doim sizning qaroringiz.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="aDone" hidden>
+      <div class="center" style="padding:clamp(30px,5vw,60px) 0">
+        <div class="ic-box ic-green" style="width:82px;height:82px;border-radius:24px;margin:0 auto 22px" data-ico="checkCircle"></div>
+        <h2 class="h-1" data-i18n="an.ok.t">Xabar qabul qilindi</h2>
+        <p class="lead" style="margin:14px auto 26px" data-i18n="an.ok.d">Maxfiy kodingizni hozir saqlab qoʻying. Biz uni tiklay olmaymiz — bu anonimlikning narxi.</p>
+        <div class="code" id="aCode">UFU-7K2M-9QD4</div>
+        <div class="flex flex-wrap" style="justify-content:center;gap:12px;margin-top:26px">
+          <button class="btn btn--dark" id="copyCode" data-ico="fileText"><span data-i18n="an.ok.copy">Kodni nusxalash</span></button>
+          <a href="index.html" class="btn btn--ghost" data-i18n="an.ok.home">Bosh sahifaga</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="shell-footer"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'an.eyebrow':'Maxfiy kanal','an.title':'Ismingizni aytmasdan<br><b>xabar bering</b>',
+  'an.lead':'Baʼzan gapirish qoʻrqinchli: kontrakt xavf ostida, jamoada munosabat buziladi. Shuning uchun uyushmada alohida anonim kanal ishlaydi — xabaringiz ismsiz keladi, javobni esa faqat sizda boʻlgan maxfiy kod orqali olasiz.',
+  'an.g.t':'Kafolatlarimiz','an.g1':'Ism, telefon va Telegram maʼlumotlari soʻralmaydi va saqlanmaydi.',
+  'an.g2':'IP-manzil yozilmaydi; xabar shifrlangan holda saqlanadi.','an.g3':'Xabarni faqat ikki nafar masʼul yurist koʻradi.',
+  'an.g4':'Kelishilgan oʻyin haqidagi signallar alohida tartibda koʻriladi.',
+  'an.f.t':'Anonim xabar','an.f.d':'Faqat holatni tasvirlang. Qancha aniq yozsangiz, shunchalik tez yordam bera olamiz.',
+  'an.f.cat':'Mavzu','an.f.cat.ph':'Mavzuni tanlang','an.f.fix':'Kelishilgan oʻyin boʻyicha signal',
+  'an.f.pressure':'Bosim / tahdid','an.f.discr':'Kamsitish yoki zoʻravonlik','an.f.league':'Liga','an.f.region':'Hudud','an.f.nosay':'Koʻrsatmayman',
+  'an.f.desc':'Nima boʻldi?','an.f.desc.ph':'Sanalar, summalar va holatni yozing. Klub nomini yozmaslik ham mumkin — lekin u boʻlsa, ish ancha tezlashadi.',
+  'an.err':'Kamida 40 belgi yozing.','an.f.files':'Dalillar (ixtiyoriy)','an.f.files.d':'Skrinshot, kvitansiya yoki shartnoma sahifasi',
+  'an.f.files.h':'Fayllardagi metamaʼlumot avtomatik tozalanadi.',
+  'an.f.agree':'Xabar haqiqiy holatga asoslanganini tasdiqlayman va yolgʻon maʼlumot berish uyushma reglamentiga zid ekanini tushunaman.',
+  'an.f.send':'Anonim yuborish','an.f.note':'Yuborgach sizga 8 belgidan iborat maxfiy kod beriladi. Uni saqlang — javobni faqat shu kod orqali koʻrasiz.',
+  'an.ch.t':'Kod boʻyicha tekshirish','an.ch.d':'Ilgari anonim xabar yuborgan boʻlsangiz, holatini shu yerda koʻring.',
+  'an.ch.1':'Xabar qabul qilindi','an.ch.2':'Yurist tekshirmoqda','an.ch.msg':'Xabaringiz boʻyicha klubga soʻrov yuborildi. Ismingiz oshkor qilinmadi.',
+  'an.tg.t':'Telegram orqali anonim','an.tg.d':'@futbolchilar_anon_bot botida «Anonim rejim» tugmasini bosing — bot sizning profilingizni yuristga uzatmaydi.','an.tg.cta':'Botni ochish',
+  'an.w.t':'Qachon anonimlik yetarli emas?','an.w.d':'Klubdan pul undirish yoki federatsiya qarorini bekor qilish uchun rasmiy daʼvo kerak, daʼvoda esa ism koʻrsatiladi. Anonim bosqichda biz vaziyatni baholaymiz va keyingi qadamni birga hal qilamiz — oshkor boʻlish har doim sizning qaroringiz.',
+  'an.ok.t':'Xabar qabul qilindi','an.ok.d':'Maxfiy kodingizni hozir saqlab qoʻying. Biz uni tiklay olmaymiz — bu anonimlikning narxi.',
+  'an.ok.copy':'Kodni nusxalash','an.ok.home':'Bosh sahifaga','an.copied':'Kod nusxalandi','an.notfound':'Bunday kod topilmadi'
+ },
+ ru:{
+  'an.eyebrow':'Конфиденциальный канал','an.title':'Сообщите,<br><b>не называя имени</b>',
+  'an.lead':'Иногда говорить страшно: контракт под угрозой, отношения в команде портятся. Поэтому в ассоциации работает отдельный анонимный канал — сообщение приходит без имени, а ответ вы получаете по секретному коду, который есть только у вас.',
+  'an.g.t':'Наши гарантии','an.g1':'Имя, телефон и данные Telegram не запрашиваются и не сохраняются.',
+  'an.g2':'IP-адрес не записывается; сообщение хранится в зашифрованном виде.','an.g3':'Сообщение видят только двое ответственных юристов.',
+  'an.g4':'Сигналы о договорных матчах рассматриваются по отдельному порядку.',
+  'an.f.t':'Анонимное сообщение','an.f.d':'Просто опишите ситуацию. Чем точнее, тем быстрее мы поможем.',
+  'an.f.cat':'Тема','an.f.cat.ph':'Выберите тему','an.f.fix':'Сигнал о договорном матче',
+  'an.f.pressure':'Давление / угрозы','an.f.discr':'Дискриминация или насилие','an.f.league':'Лига','an.f.region':'Регион','an.f.nosay':'Не указывать',
+  'an.f.desc':'Что произошло?','an.f.desc.ph':'Опишите даты, суммы и обстоятельства. Название клуба можно не указывать — но с ним дело пойдёт заметно быстрее.',
+  'an.err':'Напишите минимум 40 символов.','an.f.files':'Доказательства (необязательно)','an.f.files.d':'Скриншот, квитанция или страница контракта',
+  'an.f.files.h':'Метаданные файлов удаляются автоматически.',
+  'an.f.agree':'Подтверждаю, что сообщение основано на реальной ситуации, и понимаю, что ложные сведения противоречат регламенту ассоциации.',
+  'an.f.send':'Отправить анонимно','an.f.note':'После отправки вы получите секретный код из 8 символов. Сохраните его — ответ виден только по нему.',
+  'an.ch.t':'Проверка по коду','an.ch.d':'Если вы уже отправляли анонимное сообщение, посмотрите его статус здесь.',
+  'an.ch.1':'Сообщение принято','an.ch.2':'Юрист проверяет','an.ch.msg':'По вашему сообщению направлен запрос в клуб. Ваше имя не раскрывалось.',
+  'an.tg.t':'Анонимно через Telegram','an.tg.d':'В боте @futbolchilar_anon_bot нажмите «Анонимный режим» — бот не передаёт ваш профиль юристу.','an.tg.cta':'Открыть бота',
+  'an.w.t':'Когда анонимности недостаточно?','an.w.d':'Чтобы взыскать деньги с клуба или отменить решение федерации, нужна официальная претензия, а в ней указывается имя. На анонимном этапе мы оцениваем ситуацию и решаем следующий шаг вместе — раскрытие всегда остаётся вашим решением.',
+  'an.ok.t':'Сообщение принято','an.ok.d':'Сохраните секретный код прямо сейчас. Восстановить его мы не сможем — это цена анонимности.',
+  'an.ok.copy':'Скопировать код','an.ok.home':'На главную','an.copied':'Код скопирован','an.notfound':'Такой код не найден'
+ },
+ en:{
+  'an.eyebrow':'Confidential channel','an.title':'Report it<br><b>without your name</b>',
+  'an.lead':'Speaking up can be frightening: the contract is at risk, the dressing room turns. That is why the union runs a separate anonymous channel — your report arrives without a name, and you read the reply through a secret code only you hold.',
+  'an.g.t':'Our guarantees','an.g1':'Name, phone and Telegram details are never requested or stored.',
+  'an.g2':'No IP address is logged; the report is stored encrypted.','an.g3':'Only two designated lawyers can read it.',
+  'an.g4':'Match-fixing tip-offs follow a separate procedure.',
+  'an.f.t':'Anonymous report','an.f.d':'Just describe what happened. The more precise you are, the faster we can help.',
+  'an.f.cat':'Topic','an.f.cat.ph':'Choose a topic','an.f.fix':'Match-fixing tip-off',
+  'an.f.pressure':'Pressure / threats','an.f.discr':'Discrimination or violence','an.f.league':'League','an.f.region':'Region','an.f.nosay':'Prefer not to say',
+  'an.f.desc':'What happened?','an.f.desc.ph':'Give dates, amounts and circumstances. You may leave the club unnamed — but naming it makes the case much faster.',
+  'an.err':'Please write at least 40 characters.','an.f.files':'Evidence (optional)','an.f.files.d':'A screenshot, a receipt or a contract page',
+  'an.f.files.h':'File metadata is stripped automatically.',
+  'an.f.agree':'I confirm this report describes a real situation and understand that false information breaches union rules.',
+  'an.f.send':'Send anonymously','an.f.note':'You will receive an 8-character secret code. Keep it — it is the only way to read the reply.',
+  'an.ch.t':'Check with your code','an.ch.d':'If you sent an anonymous report before, check its status here.',
+  'an.ch.1':'Report received','an.ch.2':'A lawyer is reviewing it','an.ch.msg':'A request has been sent to the club about your report. Your name was not disclosed.',
+  'an.tg.t':'Anonymous via Telegram','an.tg.d':'In @futbolchilar_anon_bot tap “Anonymous mode” — the bot does not pass your profile to the lawyer.','an.tg.cta':'Open the bot',
+  'an.w.t':'When anonymity is not enough','an.w.d':'Recovering money from a club or overturning a federation ruling requires a formal claim, and a claim carries a name. At the anonymous stage we assess the situation and decide the next step together — going on the record is always your call.',
+  'an.ok.t':'Report received','an.ok.d':'Save your secret code now. We cannot restore it — that is the price of anonymity.',
+  'an.ok.copy':'Copy the code','an.ok.home':'Back to home','an.copied':'Code copied','an.notfound':'No report found for that code'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var drop=document.getElementById('aDrop'), inp=document.getElementById('aFile'), list=document.getElementById('aFiles');
+  drop.addEventListener('click',function(){inp.click();});
+  ['dragenter','dragover'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.add('is-over');});});
+  ['dragleave','drop'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.remove('is-over');});});
+  drop.addEventListener('drop',function(e){add(e.dataTransfer.files);});
+  inp.addEventListener('change',function(){add(inp.files);});
+  function add(fl){
+    Array.prototype.forEach.call(fl,function(f){
+      var r=document.createElement('div'); r.className='file-row';
+      r.innerHTML='<span class="ic">'+ico('fileText')+'</span><b class="small" style="flex:1">'+f.name+'</b>'+
+        '<span class="tiny muted">'+(f.size/1048576).toFixed(1)+' MB</span><button class="x">'+ico('x')+'</button>';
+      r.querySelector('.x').addEventListener('click',function(){r.remove();});
+      list.appendChild(r);
+    });
+  }
+
+  function code(){
+    var s='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',a='',b='';
+    for(var i=0;i<4;i++){a+=s[Math.floor(Math.random()*s.length)];b+=s[Math.floor(Math.random()*s.length)];}
+    return 'UFU-'+a+'-'+b;
+  }
+
+  document.getElementById('aSend').addEventListener('click',function(){
+    var d=document.getElementById('aDesc'), ok=true;
+    var cat=document.getElementById('aCat');
+    d.closest('.field').classList.toggle('is-error',d.value.trim().length<40);
+    if(d.value.trim().length<40) ok=false;
+    cat.closest('.field').classList.toggle('is-error',!cat.value);
+    if(!cat.value) ok=false;
+    var ag=document.getElementById('aAgree').checked;
+    document.getElementById('aErr').style.display=ag?'none':'flex';
+    if(!ag) ok=false;
+    if(!ok) return;
+
+    document.querySelector('.row.row-side-r').style.display='none';
+    var done=document.getElementById('aDone'); done.hidden=false;
+    document.getElementById('aCode').textContent=code();
+    window.scrollTo({top:220,behavior:'smooth'});
+  });
+
+  document.getElementById('copyCode').addEventListener('click',function(){
+    var t=document.getElementById('aCode').textContent;
+    if(navigator.clipboard) navigator.clipboard.writeText(t);
+    App.toast(App.t('an.copied'),t);
+  });
+
+  document.getElementById('chBtn').addEventListener('click',function(){
+    var v=document.getElementById('chCode').value.trim();
+    if(v.length<6){ App.toast(App.t('an.notfound'),'','alert'); return; }
+    document.getElementById('chRes').hidden=false;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video — suhbatlar va tushuntirishlar · UFU</title>
+<meta name="description" content="Huquqiy tushuntirishlar, futbolchilar bilan suhbatlar va seminar yozuvlari.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Video — suhbatlar va tushuntirishlar · UFU">
+<meta property="og:description" content="Huquqiy tushuntirishlar, futbolchilar bilan suhbatlar va seminar yozuvlari.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .vcard{position:relative;overflow:hidden;border-radius:var(--r-lg);cursor:pointer;background:var(--navy)}
+  .vcard img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out)}
+  .vcard:hover img{transform:scale(1.05)}
+  .vcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,51,.05) 40%,rgba(8,18,35,.9))}
+  .vcard__body{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:#fff}
+  .vcard .play{width:58px;height:58px}
+  @media(max-width:560px){.vcard.ratio-16x9{aspect-ratio:4/3.3}.vcard .play{width:48px;height:48px;top:38%!important}.vcard__body{left:16px;right:16px;bottom:14px}.vcard__body .h-4{font-size:16px}}
+  .vcard .dur{position:absolute;top:14px;right:14px;z-index:2;background:rgba(8,18,35,.75);color:#fff;
+    padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;backdrop-filter:blur(4px)}
+  .player{aspect-ratio:16/9;background:#06101F;border-radius:var(--r-md);position:relative;overflow:hidden}
+  .player img{width:100%;height:100%;object-fit:cover;opacity:.55}
+  .player__ui{position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+  .track{height:4px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden}
+  .track i{display:block;height:100%;width:34%;background:var(--blue)}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="video">
+
+<div id="shell-header"></div>
+
+<main id="main"><section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs">
+      <a href="index.html" data-i18n="brand.name">UFU</a><span data-ico="chevronRight"></span>
+      <span data-i18n="nav.media.video">Video</span>
+    </nav>
+    <h1 class="h-1" data-i18n="v.title">Video —<br><b>tushuntirish va suhbat</b></h1>
+    <p class="lead mt-s" data-i18n="v.lead">Yuristlarning qisqa tushuntirishlari, ish yutgan futbolchilar bilan suhbatlar va seminarlar yozuvi. Barchasi oʻzbek tilida, subtitrlar bilan.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="flex flex-wrap" style="gap:8px;margin-bottom:24px" data-chips="#vgrid">
+      <button class="chip is-active" data-val="all" data-i18n="c.all">Barchasi</button>
+      <button class="chip" data-val="expl" data-i18n="v.c1">Huquqiy tushuntirish</button>
+      <button class="chip" data-val="talk" data-i18n="v.c2">Suhbat</button>
+      <button class="chip" data-val="sem" data-i18n="v.c3">Seminar</button>
+    </div>
+
+    <div class="row row-3" id="vgrid">
+      <div class="vcard ratio-16x9 reveal" data-cat="expl" data-v="1">
+        <img src="assets/img/photos/photo-5.webp" alt="Oylik kechikdi: birinchi 72 soatda nima qilasiz" loading="lazy" decoding="async"><span class="dur">4:12</span>
+        <button class="play play--sm" data-ico="play"></button>
+        <div class="vcard__body"><span class="tag tag--dark" data-i18n="v.c1">Huquqiy tushuntirish</span>
+          <h3 class="h-4" style="color:#fff;margin-top:8px" data-i18n="v.1">Oylik kechikdi: birinchi 72 soatda nima qilasiz</h3></div>
+      </div>
+      <div class="vcard ratio-16x9 reveal" data-d="1" data-cat="talk" data-v="2">
+        <img src="assets/img/photos/photo-12.webp" alt="«Men ishni yutdim» — FIFA qarori olgan futbolchi hikoyasi" loading="lazy" decoding="async"><span class="dur">9:38</span>
+        <button class="play play--sm" data-ico="play"></button>
+        <div class="vcard__body"><span class="tag tag--dark" data-i18n="v.c2">Suhbat</span>
+          <h3 class="h-4" style="color:#fff;margin-top:8px" data-i18n="v.2">«Men ishni yutdim» — FIFA qarori olgan futbolchi hikoyasi</h3></div>
+      </div>
+      <div class="vcard ratio-16x9 reveal" data-d="2" data-cat="expl" data-v="3">
+        <img src="assets/img/photos/photo-18.webp" alt="Kontraktdagi beshta xavfli band" loading="lazy" decoding="async"><span class="dur">6:05</span>
+        <button class="play play--sm" data-ico="play"></button>
+        <div class="vcard__body"><span class="tag tag--dark" data-i18n="v.c1">Huquqiy tushuntirish</span>
+          <h3 class="h-4" style="color:#fff;margin-top:8px" data-i18n="v.3">Kontraktdagi beshta xavfli band</h3></div>
+      </div>
+      <div class="vcard ratio-16x9 reveal" data-cat="sem" data-v="4">
+        <img src="assets/img/photos/photo-22.webp" alt="Kelishilgan oʻyinlar: xavf va xabar berish yoʻllari" loading="lazy" decoding="async"><span class="dur">41:20</span>
+        <button class="play play--sm" data-ico="play"></button>
+        <div class="vcard__body"><span class="tag tag--dark" data-i18n="v.c3">Seminar</span>
+          <h3 class="h-4" style="color:#fff;margin-top:8px" data-i18n="v.4">Kelishilgan oʻyinlar: xavf va xabar berish yoʻllari</h3></div>
+      </div>
+      <div class="vcard ratio-16x9 reveal" data-d="1" data-cat="expl" data-v="5">
+        <img src="assets/img/photos/photo-28.webp" alt="Antidoping nazorati: qadamma-qadam" loading="lazy" decoding="async"><span class="dur">5:47</span>
+        <button class="play play--sm" data-ico="play"></button>
+        <div class="vcard__body"><span class="tag tag--dark" data-i18n="v.c1">Huquqiy tushuntirish</span>
+          <h3 class="h-4" style="color:#fff;margin-top:8px" data-i18n="v.5">Antidoping nazorati: qadamma-qadam</h3></div>
+      </div>
+      <div class="vcard ratio-16x9 reveal" data-d="2" data-cat="talk" data-v="6">
+        <img src="assets/img/photos/photo-31.webp" alt="Free Agent Campʼdan keyin kontrakt olgan uchta oʻyinchi" loading="lazy" decoding="async"><span class="dur">12:03</span>
+        <button class="play play--sm" data-ico="play"></button>
+        <div class="vcard__body"><span class="tag tag--dark" data-i18n="v.c2">Suhbat</span>
+          <h3 class="h-4" style="color:#fff;margin-top:8px" data-i18n="v.6">Free Agent Campʼdan keyin kontrakt olgan uchta oʻyinchi</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="mV">
+  <div class="modal__bg"></div>
+  <div class="modal__box modal__box--wide">
+    <div class="modal__head">
+      <span class="ic-box ic-blue" style="width:42px;height:42px;border-radius:11px" data-ico="video"></span>
+      <div><b class="h-4" id="vT">—</b><p class="tiny muted" data-i18n="v.sub">Oʻzbekcha · subtitrlar mavjud</p></div>
+      <button class="modal__x" data-modal-close data-ico="x"></button>
+    </div>
+    <div class="modal__body">
+      <div class="player">
+        <img id="vP" src="assets/img/photos/photo-5.webp" alt="" loading="lazy" decoding="async">
+        <button class="play" data-ico="play"></button>
+        <div class="player__ui">
+          <div class="track"><i></i></div>
+          <div class="flex" style="justify-content:space-between;margin-top:10px;color:#fff">
+            <span class="tiny">01:24 / 04:12</span>
+            <span class="flex" style="gap:14px;opacity:.85"><span data-ico="settings"></span><span data-ico="external"></span></span>
+          </div>
+        </div>
+      </div>
+      <p class="small muted mt-m" id="vD"></p>
+    </div>
+  </div>
+</div>
+
+</main>
+<div id="shell-footer"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'v.title':'Video —<br><b>tushuntirish va suhbat</b>',
+  'v.lead':'Yuristlarning qisqa tushuntirishlari, ish yutgan futbolchilar bilan suhbatlar va seminarlar yozuvi. Barchasi oʻzbek tilida, subtitrlar bilan.',
+  'v.c1':'Huquqiy tushuntirish','v.c2':'Suhbat','v.c3':'Seminar','v.sub':'Oʻzbekcha · subtitrlar mavjud',
+  'v.1':'Oylik kechikdi: birinchi 72 soatda nima qilasiz','v.2':'«Men ishni yutdim» — FIFA qarori olgan futbolchi hikoyasi',
+  'v.3':'Kontraktdagi beshta xavfli band','v.4':'Kelishilgan oʻyinlar: xavf va xabar berish yoʻllari',
+  'v.5':'Antidoping nazorati: qadamma-qadam','v.6':'Free Agent Campʼdan keyin kontrakt olgan uchta oʻyinchi',
+  'v.d':'Uyushma yuristlari tayyorlagan qisqa video. Savollaringizni izohlarda yoki Telegram-bot orqali yuboring.'
+ },
+ ru:{
+  'v.title':'Видео —<br><b>разборы и интервью</b>',
+  'v.lead':'Короткие разъяснения юристов, интервью с игроками, выигравшими дела, и записи семинаров. Всё на узбекском языке, с субтитрами.',
+  'v.c1':'Правовой разбор','v.c2':'Интервью','v.c3':'Семинар','v.sub':'Узбекский · есть субтитры',
+  'v.1':'Зарплата задержана: что делать в первые 72 часа','v.2':'«Я выиграл дело» — история футболиста с решением ФИФА',
+  'v.3':'Пять опасных пунктов в контракте','v.4':'Договорные матчи: риски и каналы сообщения',
+  'v.5':'Допинг-контроль: шаг за шагом','v.6':'Трое игроков, получивших контракт после Free Agent Camp',
+  'v.d':'Короткое видео от юристов ассоциации. Вопросы присылайте в комментариях или через Telegram-бота.'
+ },
+ en:{
+  'v.title':'Video —<br><b>explainers and interviews</b>',
+  'v.lead':'Short explainers from our lawyers, interviews with players who won their cases, and seminar recordings. All in Uzbek, with subtitles.',
+  'v.c1':'Legal explainer','v.c2':'Interview','v.c3':'Seminar','v.sub':'Uzbek · subtitles available',
+  'v.1':'Wages are late: what to do in the first 72 hours','v.2':'“I won my case” — a player on his FIFA ruling',
+  'v.3':'Five dangerous clauses in a contract','v.4':'Match-fixing: the risks and how to report',
+  'v.5':'Doping control, step by step','v.6':'Three players who signed after the Free Agent Camp',
+  'v.d':'A short video from the union’s lawyers. Send your questions in the comments or through the Telegram bot.'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  document.getElementById('vgrid').addEventListener('click',function(e){
+    var c=e.target.closest('.vcard'); if(!c) return;
+    document.getElementById('vT').textContent=c.querySelector('h3').textContent;
+    document.getElementById('vP').src=c.querySelector('img').getAttribute('src');
+    document.getElementById('vD').textContent=App.t('v.d');
+    App.modal('mV',true);
+  });
+})();
+</script>
+</body>
+</html>

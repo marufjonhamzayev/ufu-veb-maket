@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murojaat yuborish — Oʻzbekiston futbolchilar uyushmasi</title>
+<meta name="description" content="Murojaat yuborish: oylik qarzdorligi, kontrakt, diskvalifikatsiya, transfer, jarohat. Besh bosqich, hujjat biriktirish bilan.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Murojaat yuborish — Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:description" content="Murojaat yuborish: oylik qarzdorligi, kontrakt, diskvalifikatsiya, transfer, jarohat. Besh bosqich, hujjat biriktirish bilan.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .sumrow{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2);font-size:14.5px}
+  .sumrow b{min-width:180px;color:var(--muted);font-weight:500}
+  .sumrow:last-child{border-bottom:0}
+  .done-hero{text-align:center;padding:clamp(30px,5vw,60px) 0}
+  .ticket{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border:1.6px dashed var(--line);
+    border-radius:var(--r-md);background:#fff;font-family:var(--fm);font-size:16px;font-weight:500;letter-spacing:.04em}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body data-page="appeal">
+
+<div id="shell-header"></div>
+
+<main id="main"><section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs">
+      <a href="index.html" data-i18n="brand.name">UFU</a><span data-ico="chevronRight"></span>
+      <a href="#" data-i18n="nav.help">Huquqiy yordam</a><span data-ico="chevronRight"></span>
+      <span data-i18n="m.crumb">Murojaat yuborish</span>
+    </nav>
+    <div class="row row-side" style="align-items:end">
+      <div>
+        <h1 class="h-1" data-i18n="m.title">Murojaat <b>yuborish</b></h1>
+        <p class="lead mt-s" data-i18n="m.lead">Besh qadam, taxminan uch daqiqa. Yuborilgandan soʻng murojaat raqam oladi va kabinetingizda kuzatiladi.</p>
+      </div>
+      <div class="flex flex-wrap" style="gap:10px;justify-self:end">
+        <a href="anonim.html" class="btn btn--ghost btn--sm" data-ico="mask"><span data-i18n="m.anon">Anonim yuborish</span></a>
+        <a href="kabinet.html" class="btn btn--ghost btn--sm" data-ico="folder"><span data-i18n="m.mine">Mening murojaatlarim</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <form class="wiz" id="wiz" novalidate onsubmit="return false">
+      <!-- STEPS -->
+      <aside class="wiz__side">
+        <div class="wiz__steps" id="wsteps">
+          <div class="wstep is-active" data-s="1"><span class="wstep__n">1</span>
+            <span><b data-i18n="m.s1">Kategoriya</b><span data-i18n="m.s1.d">Muammo turi</span></span></div>
+          <div class="wstep" data-s="2"><span class="wstep__n">2</span>
+            <span><b data-i18n="m.s2">Tafsilotlar</b><span data-i18n="m.s2.d">Klub, davr, summa</span></span></div>
+          <div class="wstep" data-s="3"><span class="wstep__n">3</span>
+            <span><b data-i18n="m.s3">Hujjatlar</b><span data-i18n="m.s3.d">Ixtiyoriy</span></span></div>
+          <div class="wstep" data-s="4"><span class="wstep__n">4</span>
+            <span><b data-i18n="m.s4">Aloqa</b><span data-i18n="m.s4.d">Xabarnoma va maxfiylik</span></span></div>
+          <div class="wstep" data-s="5"><span class="wstep__n">5</span>
+            <span><b data-i18n="m.s5">Tekshirish</b><span data-i18n="m.s5.d">Yuborish</span></span></div>
+        </div>
+
+        <div class="card card--flat card--pad" style="margin-top:26px">
+          <div class="flex" style="gap:11px;align-items:flex-start">
+            <span class="ic-box ic-blue" style="width:36px;height:36px;border-radius:10px" data-ico="helpCircle"></span>
+            <div>
+              <b class="small" data-i18n="m.help.t">Yordam kerakmi?</b>
+              <p class="tiny muted mt-s" data-i18n="m.help.d">Ishonch liniyasi ish kunlari 09:00–19:00.</p>
+              <a href="tel:+998712000047" class="link-arrow tiny" style="margin-top:8px">+998 71 200 00 47</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- PANES -->
+      <div>
+        <!-- 1 -->
+        <div class="wpane is-active" data-p="1">
+          <h2 class="h-2" data-i18n="m.1.t">Murojaat qaysi masala boʻyicha?</h2>
+          <p class="muted small mt-s" data-i18n="m.1.d">Kategoriya toʻgʻri tanlansa, ish darhol shu yoʻnalish boʻyicha ixtisoslashgan yuristga tushadi.</p>
+
+          <div class="opt-grid opt-grid--2 mt-m" id="cats">
+            <label class="opt"><input type="radio" name="cat" value="salary"><span class="ic" data-ico="wallet"></span>
+              <span><span class="opt__t" data-i18n="m.cat.1">Oylik qarzdorligi</span><span class="opt__d" data-i18n="m.cat.1.d">Toʻlanmagan maosh, bonus, imzo puli</span></span><span class="opt__box"></span></label>
+            <label class="opt"><input type="radio" name="cat" value="contract"><span class="ic" data-ico="contract"></span>
+              <span><span class="opt__t" data-i18n="m.cat.2">Kontrakt shartlari / imzolash</span><span class="opt__d" data-i18n="m.cat.2.d">Tahlil, uzaytirish, bir tomonlama bekor qilish</span></span><span class="opt__box"></span></label>
+            <label class="opt"><input type="radio" name="cat" value="discipline"><span class="ic" data-ico="gavel"></span>
+              <span><span class="opt__t" data-i18n="m.cat.3">Diskvalifikatsiya / federatsiya qarori</span><span class="opt__d" data-i18n="m.cat.3.d">Intizomiy jazo, jarima, apellyatsiya</span></span><span class="opt__box"></span></label>
+            <label class="opt"><input type="radio" name="cat" value="transfer"><span class="ic" data-ico="transfer"></span>
+              <span><span class="opt__t" data-i18n="m.cat.4">Transfer masalasi</span><span class="opt__d" data-i18n="m.cat.4.d">ITC, oʻtish taqiqi, agent bilan nizo</span></span><span class="opt__box"></span></label>
+            <label class="opt"><input type="radio" name="cat" value="injury"><span class="ic" data-ico="heartPulse"></span>
+              <span><span class="opt__t" data-i18n="m.cat.5">Jarohat / sugʻurta</span><span class="opt__d" data-i18n="m.cat.5.d">Davolash xarajati, tiklanish davridagi toʻlov</span></span><span class="opt__box"></span></label>
+            <label class="opt"><input type="radio" name="cat" value="other"><span class="ic" data-ico="message"></span>
+              <span><span class="opt__t" data-i18n="m.cat.6">Boshqa</span><span class="opt__d" data-i18n="m.cat.6.d">Erkin matnda tushuntirasiz</span></span><span class="opt__box"></span></label>
+          </div>
+          <div class="field__err" id="errCat" style="margin-top:12px" data-ico="alert"><span data-i18n="m.err.cat">Iltimos, kategoriyani tanlang.</span></div>
+        </div>
+
+        <!-- 2 -->
+        <div class="wpane" data-p="2">
+          <h2 class="h-2" data-i18n="m.2.t">Vaziyatni qisqacha bayon qiling</h2>
+          <p class="muted small mt-s" data-i18n="m.2.d">Faktlar muhim: sanalar, summalar, kim bilan gaplashgansiz. Huquqiy baholashni biz qilamiz.</p>
+
+          <div class="form-grid mt-m">
+            <div class="field">
+              <label class="field__lbl" data-i18n="m.f.club">Klub <span class="req">*</span></label>
+              <select class="sel" id="fClub">
+                <option value="" data-i18n="m.f.club.ph">Klubni tanlang</option>
+                <option data-nm>Paxtakor</option><option data-nm>Navbahor</option><option data-nm>Neftchi</option><option data-nm>Nasaf</option>
+                <option data-nm>Lokomotiv</option><option data-nm>OKMK</option><option data-nm>Buxoro</option><option data-nm>Surxon</option>
+                <option data-nm>Andijon</option><option data-nm>Xorazm</option><option data-nm>Soʻgʻdiyona</option><option data-nm>Qizilqum</option>
+                <option data-nm>Dinamo</option><option data-nm>Qoʻqon-1912</option><option data-nm>Mashʼal</option><option data-nm>Bunyodkor</option>
+                <option data-i18n="m.f.club.for">Chet el klubi</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__lbl" data-i18n="m.f.league">Liga</label>
+              <select class="sel">
+                <option data-nm>Superliga</option><option data-nm>Pro Liga</option><option data-nm>Birinchi liga</option>
+                <option data-nm>U21 / U19</option><option data-i18n="m.f.league.for">Chet el ligasi</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__lbl" data-i18n="m.f.from">Muammo qachondan beri <span class="req">*</span></label>
+              <input class="inp" type="month" id="fFrom" value="2026-04">
+            </div>
+            <div class="field">
+              <label class="field__lbl" data-i18n="m.f.amount">Taxminiy summa</label>
+              <input class="inp" type="text" data-i18n-ph="m.f.amount.ph" placeholder="masalan, 84 000 000 soʻm">
+              <span class="field__hint" data-i18n="m.f.amount.h">Aniq bilmasangiz — boʻsh qoldiring.</span>
+            </div>
+            <div class="field full">
+              <label class="field__lbl" data-i18n="m.f.desc">Tavsif <span class="req">*</span></label>
+              <textarea class="txt" id="fDesc" data-i18n-ph="m.f.desc.ph" placeholder="Masalan: aprel oyidan beri oylik toʻlanmayapti. Sport direktori bilan uch marta ogʻzaki gaplashdim, yozma javob yoʻq. Shartnoma 2027-yil iyungacha amal qiladi."></textarea>
+              <span class="field__hint"><span id="cnt">0</span> / 2000</span>
+              <span class="field__err" data-ico="alert"><span data-i18n="m.err.desc">Kamida 40 belgi yozing — bu ishni tezlashtiradi.</span></span>
+            </div>
+            <div class="field full">
+              <label class="field__lbl" data-i18n="m.f.tried">Shu paytgacha nima qildingiz?</label>
+              <div class="opt-grid opt-grid--2">
+                <label class="opt" style="padding:13px"><input type="checkbox"><span class="opt__box" style="border-radius:6px"></span><span class="opt__t" style="font-size:14px" data-i18n="m.f.tried.1">Klub bilan ogʻzaki gaplashganman</span></label>
+                <label class="opt" style="padding:13px"><input type="checkbox"><span class="opt__box" style="border-radius:6px"></span><span class="opt__t" style="font-size:14px" data-i18n="m.f.tried.2">Yozma ariza berganman</span></label>
+                <label class="opt" style="padding:13px"><input type="checkbox"><span class="opt__box" style="border-radius:6px"></span><span class="opt__t" style="font-size:14px" data-i18n="m.f.tried.3">Agentim orqali harakat qilgan</span></label>
+                <label class="opt" style="padding:13px"><input type="checkbox"><span class="opt__box" style="border-radius:6px"></span><span class="opt__t" style="font-size:14px" data-i18n="m.f.tried.4">Hech qanday qadam qoʻyilmagan</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="wpane" data-p="3">
+          <h2 class="h-2" data-i18n="m.3.t">Hujjat biriktirish</h2>
+          <p class="muted small mt-s" data-i18n="m.3.d">Majburiy emas, lekin kontrakt yoki toʻlov kvitansiyasi ishni bir necha hafta tezlashtiradi.</p>
+
+          <div class="drop mt-m" id="drop">
+            <span class="ic" data-ico="upload"></span>
+            <b class="h-4" data-i18n="m.3.drop">Fayllarni shu yerga tashlang</b>
+            <p class="small muted mt-s" data-i18n="m.3.formats">PDF, JPG, PNG, DOCX · har biri 20 MB gacha</p>
+            <button type="button" class="btn btn--ghost btn--sm mt-m" id="pick" data-i18n="m.3.pick">Fayl tanlash</button>
+            <input type="file" id="file" multiple hidden>
+          </div>
+
+          <div class="stack-sm mt-m" id="files"></div>
+
+          <div class="card card--flat card--pad mt-m">
+            <b class="small" data-i18n="m.3.rec">Odatda soʻraladigan hujjatlar</b>
+            <ul class="stack-sm mt-s">
+              <li class="tiny muted" data-ico="fileText" style="display:flex;gap:9px;align-items:center"><span data-i18n="m.3.r1">Amaldagi shartnoma (barcha ilovalari bilan)</span></li>
+              <li class="tiny muted" data-ico="fileText" style="display:flex;gap:9px;align-items:center"><span data-i18n="m.3.r2">Soʻnggi 3 oylik toʻlov kvitansiyalari yoki bank koʻchirmasi</span></li>
+              <li class="tiny muted" data-ico="fileText" style="display:flex;gap:9px;align-items:center"><span data-i18n="m.3.r3">Klub vakillari bilan yozishma skrinshotlari</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="wpane" data-p="4">
+          <h2 class="h-2" data-i18n="m.4.t">Aloqa va maxfiylik</h2>
+          <p class="muted small mt-s" data-i18n="m.4.d">Murojaat holati oʻzgarganda sizga qanday xabar berishimizni tanlang.</p>
+
+          <div class="stack mt-m">
+            <div class="card card--pad">
+              <b class="h-4" data-i18n="m.4.n">Xabarnomalar</b>
+              <div class="stack-sm mt-m">
+                <label class="switch"><input type="checkbox" checked><span class="switch__tr"></span>
+                  <span><b class="small" data-i18n="m.4.n1">Telegram-bot</b><span class="tiny muted" style="display:block" data-i18n="m.4.n1.d">Har bir holat oʻzgarishida darhol xabar</span></span></label>
+                <label class="switch"><input type="checkbox" checked><span class="switch__tr"></span>
+                  <span><b class="small" data-i18n="m.4.n2">Shaxsiy kabinet</b><span class="tiny muted" style="display:block" data-i18n="m.4.n2.d">Kabinetdagi bildirishnomalar roʻyxati</span></span></label>
+                <label class="switch"><input type="checkbox"><span class="switch__tr"></span>
+                  <span><b class="small" data-i18n="m.4.n3">SMS</b><span class="tiny muted" style="display:block" data-i18n="m.4.n3.d">Faqat muhim qarorlar boʻyicha</span></span></label>
+              </div>
+            </div>
+
+            <div class="card card--pad">
+              <b class="h-4" data-i18n="m.4.p">Maxfiylik darajasi</b>
+              <div class="opt-grid mt-m">
+                <label class="opt is-checked"><input type="radio" name="priv" checked><span class="opt__box"></span>
+                  <span><span class="opt__t" data-i18n="m.4.p1">Ochiq — ismim yuristga koʻrinadi</span><span class="opt__d" data-i18n="m.4.p1.d">Eng tez yoʻl: yurist siz bilan toʻgʻridan-toʻgʻri bogʻlanadi.</span></span></label>
+                <label class="opt"><input type="radio" name="priv"><span class="opt__box"></span>
+                  <span><span class="opt__t" data-i18n="m.4.p2">Cheklangan — faqat bosh yurist koʻradi</span><span class="opt__d" data-i18n="m.4.p2.d">Ism-sharif ish yuritishda kodlanadi, klubga oshkor qilinmaydi.</span></span></label>
+                <label class="opt"><input type="radio" name="priv"><span class="opt__box"></span>
+                  <span><span class="opt__t" data-i18n="m.4.p3">Anonim — ismsiz</span><span class="opt__d" data-i18n="m.4.p3.d">Uyushma faqat maslahat beradi; rasmiy daʼvo uchun keyinroq ochilish kerak boʻladi.</span></span></label>
+              </div>
+            </div>
+
+            <label class="opt" style="align-items:center"><input type="checkbox" id="agree"><span class="opt__box" style="border-radius:6px"></span>
+              <span class="small" data-i18n="m.4.agree">Maʼlumotlarim uyushma tomonidan ish yuritish maqsadida qayta ishlanishiga roziman va Maxfiylik siyosati bilan tanishdim.</span></label>
+            <div class="field__err" id="errAgree" data-ico="alert"><span data-i18n="m.err.agree">Davom etish uchun rozilik kerak.</span></div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="wpane" data-p="5">
+          <h2 class="h-2" data-i18n="m.5.t">Yuborishdan oldin tekshiring</h2>
+          <p class="muted small mt-s" data-i18n="m.5.d">Hammasi toʻgʻrimi? Yuborgandan keyin ham kabinetdan qoʻshimcha hujjat qoʻshishingiz mumkin.</p>
+
+          <div class="card card--pad mt-m" id="summary"></div>
+
+          <div class="card card--pad mt-m" style="background:var(--sky-2);border-color:#DCE6FF">
+            <div class="flex" style="gap:12px;align-items:flex-start">
+              <span class="ic-box ic-blue" style="width:38px;height:38px;border-radius:10px" data-ico="clock"></span>
+              <div>
+                <b class="small" data-i18n="m.5.next">Keyin nima boʻladi?</b>
+                <p class="tiny muted mt-s" data-i18n="m.5.next.d">Murojaat 48 soat ichida yuristga biriktiriladi. Birinchi bogʻlanish — Telegram orqali. Oʻrtacha ish muddati: 3–11 hafta, murakkab holatlarda FIFA bosqichi bilan 6–9 oy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NAV -->
+        <div class="wiz__nav" id="wnav">
+          <button type="button" class="btn btn--ghost" id="prev" data-ico="arrowLeft"><span data-i18n="cta.back">Orqaga</span></button>
+          <button type="button" class="btn btn--dark" id="next"><span data-i18n="cta.next">Davom etish</span></button>
+        </div>
+      </div>
+    </form>
+
+    <!-- SUCCESS -->
+    <div id="done" hidden>
+      <div class="done-hero">
+        <div class="ic-box ic-green" style="width:82px;height:82px;border-radius:24px;margin:0 auto 24px" data-ico="checkCircle"></div>
+        <h2 class="h-1" data-i18n="m.ok.t">Murojaat qabul qilindi</h2>
+        <p class="lead" style="margin:16px auto 0" data-i18n="m.ok.d">Raqamni saqlab qoʻying — u orqali holatni istalgan vaqtda kuzatasiz.</p>
+        <div class="mt-m"><span class="ticket" data-ico="fileText"><span id="tick">UFU-2026-000000</span></span></div>
+        <div class="flex flex-wrap" style="justify-content:center;gap:12px;margin-top:30px">
+          <a href="kabinet.html" class="btn btn--dark" data-i18n="m.ok.cab">Kabinetga oʻtish</a>
+          <button class="btn btn--ghost" onclick="location.reload()" data-i18n="m.ok.new">Yana murojaat yuborish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="shell-footer"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+window.PAGE_I18N={
+ uz:{
+  'm.crumb':'Murojaat yuborish','m.title':'Murojaat <b>yuborish</b>',
+  'm.lead':'Besh qadam, taxminan uch daqiqa. Yuborilgandan soʻng murojaat raqam oladi va kabinetingizda kuzatiladi.',
+  'm.anon':'Anonim yuborish','m.mine':'Mening murojaatlarim',
+  'm.s1':'Kategoriya','m.s1.d':'Muammo turi','m.s2':'Tafsilotlar','m.s2.d':'Klub, davr, summa',
+  'm.s3':'Hujjatlar','m.s3.d':'Ixtiyoriy','m.s4':'Aloqa','m.s4.d':'Xabarnoma va maxfiylik','m.s5':'Tekshirish','m.s5.d':'Yuborish',
+  'm.help.t':'Yordam kerakmi?','m.help.d':'Ishonch liniyasi ish kunlari 09:00–19:00.',
+  'm.1.t':'Murojaat qaysi masala boʻyicha?','m.1.d':'Kategoriya toʻgʻri tanlansa, ish darhol shu yoʻnalish boʻyicha ixtisoslashgan yuristga tushadi.',
+  'm.cat.1':'Oylik qarzdorligi','m.cat.1.d':'Toʻlanmagan maosh, bonus, imzo puli',
+  'm.cat.2':'Kontrakt shartlari / imzolash','m.cat.2.d':'Tahlil, uzaytirish, bir tomonlama bekor qilish',
+  'm.cat.3':'Diskvalifikatsiya / federatsiya qarori','m.cat.3.d':'Intizomiy jazo, jarima, apellyatsiya',
+  'm.cat.4':'Transfer masalasi','m.cat.4.d':'ITC, oʻtish taqiqi, agent bilan nizo',
+  'm.cat.5':'Jarohat / sugʻurta','m.cat.5.d':'Davolash xarajati, tiklanish davridagi toʻlov',
+  'm.cat.6':'Boshqa','m.cat.6.d':'Erkin matnda tushuntirasiz','m.err.cat':'Iltimos, kategoriyani tanlang.',
+  'm.2.t':'Vaziyatni qisqacha bayon qiling','m.2.d':'Faktlar muhim: sanalar, summalar, kim bilan gaplashgansiz. Huquqiy baholashni biz qilamiz.',
+  'm.f.club':'Klub','m.f.club.ph':'Klubni tanlang','m.f.club.for':'Chet el klubi','m.f.league':'Liga','m.f.league.for':'Chet el ligasi',
+  'm.f.from':'Muammo qachondan beri','m.f.amount':'Taxminiy summa','m.f.amount.ph':'masalan, 84 000 000 soʻm','m.f.amount.h':'Aniq bilmasangiz — boʻsh qoldiring.',
+  'm.f.desc':'Tavsif','m.f.desc.ph':'Masalan: aprel oyidan beri oylik toʻlanmayapti. Sport direktori bilan uch marta ogʻzaki gaplashdim, yozma javob yoʻq. Shartnoma 2027-yil iyungacha amal qiladi.',
+  'm.err.desc':'Kamida 40 belgi yozing — bu ishni tezlashtiradi.',
+  'm.f.tried':'Shu paytgacha nima qildingiz?','m.f.tried.1':'Klub bilan ogʻzaki gaplashganman','m.f.tried.2':'Yozma ariza berganman',
+  'm.f.tried.3':'Agentim orqali harakat qilgan','m.f.tried.4':'Hech qanday qadam qoʻyilmagan',
+  'm.3.t':'Hujjat biriktirish','m.3.d':'Majburiy emas, lekin kontrakt yoki toʻlov kvitansiyasi ishni bir necha hafta tezlashtiradi.',
+  'm.3.drop':'Fayllarni shu yerga tashlang','m.3.formats':'PDF, JPG, PNG, DOCX · har biri 20 MB gacha','m.3.pick':'Fayl tanlash',
+  'm.3.rec':'Odatda soʻraladigan hujjatlar','m.3.r1':'Amaldagi shartnoma (barcha ilovalari bilan)',
+  'm.3.r2':'Soʻnggi 3 oylik toʻlov kvitansiyalari yoki bank koʻchirmasi','m.3.r3':'Klub vakillari bilan yozishma skrinshotlari',
+  'm.4.t':'Aloqa va maxfiylik','m.4.d':'Murojaat holati oʻzgarganda sizga qanday xabar berishimizni tanlang.',
+  'm.4.n':'Xabarnomalar','m.4.n1':'Telegram-bot','m.4.n1.d':'Har bir holat oʻzgarishida darhol xabar',
+  'm.4.n2':'Shaxsiy kabinet','m.4.n2.d':'Kabinetdagi bildirishnomalar roʻyxati','m.4.n3':'SMS','m.4.n3.d':'Faqat muhim qarorlar boʻyicha',
+  'm.4.p':'Maxfiylik darajasi','m.4.p1':'Ochiq — ismim yuristga koʻrinadi','m.4.p1.d':'Eng tez yoʻl: yurist siz bilan toʻgʻridan-toʻgʻri bogʻlanadi.',
+  'm.4.p2':'Cheklangan — faqat bosh yurist koʻradi','m.4.p2.d':'Ism-sharif ish yuritishda kodlanadi, klubga oshkor qilinmaydi.',
+  'm.4.p3':'Anonim — ismsiz','m.4.p3.d':'Uyushma faqat maslahat beradi; rasmiy daʼvo uchun keyinroq ochilish kerak boʻladi.',
+  'm.4.agree':'Maʼlumotlarim uyushma tomonidan ish yuritish maqsadida qayta ishlanishiga roziman va Maxfiylik siyosati bilan tanishdim.',
+  'm.err.agree':'Davom etish uchun rozilik kerak.',
+  'm.5.t':'Yuborishdan oldin tekshiring','m.5.d':'Hammasi toʻgʻrimi? Yuborgandan keyin ham kabinetdan qoʻshimcha hujjat qoʻshishingiz mumkin.',
+  'm.5.next':'Keyin nima boʻladi?','m.5.next.d':'Murojaat 48 soat ichida yuristga biriktiriladi. Birinchi bogʻlanish — Telegram orqali. Oʻrtacha ish muddati: 3–11 hafta, murakkab holatlarda FIFA bosqichi bilan 6–9 oy.',
+  'm.send':'Murojaatni yuborish','m.ok.t':'Murojaat qabul qilindi','m.ok.d':'Raqamni saqlab qoʻying — u orqali holatni istalgan vaqtda kuzatasiz.',
+  'm.ok.cab':'Kabinetga oʻtish','m.ok.new':'Yana murojaat yuborish',
+  'm.sum.cat':'Kategoriya','m.sum.club':'Klub','m.sum.from':'Muammo boshlangan','m.sum.desc':'Tavsif','m.sum.files':'Hujjatlar','m.sum.priv':'Maxfiylik',
+  'm.toast.t':'Murojaat yuborildi','m.toast.d':'Telegram-botga xabar yuborildi','m.file.none':'biriktirilmagan'
+ },
+ ru:{
+  'm.crumb':'Подать обращение','m.title':'Подать <b>обращение</b>',
+  'm.lead':'Пять шагов, около трёх минут. После отправки обращение получает номер и отслеживается в кабинете.',
+  'm.anon':'Отправить анонимно','m.mine':'Мои обращения',
+  'm.s1':'Категория','m.s1.d':'Тип проблемы','m.s2':'Детали','m.s2.d':'Клуб, период, сумма',
+  'm.s3':'Документы','m.s3.d':'Необязательно','m.s4':'Связь','m.s4.d':'Уведомления и приватность','m.s5':'Проверка','m.s5.d':'Отправка',
+  'm.help.t':'Нужна помощь?','m.help.d':'Линия доверия по будням 09:00–19:00.',
+  'm.1.t':'По какому вопросу обращение?','m.1.d':'Верная категория — и дело сразу попадёт к юристу нужной специализации.',
+  'm.cat.1':'Задолженность по зарплате','m.cat.1.d':'Невыплаченная зарплата, бонусы, подписные',
+  'm.cat.2':'Условия контракта / подписание','m.cat.2.d':'Разбор, продление, односторонний разрыв',
+  'm.cat.3':'Дисквалификация / решение федерации','m.cat.3.d':'Дисциплинарное наказание, штраф, апелляция',
+  'm.cat.4':'Трансферный вопрос','m.cat.4.d':'ITC, запрет на переход, спор с агентом',
+  'm.cat.5':'Травма / страховка','m.cat.5.d':'Расходы на лечение, выплаты в период восстановления',
+  'm.cat.6':'Другое','m.cat.6.d':'Опишете свободным текстом','m.err.cat':'Пожалуйста, выберите категорию.',
+  'm.2.t':'Кратко опишите ситуацию','m.2.d':'Важны факты: даты, суммы, с кем говорили. Правовую оценку сделаем мы.',
+  'm.f.club':'Клуб','m.f.club.ph':'Выберите клуб','m.f.club.for':'Зарубежный клуб','m.f.league':'Лига','m.f.league.for':'Зарубежная лига',
+  'm.f.from':'Проблема длится с','m.f.amount':'Примерная сумма','m.f.amount.ph':'например, 84 000 000 сум','m.f.amount.h':'Не знаете точно — оставьте пустым.',
+  'm.f.desc':'Описание','m.f.desc.ph':'Например: с апреля не платят зарплату. Трижды говорил со спортивным директором, письменного ответа нет. Контракт действует до июня 2027 года.',
+  'm.err.desc':'Напишите минимум 40 символов — это ускорит работу.',
+  'm.f.tried':'Что уже предпринимали?','m.f.tried.1':'Говорил с клубом устно','m.f.tried.2':'Подавал письменное заявление',
+  'm.f.tried.3':'Действовал через агента','m.f.tried.4':'Никаких шагов не было',
+  'm.3.t':'Прикрепите документы','m.3.d':'Необязательно, но контракт или квитанция ускоряют дело на недели.',
+  'm.3.drop':'Перетащите файлы сюда','m.3.formats':'PDF, JPG, PNG, DOCX · до 20 МБ каждый','m.3.pick':'Выбрать файл',
+  'm.3.rec':'Что обычно запрашивают','m.3.r1':'Действующий контракт (со всеми приложениями)',
+  'm.3.r2':'Квитанции или банковская выписка за 3 месяца','m.3.r3':'Скриншоты переписки с представителями клуба',
+  'm.4.t':'Связь и приватность','m.4.d':'Выберите, как сообщать вам об изменении статуса.',
+  'm.4.n':'Уведомления','m.4.n1':'Telegram-бот','m.4.n1.d':'Мгновенно при каждой смене статуса',
+  'm.4.n2':'Личный кабинет','m.4.n2.d':'Список уведомлений в кабинете','m.4.n3':'SMS','m.4.n3.d':'Только по важным решениям',
+  'm.4.p':'Уровень приватности','m.4.p1':'Открыто — юрист видит моё имя','m.4.p1.d':'Самый быстрый путь: юрист свяжется напрямую.',
+  'm.4.p2':'Ограниченно — видит только главный юрист','m.4.p2.d':'ФИО кодируется в делопроизводстве и не раскрывается клубу.',
+  'm.4.p3':'Анонимно — без имени','m.4.p3.d':'Ассоциация даёт только консультацию; для официальной претензии потребуется раскрытие.',
+  'm.4.agree':'Согласен на обработку моих данных ассоциацией для ведения дела и ознакомлен с Политикой конфиденциальности.',
+  'm.err.agree':'Для продолжения нужно согласие.',
+  'm.5.t':'Проверьте перед отправкой','m.5.d':'Всё верно? Дополнительные документы можно приложить и позже из кабинета.',
+  'm.5.next':'Что будет дальше?','m.5.next.d':'Обращение попадёт к юристу в течение 48 часов. Первый контакт — через Telegram. Средний срок: 3–11 недель, в сложных делах со стадией ФИФА — 6–9 месяцев.',
+  'm.send':'Отправить обращение','m.ok.t':'Обращение принято','m.ok.d':'Сохраните номер — по нему вы в любой момент проверите статус.',
+  'm.ok.cab':'Перейти в кабинет','m.ok.new':'Отправить ещё одно',
+  'm.sum.cat':'Категория','m.sum.club':'Клуб','m.sum.from':'Проблема с','m.sum.desc':'Описание','m.sum.files':'Документы','m.sum.priv':'Приватность',
+  'm.toast.t':'Обращение отправлено','m.toast.d':'Уведомление ушло в Telegram-бот','m.file.none':'не приложены'
+ },
+ en:{
+  'm.crumb':'Submit a case','m.title':'Submit a <b>case</b>',
+  'm.lead':'Five steps, about three minutes. Once sent, the case gets a number and is tracked in your dashboard.',
+  'm.anon':'Send anonymously','m.mine':'My cases',
+  'm.s1':'Category','m.s1.d':'Type of issue','m.s2':'Details','m.s2.d':'Club, period, amount',
+  'm.s3':'Documents','m.s3.d':'Optional','m.s4':'Contact','m.s4.d':'Alerts and privacy','m.s5':'Review','m.s5.d':'Send',
+  'm.help.t':'Need help?','m.help.d':'Trust line, weekdays 09:00–19:00.',
+  'm.1.t':'What is the case about?','m.1.d':'With the right category the case goes straight to a lawyer who specialises in it.',
+  'm.cat.1':'Unpaid wages','m.cat.1.d':'Salary, bonuses or signing fee not paid',
+  'm.cat.2':'Contract terms / signing','m.cat.2.d':'Review, renewal, unilateral termination',
+  'm.cat.3':'Suspension / federation ruling','m.cat.3.d':'Disciplinary sanction, fine, appeal',
+  'm.cat.4':'Transfer matter','m.cat.4.d':'ITC, registration ban, dispute with an agent',
+  'm.cat.5':'Injury / insurance','m.cat.5.d':'Treatment costs, pay during recovery',
+  'm.cat.6':'Other','m.cat.6.d':'You describe it in your own words','m.err.cat':'Please choose a category.',
+  'm.2.t':'Describe the situation briefly','m.2.d':'Facts matter: dates, amounts, who you spoke to. The legal assessment is our job.',
+  'm.f.club':'Club','m.f.club.ph':'Choose a club','m.f.club.for':'Club abroad','m.f.league':'League','m.f.league.for':'League abroad',
+  'm.f.from':'Issue ongoing since','m.f.amount':'Approximate amount','m.f.amount.ph':'e.g. UZS 84,000,000','m.f.amount.h':'Leave blank if you are not sure.',
+  'm.f.desc':'Description','m.f.desc.ph':'For example: wages unpaid since April. I spoke to the sporting director three times, no written reply. The contract runs to June 2027.',
+  'm.err.desc':'Write at least 40 characters — it speeds the case up.',
+  'm.f.tried':'What have you already tried?','m.f.tried.1':'Spoke to the club verbally','m.f.tried.2':'Filed a written request',
+  'm.f.tried.3':'Went through my agent','m.f.tried.4':'No steps taken yet',
+  'm.3.t':'Attach documents','m.3.d':'Optional, but a contract or a payment receipt can save weeks.',
+  'm.3.drop':'Drop your files here','m.3.formats':'PDF, JPG, PNG, DOCX · up to 20 MB each','m.3.pick':'Choose a file',
+  'm.3.rec':'Usually requested','m.3.r1':'The current contract (with all annexes)',
+  'm.3.r2':'Receipts or a bank statement for the last three months','m.3.r3':'Screenshots of messages with club officials',
+  'm.4.t':'Contact and privacy','m.4.d':'Choose how we should tell you when the status changes.',
+  'm.4.n':'Notifications','m.4.n1':'Telegram bot','m.4.n1.d':'Instantly on every status change',
+  'm.4.n2':'Dashboard','m.4.n2.d':'The notification list inside your dashboard','m.4.n3':'SMS','m.4.n3.d':'Only for major decisions',
+  'm.4.p':'Privacy level','m.4.p1':'Open — the lawyer sees my name','m.4.p1.d':'The fastest route: the lawyer contacts you directly.',
+  'm.4.p2':'Restricted — only the head lawyer sees it','m.4.p2.d':'Your name is coded in the file and never disclosed to the club.',
+  'm.4.p3':'Anonymous — no name','m.4.p3.d':'The union can only advise; a formal claim later requires disclosure.',
+  'm.4.agree':'I consent to my data being processed by the union to handle the case and I have read the Privacy Policy.',
+  'm.err.agree':'Consent is required to continue.',
+  'm.5.t':'Check before you send','m.5.d':'All correct? You can still add documents from the dashboard afterwards.',
+  'm.5.next':'What happens next?','m.5.next.d':'The case reaches a lawyer within 48 hours. First contact comes through Telegram. Typical duration: 3–11 weeks, or 6–9 months when a FIFA stage is involved.',
+  'm.send':'Send the case','m.ok.t':'Case received','m.ok.d':'Keep the number — you can check the status with it at any time.',
+  'm.ok.cab':'Go to the dashboard','m.ok.new':'Send another case',
+  'm.sum.cat':'Category','m.sum.club':'Club','m.sum.from':'Ongoing since','m.sum.desc':'Description','m.sum.files':'Documents','m.sum.priv':'Privacy',
+  'm.toast.t':'Case submitted','m.toast.d':'A notification was sent to the Telegram bot','m.file.none':'none attached'
+ }
+};
+</script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var step=1,TOTAL=5,files=[];
+  var panes=document.querySelectorAll('.wpane'), steps=document.querySelectorAll('.wstep');
+  var next=document.getElementById('next'), prev=document.getElementById('prev');
+
+  function show(n){
+    step=n;
+    panes.forEach(function(p){p.classList.toggle('is-active',+p.dataset.p===n);});
+    steps.forEach(function(s){
+      var i=+s.dataset.s;
+      s.classList.toggle('is-active',i===n);
+      s.classList.toggle('is-done',i<n);
+      s.querySelector('.wstep__n').innerHTML = i<n ? ico('check') : i;
+    });
+    prev.style.visibility = n===1 ? 'hidden' : 'visible';
+    next.querySelector('span').textContent = n===TOTAL ? App.t('m.send') : App.t('cta.next');
+    if(n===TOTAL) buildSummary();
+    window.scrollTo({top:document.querySelector('.wiz').offsetTop-110,behavior:'smooth'});
+    var wsc=document.getElementById('wsteps'), act=wsc&&wsc.querySelector('.wstep.is-active');
+    if(act&&wsc.scrollWidth>wsc.clientWidth){wsc.scrollTo({left:wsc.scrollLeft+act.getBoundingClientRect().left-wsc.getBoundingClientRect().left-8,behavior:'smooth'});}
+  }
+
+  function valid(n){
+    if(n===1){
+      var ok=!!document.querySelector('input[name=cat]:checked');
+      document.getElementById('errCat').style.display = ok?'none':'flex';
+      return ok;
+    }
+    if(n===2){
+      var club=document.getElementById('fClub'), desc=document.getElementById('fDesc'), ok=true;
+      [[club,club.value!==''],[desc,desc.value.trim().length>=40]].forEach(function(p){
+        var f=p[0].closest('.field'); f.classList.toggle('is-error',!p[1]); if(!p[1])ok=false;
+      });
+      return ok;
+    }
+    if(n===4){
+      var a=document.getElementById('agree').checked;
+      document.getElementById('errAgree').style.display=a?'none':'flex';
+      return a;
+    }
+    return true;
+  }
+
+  next.addEventListener('click',function(){
+    if(!valid(step)) return;
+    if(step<TOTAL){ show(step+1); return; }
+    /* yuborish */
+    document.getElementById('wiz').hidden=true;
+    document.querySelector('.page-head .row').style.display='none';
+    var d=document.getElementById('done'); d.hidden=false;
+    document.getElementById('tick').textContent=App.ticket();
+    App.toast(App.t('m.toast.t'),App.t('m.toast.d'),'checkCircle');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  prev.addEventListener('click',function(){ if(step>1) show(step-1); });
+  document.getElementById('wsteps').addEventListener('click',function(e){
+    var s=e.target.closest('.wstep'); if(!s) return;
+    var i=+s.dataset.s; if(i<step) show(i);
+  });
+
+  /* belgilar hisobi */
+  var desc=document.getElementById('fDesc'), cnt=document.getElementById('cnt');
+  desc.addEventListener('input',function(){
+    cnt.textContent=desc.value.length;
+    if(desc.value.trim().length>=40) desc.closest('.field').classList.remove('is-error');
+  });
+
+  /* checkbox kartalari */
+  document.addEventListener('change',function(e){
+    if(e.target.type==='checkbox'&&e.target.closest('.opt'))
+      e.target.closest('.opt').classList.toggle('is-checked',e.target.checked);
+  });
+
+  /* fayllar */
+  var drop=document.getElementById('drop'), inp=document.getElementById('file'), list=document.getElementById('files');
+  document.getElementById('pick').addEventListener('click',function(){inp.click();});
+  drop.addEventListener('click',function(e){ if(e.target.id!=='pick') inp.click(); });
+  ['dragenter','dragover'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('is-over');});});
+  ['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('is-over');});});
+  drop.addEventListener('drop',function(e){ add(e.dataTransfer.files); });
+  inp.addEventListener('change',function(){ add(inp.files); });
+
+  function add(fl){
+    Array.prototype.forEach.call(fl,function(f){
+      files.push(f.name);
+      var row=document.createElement('div');
+      row.className='file-row';
+      row.innerHTML='<span class="ic">'+ico('fileText')+'</span><div style="flex:1"><b class="small">'+f.name+
+        '</b><div class="bar" style="margin-top:7px"><i style="width:0%"></i></div></div>'+
+        '<span class="tiny muted">'+(f.size/1048576).toFixed(1)+' MB</span>'+
+        '<button type="button" class="x">'+ico('x')+'</button>';
+      list.appendChild(row);
+      var bar=row.querySelector('.bar i'),w=0;
+      var iv=setInterval(function(){ w+=Math.random()*26; bar.style.width=Math.min(w,100)+'%';
+        if(w>=100){clearInterval(iv); bar.style.background='var(--green)';}},160);
+      row.querySelector('.x').addEventListener('click',function(){
+        files.splice(files.indexOf(f.name),1); row.remove();
+      });
+    });
+  }
+
+  function buildSummary(){
+    var cat=document.querySelector('input[name=cat]:checked');
+    var catT=cat?cat.closest('.opt').querySelector('.opt__t').textContent:'—';
+    var priv=document.querySelector('input[name=priv]:checked').closest('.opt').querySelector('.opt__t').textContent;
+    var rows=[
+      ['m.sum.cat',catT],
+      ['m.sum.club',document.getElementById('fClub').value||'—'],
+      ['m.sum.from',document.getElementById('fFrom').value||'—'],
+      ['m.sum.desc',document.getElementById('fDesc').value||'—'],
+      ['m.sum.files',files.length?files.join(', '):App.t('m.file.none')],
+      ['m.sum.priv',priv]
+    ];
+    document.getElementById('summary').innerHTML=rows.map(function(r){
+      return '<div class="sumrow"><b>'+App.t(r[0])+'</b><span>'+r[1]+'</span></div>';
+    }).join('');
+  }
+
+  document.addEventListener('langchange',function(){
+    next.querySelector('span').textContent = step===TOTAL ? App.t('m.send') : App.t('cta.next');
+    if(step===TOTAL) buildSummary();
+  });
+
+  show(1);
+})();
+</script>
+</body>
+</html>

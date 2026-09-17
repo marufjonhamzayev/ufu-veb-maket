@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Texnik topshiriq bo‘yicha hisobot — UFU veb-maket</title>
+<meta name="description" content="Oʻzbekiston futbolchilar uyushmasi veb-maketi: texnik topshiriq bandlari bo‘yicha bajarilish hisoboti va sahifalar xaritasi.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oʻzbekiston futbolchilar uyushmasi">
+<meta property="og:title" content="Texnik topshiriq boʻyicha hisobot — UFU veb-maket">
+<meta property="og:description" content="TZ bandlari boʻyicha bajarilish hisoboti va sahifalar xaritasi.">
+<meta property="og:image" content="assets/img/photos/photo-1.webp">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A1A33">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  body{background:#fff}
+  .doc{max-width:940px;margin-inline:auto;padding:0 24px 80px}
+  .doc h2{font-size:clamp(21px,2.2vw,27px);margin:46px 0 16px;padding-top:26px;border-top:1px solid var(--line)}
+  .doc h2:first-of-type{border-top:0;padding-top:0}
+  .doc p{margin-bottom:14px;color:var(--ink-2);line-height:1.7}
+  .tz{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px}
+  .tz th{text-align:left;padding:11px 12px;background:#FCFCFA;border-bottom:1px solid var(--line);
+    font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .tz td{padding:12px;border-bottom:1px solid var(--line-2);vertical-align:top}
+  .tz td:first-child{white-space:nowrap;color:var(--muted);font-family:var(--fm);font-size:12px}
+  .tz a{color:var(--blue);font-weight:600}
+  .ok{display:inline-flex;align-items:center;gap:6px;color:#0B7A40;font-weight:600;font-size:13px;white-space:nowrap}
+  .ok::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--green-soft);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B7A40' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4.5 12.5 5 5 10-11'/%3E%3C/svg%3E");
+    background-size:11px;background-repeat:no-repeat;background-position:center}
+  .note{border-left:3px solid var(--blue);background:var(--sky-2);padding:18px 22px;border-radius:0 var(--r-md) var(--r-md) 0;margin:20px 0}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .mini{border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px}
+  .mini b{display:block;font-size:14.5px;margin-bottom:4px}
+  .mini span{font-size:13px;color:var(--muted);line-height:1.5}
+  @media print{
+    .noprint{display:none!important}
+    body{background:#fff}
+    .doc{max-width:none;padding:0}
+    .tz{font-size:11px} .doc h2{page-break-after:avoid}
+  }
+  .tz-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+  @media (max-width:640px){.grid2{grid-template-columns:minmax(0,1fr)}
+    .tz,.tz tbody,.tz tr,.tz td{display:block;width:100%}
+    .tz thead{display:none}
+    .tz tr{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:#fff}
+    .tz td{border:0;padding:3px 0}
+    .tz td:first-child{font-size:11px}
+    .tz thead+tbody td:first-child::before{content:"TZ "}}
+</style>
+<script>
+/* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
+document.addEventListener('DOMContentLoaded',function(){
+  var probe=document.createElement('div');
+  probe.className='wrap'; probe.style.cssText='position:absolute;visibility:hidden';
+  document.body.appendChild(probe);
+  var ok=getComputedStyle(probe).maxWidth!=='none';
+  probe.remove();
+  if(ok) return;
+  document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
+    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
+    '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
+    'justify-content:center;font-size:26px">&#128193;</div>'+
+    '<h1 style="font-size:24px;margin:20px 0 10px;color:#0E1116;letter-spacing:-.02em">Maket to&#8217;liq ochilmadi</h1>'+
+    '<p style="color:#2A2F38;line-height:1.65;margin:0 0 18px">Sahifa arxiv (ZIP) ichidan ochilgan. Bunda faqat bitta fayl '+
+    'ochiladi, dizayn va rasmlar joyida qolib ketadi.</p>'+
+    '<ol style="color:#2A2F38;line-height:1.8;padding-left:20px;margin:0 0 20px">'+
+    '<li>ZIP faylni <b>to&#8217;liq chiqaring</b>: o&#8217;ng tugma &rarr; &laquo;Extract All&raquo; / &laquo;Barchasini chiqarish&raquo;</li>'+
+    '<li>Chiqqan papkani oching</li>'+
+    '<li>Ichidagi <b>index.html</b> faylini ikki marta bosing</li></ol>'+
+    '<p style="color:#6E7480;font-size:13.5px;line-height:1.6;margin:0;padding-top:16px;border-top:1px solid #E5E5E0">'+
+    '<b>index.html</b> fayli <b>assets</b> papkasi bilan yonma-yon turishi kerak.<br>'+
+    '<span style="opacity:.75">RU: Распакуйте архив полностью, затем откройте index.html.<br>'+
+    'EN: Extract the whole archive first, then open index.html.</span></p>'+
+    '</div></div>';
+});
+</script>
+</head>
+<body>
+
+<header class="section section--dark" style="padding-block:clamp(34px,5vw,60px)">
+  <div class="doc">
+    <div class="flex" style="gap:14px;margin-bottom:26px">
+      <img src="assets/img/favicon.svg" alt="" width="44" height="44" style="border-radius:11px">
+      <div>
+        <b style="display:block;font-family:var(--fd);font-weight:700">Oʻzbekiston futbolchilar uyushmasi</b>
+        <span class="tiny" style="color:rgba(255,255,255,.6)">Veb-platforma · interaktiv maket</span>
+      </div>
+    </div>
+    <h1 class="h-1" style="color:#fff">Texnik topshiriq bo‘yicha<br><b>bajarilish hisoboti</b></h1>
+    <p class="lead" style="margin-top:18px;color:rgba(255,255,255,.75)">
+      Ushbu sahifa TZ (03.08.2026) ning har bir bandi maketning qaysi sahifasida qanday hal qilinganini ko‘rsatadi.
+      Har bir havola ishlaydi — bosib, natijani darhol ko‘rish mumkin.
+    </p>
+    <div class="flex flex-wrap noprint" style="gap:12px;margin-top:30px">
+      <a href="index.html" class="btn btn--white">Maketni ochish</a>
+      <button class="btn btn--onDark" onclick="window.print()">Chop etish / PDF</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc" style="padding-top:44px">
+
+  <h2>1. Qisqacha</h2>
+  <div class="grid2">
+    <div class="mini"><b>20 ta sahifa</b><span>19 ta maket sahifasi + ushbu hisobot</span></div>
+    <div class="mini"><b>4 ta til</b><span>o‘zbek (lotin), o‘zbek (kirill), rus, ingliz</span></div>
+    <div class="mini"><b>Freymvorksiz</b><span>sof HTML, CSS, JavaScript — qo‘shimcha o‘rnatish talab qilinmaydi</span></div>
+    <div class="mini"><b>Internetsiz ishlaydi</b><span>shriftlar va rasmlar loyiha ichida, tashqi bog‘liqlik yo‘q</span></div>
+  </div>
+
+  <h2>2. TZ bandlari bo‘yicha jadval</h2>
+  <div class="tz-wrap"><table class="tz">
+    <thead><tr><th>TZ bandi</th><th>Talab</th><th>Bajarilishi</th><th>Holat</th></tr></thead>
+    <tbody>
+      <tr><td>2</td><td>Maqsad va auditoriya</td>
+        <td><a href="index.html">Bosh sahifa</a>, <a href="uyushma.html">Uyushma haqida</a> — maqsad, tarix, FIFPRO maqomi, yo‘nalishlar</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>3</td><td>Tillar: o‘zbek (lotin), rus, ingliz, o‘zbek (kirill)</td>
+        <td>Barcha sahifalarda, headerdagi til almashtirgich. Tanlov brauzerda saqlanadi. Kirill matni lotin matnidan avtomatik hosil qilinadi</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>4</td><td>Telegram orqali kirish</td>
+        <td><a href="kirish.html">Kirish</a> — tasdiqlash oynasi, SMS muqobili, anonim kanalga o‘tish</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>4</td><td>Anketa: F.I.Sh., tug‘ilgan sana, klub va liga, kontrakt holati, pasport/ID, karyera statistikasi, foto</td>
+        <td><a href="royxat.html">A’zolik anketasi</a> — 3 bosqichli, yakunda a’zolik guvohnomasi. Keyinchalik tahrirlash: <a href="kabinet.html">Kabinet → Anketa</a></td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>4</td><td>Shaxsiy kabinet</td>
+        <td><a href="kabinet.html">Kabinet</a> — profil, murojaatlar ro‘yxati, hujjatlar, xabarnomalar, yurist bilan yozishma</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>5</td><td>Murojaat kategoriyalari (6 ta): oylik, kontrakt, diskvalifikatsiya, transfer, jarohat/sug‘urta, boshqa</td>
+        <td><a href="murojaat.html">Murojaat yuborish</a> — 1-qadam</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>5</td><td>Fayl biriktirish (majburiy emas)</td>
+        <td>3-qadam — sudrab tashlash, yuklanish indikatori, fayl o‘chirish</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>5</td><td>Kengaytirilgan status oqimi: Yangi → Ko‘rib chiqilmoqda → Qo‘shimcha ma’lumot so‘raldi → Hal qilindi → Yopildi</td>
+        <td>Beshta holat: <a href="index.html">bosh sahifada jonli ko‘rinish</a>, <a href="kabinet.html">kabinetda filtr</a>, <a href="admin.html">admin panelida o‘zgartirish</a></td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>5</td><td>Xabarnomalar: kabinetda va Telegram-bot orqali</td>
+        <td>Murojaat 4-qadamida sozlanadi; kabinetda alohida «Xabarnomalar» bo‘limi</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>5</td><td>Anonim murojaat — alohida kanal</td>
+        <td><a href="anonim.html">Anonim kanal</a> — ismsiz yuborish, maxfiy kod generatsiyasi, kod bo‘yicha holatni tekshirish</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>7</td><td>Yangiliklar / blog</td>
+        <td><a href="yangiliklar.html">Yangiliklar</a> (kategoriyalar, qidiruv) va <a href="maqola.html">to‘liq maqola</a></td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>7</td><td>Keyslar</td>
+        <td><a href="keyslar.html">Keyslar</a> — bosqichlar, muddat va natija raqamlari bilan</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>7</td><td>Bilim bazasi</td>
+        <td><a href="bilim-bazasi.html">Bilim bazasi</a> — 4 bo‘lim, qidiruv, yuklab olinadigan namunalar</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>7</td><td>Video</td>
+        <td><a href="video.html">Video</a> — kategoriyalar va pleyer oynasi</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>7</td><td>Rasmiy hujjatlar sahifasi</td>
+        <td><a href="hujjatlar.html">Hujjatlar</a> — nizom, reglament, oferta, maxfiylik, hisobot</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>8</td><td>Hamkorlar / homiylik</td>
+        <td><a href="hamkorlar.html">Hamkorlar</a> — auditoriya raqamlari, 3 daraja, taklif formasi</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>8</td><td>Vakansiyalar</td>
+        <td><a href="vakansiyalar.html">Vakansiyalar</a> — «Ikkinchi karyera» dasturi, rezyume formasi</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>8</td><td>Symbolic XI ovoz berish</td>
+        <td><a href="symbolic-xi.html">Symbolic XI</a> — 3 ta sxema, o‘yinchi tanlash, 11/11 nazorati, joriy natijalar</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>8</td><td>Free Agent Camp arizasi</td>
+        <td><a href="free-agent-camp.html">Free Agent Camp</a> — dastur jadvali va ariza formasi</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>10</td><td>Referens funksional xaritasi (unionkg.org)</td>
+        <td>Barcha bandlar qoplangan: hero + statistika + xizmatlar, ro‘yxatdan o‘tish, profil, blog, keyslar, bilim bazasi, Free Agent Camp, Symbolic XI, hamkorlar, hujjatlar, ko‘p tillilik</td><td><span class="ok">bajarildi</span></td></tr>
+      <tr><td>—</td><td>Qo‘shimcha (TZ’da so‘ralmagan)</td>
+        <td><a href="admin.html">Boshqaruv paneli</a> — uyushma murojaatlarni qanday qabul qilib, holatini o‘zgartirib, futbolchiga xabar yuborishi. <a href="aloqa.html">Aloqa</a> sahifasi</td><td><span class="ok">qo‘shildi</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>3. Ma’lumotlarning ishonchliligi</h2>
+  <p>Maket mavhum tashkilot uchun emas, haqiqiy uyushma uchun ishlangani bois asosiy faktlar ochiq
+    manbalardan tekshirilgan:</p>
+  <div class="tz-wrap"><table class="tz">
+    <tbody>
+      <tr><td>Faoliyat</td><td colspan="3">2017-yildan; 2018-yilda Adliya vazirligida ro‘yxatdan o‘tgan</td></tr>
+      <tr><td>FIFPRO</td><td colspan="3">kuzatuvchi (2017) → nomzod a’zo (2020) → to‘liq a’zo (28.11.2024)</td></tr>
+      <tr><td>Rahbar</td><td colspan="3">Kamoliddin Murzoyev — uyushma direktori</td></tr>
+      <tr><td>Manzil</td><td colspan="3">Toshkent, Bunyodkor ko‘chasi, 47</td></tr>
+      <tr><td>World 11</td><td colspan="3">O‘zbekiston futbolchilari FIFPRO ovoz berishida 2017-yildan qatnashadi</td></tr>
+      <tr><td>Klublar</td><td colspan="3">Superliga-2026 ning 16 klubi — gerblar nomi bilan to‘g‘ri bog‘langan (manba: pfl.uz)</td></tr>
+      <tr><td>O‘yinchilar</td><td colspan="3">Symbolic XI ro‘yxatidagi ism va klublar PFL.UZ 2026 statistikasidan olingan</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">
+    <b>Namoyish ma’lumotlari.</b>
+    <p style="margin:8px 0 0">Statistika raqamlari, keys matnlari, yuristlar ismlari va demo foydalanuvchi —
+      namoyish uchun. Realizatsiya bosqichida buyurtmachi ma’lumotlari bilan almashtiriladi.
+      Real shaxs fotosi o‘ylab topilgan ism ostida ishlatilmagan: bunday joylarda inisial-avatar turadi.</p>
+  </div>
+
+  <h2>4. Texnik tavsif</h2>
+  <div class="tz-wrap"><table class="tz">
+    <tbody>
+      <tr><td>Tuzilma</td><td colspan="3">Header va footer bitta manbadan (<code>assets/js/app.js</code>) chiziladi — o‘zgartirish bir joyda qilinadi</td></tr>
+      <tr><td>Tillar</td><td colspan="3"><code>assets/js/i18n.js</code> — lug‘at (uz/ru/en) + lotin→kirill transliteratsiya dvigateli</td></tr>
+      <tr><td>Ikonkalar</td><td colspan="3">70+ SVG, loyiha uchun alohida chizilgan (tayyor to‘plam emas)</td></tr>
+      <tr><td>Rasmlar</td><td colspan="3">WebP, o‘lchami moslashtirilgan — jami 2,9 MB; bosh sahifa dastlab ~120 KB yuklaydi</td></tr>
+      <tr><td>Shriftlar</td><td colspan="3">Inter, Manrope, JetBrains Mono — loyiha ichida (kirill subseti bilan), internet talab qilinmaydi</td></tr>
+      <tr><td>Moslashuvchanlik</td><td colspan="3">360px dan 1920px gacha; klaviatura navigatsiyasi va <code>prefers-reduced-motion</code> qo‘llab-quvvatlanadi</td></tr>
+      <tr><td>Imlo</td><td colspan="3">O‘zbek lotin alifbosi qoidalari: <code>oʻ/gʻ</code> — U+02BB, tutuq belgisi — U+02BC</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>5. Qanday ochiladi</h2>
+  <p><b>1-usul.</b> <code>index.html</code> faylini istalgan brauzerda ochish — hech narsa o‘rnatish shart emas,
+    internet ham talab qilinmaydi.</p>
+  <p><b>2-usul.</b> Lokal server orqali: papkada <code>npx serve .</code> yoki <code>python -m http.server</code>.</p>
+
+  <div class="note noprint" style="border-color:var(--gold);background:#FFFBF0">
+    <b>Tavsiya etilgan ko‘rish tartibi</b>
+    <p style="margin:8px 0 0">Bosh sahifa (to‘liq aylantirib) → til almashtirish → Murojaat yuborish (oxirigacha) →
+      Kabinet → Symbolic XI → Boshqaruv paneli.</p>
+  </div>
+
+  <p class="tiny muted" style="margin-top:40px">Hujjat maket bilan birga topshiriladi · <span id="dt"></span></p>
+</main>
+
+<script>document.getElementById('dt').textContent=new Date().toLocaleDateString('uz-UZ',{year:'numeric',month:'long',day:'numeric'});</script>
+</body>
+</html>
