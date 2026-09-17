@@ -150,7 +150,7 @@
   <!-- TIPOGRAFIKA -->
   <section id="tipografika">
     <h2>Tipografika</h2>
-    <p class="sub">Sarlavhalar — <b>Manrope</b>, matn — <b>Inter</b>, raqam va kodlar — <b>JetBrains Mono</b>. Hammasi loyiha ichida (lotin + kirill). Oʻlchamlar <code>clamp()</code> bilan ekran kengligiga moslashadi — oʻng ustunda shu ekrandagi haqiqiy qiymat.</p>
+    <p class="sub"><b>Sarlavha qoidasi:</b> boʻlim sarlavhasi qisqa (2–5 soʻz, ~30 belgigacha) — kompyuterda 1 qatorga, telefonda koʻpi bilan 2 qatorga sigʻadi. Qator majburan boʻlinmaydi (<code>&lt;br&gt;</code> ishlatilmaydi), qatorlar <code>text-wrap: balance</code> bilan teng taqsimlanadi.<br><br>Sarlavhalar — <b>Manrope</b>, matn — <b>Inter</b>, raqam va kodlar — <b>JetBrains Mono</b>. Hammasi loyiha ichida (lotin + kirill). Oʻlchamlar <code>clamp()</code> bilan ekran kengligiga moslashadi — oʻng ustunda shu ekrandagi haqiqiy qiymat.</p>
     <div id="typeRows"></div>
   </section>
 
@@ -399,7 +399,7 @@
   /* tipografika — haqiqiy hisoblangan qiymatlar */
   var TY = [
     ['h-hero','Futbolchining <b>huquqi</b>','Manrope 300/600'],
-    ['h-1','Sahifa sarlavhasi','Manrope'],['h-2','Boʻlim sarlavhasi','Manrope'],['h-3','Blok sarlavhasi','Manrope'],['h-4','Kartochka sarlavhasi','Manrope'],
+    ['h-1','Sahifa <b>sarlavhasi</b>','Manrope · sahifaning birinchi bloki'],['h-sec','Boʻlim <b>sarlavhasi</b>','Manrope · sahifa ichidagi boʻlimlar'],['h-2','Kartochka va forma sarlavhasi','Manrope'],['h-3','Blok sarlavhasi','Manrope'],['h-4','Kichik sarlavha','Manrope'],
     ['lead','Kirish matni — sahifa va boʻlim tavsifi uchun kattaroq, oʻqish qulay.','Inter'],
     ['','Asosiy matn: futbolchining huquqlari, shartnoma va murojaatlar haqida.','Inter'],
     ['small','Kichik matn — kartochka tavsifi, izohlar','Inter'],['tiny','Juda kichik — sana, meta maʼlumot','Inter'],
@@ -407,7 +407,7 @@
   ];
   var tr = document.getElementById('typeRows');
   tr.innerHTML = TY.map(function(t, i){
-    var tag = { 'h-hero':'h1', 'h-1':'h1', 'h-2':'h2', 'h-3':'h3', 'h-4':'h4', 'lead':'p', '':'p', 'small':'p', 'tiny':'p', 'eyebrow':'span' }[t[0]] || 'div';
+    var tag = { 'h-hero':'h1', 'h-1':'h1', 'h-sec':'h2', 'h-2':'h2', 'h-3':'h3', 'h-4':'h4', 'lead':'p', '':'p', 'small':'p', 'tiny':'p', 'eyebrow':'span' }[t[0]] || 'div';
     return '<div class="row-ty"><div class="meta" data-ty="' + i + '"></div><div><' + tag + ' class="' + t[0] + '" data-tyel="' + i + '" style="margin:0">' + t[1] + '</' + tag + '></div></div>';
   }).join('');
   function typeMeta(){
