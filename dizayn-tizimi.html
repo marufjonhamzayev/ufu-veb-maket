@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dizayn tizimi — UFU veb-maket</title>
+<meta name="description" content="Oʻzbekiston futbolchilar uyushmasi veb-maketi: ranglar, tipografika, soyalar, liquid glass, komponentlar, ikonkalar, media talablari — realizatsiya uchun spetsifikatsiya.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0B2A1F">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/fx.css">
+<style>
+  body{background:#fff}
+  .ds{max-width:1180px;margin-inline:auto;padding:0 24px 90px}
+  .ds-head{background:var(--navy);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+  .ds-head::before{content:"";position:absolute;z-index:-1;width:720px;height:720px;right:-200px;top:-320px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(200,240,60,.22),rgba(200,240,60,0))}
+  .ds-head .ds{padding-block:clamp(36px,5vw,64px)}
+  .ds-head p{color:rgba(255,255,255,.72);max-width:64ch;margin-top:14px;line-height:1.65}
+  .ds-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line)}
+  .ds-nav .ds{display:flex;gap:4px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+  .ds-nav a{white-space:nowrap;font-size:13.5px;font-weight:600;color:var(--ink-2);padding:7px 12px;border-radius:999px}
+  .ds-nav a:hover{background:var(--sky)}
+  .ds section{padding-top:58px;scroll-margin-top:60px}
+  .ds section > h2{font-size:clamp(24px,2.6vw,32px);margin-bottom:6px}
+  .ds .sub{color:var(--muted);margin-bottom:24px;max-width:72ch;line-height:1.6}
+  .ds section > h3,.ds section > div > h3{font-size:15px;margin:28px 0 12px;font-family:var(--ff);font-weight:700;letter-spacing:.01em}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(4,minmax(0,1fr))}.g6{grid-template-columns:repeat(6,minmax(0,1fr))}
+  @media(max-width:900px){.g4,.g6{grid-template-columns:repeat(3,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:560px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}.g6{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .sw{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .sw i{display:block;height:84px}
+  .sw div{padding:10px 12px}
+  .sw b{display:block;font-size:13px}
+  .sw code,.spec code{font-family:var(--fm);font-size:11.5px;color:var(--muted)}
+  .sw span{display:block;font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+  .row-ty{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-2)}
+  .row-ty .meta{font-family:var(--fm);font-size:11.5px;color:var(--muted);line-height:1.6}
+  @media(max-width:700px){.row-ty{grid-template-columns:minmax(0,1fr);gap:6px}}
+  .box{border:1px solid var(--line);border-radius:16px;padding:20px;background:#fff}
+  .stage{border-radius:16px;padding:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .stage--paper{background:var(--paper)}
+  .stage--dark{background:var(--navy);color:#fff}
+  .stage--photo{background:url(assets/img/photos/photo-2.webp) center/cover;min-height:220px;position:relative}
+  .cap{font-family:var(--fm);font-size:11px;color:var(--muted);margin-top:8px}
+  .stage--dark .cap{color:rgba(255,255,255,.55)}
+  .sh{height:96px;border-radius:14px;background:#fff;display:grid;place-items:center;font-family:var(--fm);font-size:12px;color:var(--muted)}
+  .rad{height:74px;background:var(--sky);border:1px solid #D3E8DA;display:grid;place-items:center;font-family:var(--fm);font-size:12px;color:var(--blue-2)}
+  .icg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+  .icg button{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 6px 10px;display:grid;justify-items:center;gap:8px;
+    font-family:var(--fm);font-size:11px;color:var(--muted);cursor:pointer;transition:.2s}
+  .icg button:hover{border-color:var(--blue);color:var(--blue-2);background:var(--sky-2)}
+  .icg svg{width:22px;height:22px;color:var(--ink)}
+  .spec{width:100%;border-collapse:collapse;font-size:14px}
+  .spec th{text-align:left;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);background:#F8FAF6}
+  .spec td{padding:11px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;line-height:1.5}
+  .spec-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  .glass-demo{padding:18px 20px;border-radius:18px;min-width:220px}
+  .glass-demo b{display:block;font-size:14px}.glass-demo span{font-size:12.5px;opacity:.75}
+  .ball-row{display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
+  .ball-row .fx-ball{filter:drop-shadow(0 10px 12px rgba(11,42,31,.25))}
+  .vplayer{max-width:560px}
+  .vplayer .player{aspect-ratio:16/9;background:#06140D;border-radius:var(--r-md);position:relative;overflow:hidden}
+  .vplayer .player img{width:100%;height:100%;object-fit:cover;opacity:.55}
+  .vplayer .player__ui{position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff}
+  .vplayer .track{height:4px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden}
+  .vplayer .track i{display:block;height:100%;width:34%;background:var(--lime)}
+  .vplayer .play{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%)}
+  .copied{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:9px 14px;border-radius:999px;
+    font-size:13px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;z-index:99}
+  .copied.is-on{opacity:1}
+  .top-link{display:inline-flex;gap:8px;align-items:center;margin-top:22px}
+</style>
+</head>
+<body>
+
+<header class="ds-head">
+  <div class="ds">
+    <span class="eyebrow" style="color:rgba(255,255,255,.62)">UFU veb-maket · realizatsiya uchun</span>
+    <h1 class="h-1" style="margin-top:14px;color:#fff">Dizayn <b>tizimi</b></h1>
+    <p>Ranglar, tipografika, soyalar, liquid glass, komponentlar va ularning holatlari, ikonkalar, 3D toʻp, media talablari.
+      Barcha qiymatlar toʻgʻridan-toʻgʻri maketning <code style="color:#C8F03C">main.css</code> va <code style="color:#C8F03C">fx.css</code> fayllaridan oʻqiladi — sahifa har doim maket bilan bir xil.</p>
+    <div class="flex flex-wrap top-link" style="gap:10px">
+      <a href="index.html" class="btn btn--white btn--sm">Maketni ochish</a>
+      <a href="hisobot.html" class="btn btn--onDark btn--sm">TZ hisoboti</a>
+    </div>
+  </div>
+</header>
+
+<nav class="ds-nav" aria-label="Boʻlimlar">
+  <div class="ds">
+    <a href="#ranglar">Ranglar</a><a href="#tipografika">Tipografika</a><a href="#oraliq">Radius va oraliq</a>
+    <a href="#soyalar">Soyalar</a><a href="#glass">Liquid glass</a><a href="#tugmalar">Tugmalar</a><a href="#forma">Forma</a>
+    <a href="#belgilar">Teg va holatlar</a><a href="#kartochka">Kartochkalar</a><a href="#ikonkalar">Ikonkalar</a>
+    <a href="#top">3D toʻp</a><a href="#media">Rasm va video</a><a href="#harakat">Harakat</a><a href="#ekranlar">Ekranlar</a>
+  </div>
+</nav>
+
+<main class="ds">
+
+  <!-- RANGLAR -->
+  <section id="ranglar">
+    <h2>Ranglar</h2>
+    <p class="sub">Identika: maydon yashili + lime aksent. Hex qiymatlar CSS oʻzgaruvchilardan jonli oʻqiladi. Kartochkani bossangiz — qiymat nusxalanadi.</p>
+    <h3>Asosiy</h3><div class="grid g6" data-tokens="navy,navy-2,navy-3,blue,blue-2,lime"></div>
+    <h3>Fon va chiziqlar</h3><div class="grid g6" data-tokens="paper,white,sky,sky-2,line,line-2"></div>
+    <h3>Matn</h3><div class="grid g6" data-tokens="ink,ink-2,muted,muted-2,lime-2,lime-soft"></div>
+    <h3>Holat ranglari</h3><div class="grid g6" data-tokens="green,green-soft,amber,amber-soft,red,red-soft"></div>
+    <div class="spec-wrap" style="margin-top:22px"><table class="spec">
+      <thead><tr><th>Token</th><th>Qayerda ishlatiladi</th></tr></thead>
+      <tbody>
+        <tr><td><code>--navy</code></td><td>Topbar, qorongʻi boʻlimlar, footer, asosiy tugma (<code>.btn--dark</code>), faol chip</td></tr>
+        <tr><td><code>--lime</code></td><td>Hero asosiy CTA, sarlavha marker chizigʻi, qorongʻi boʻlimdagi havolalar va belgilar, fokus nuqtalari. Oq fonda matn rangi sifatida ishlatilmaydi</td></tr>
+        <tr><td><code>--blue</code> / <code>--blue-2</code></td><td>Havolalar, faol menyu bandi, forma fokus chegarasi, ikonka konteynerlari (<code>.ic-blue</code>). Nom tarixiy — qiymati yashil</td></tr>
+        <tr><td><code>--sky</code> / <code>--sky-2</code></td><td>Yumshoq fon: hover, tanlangan variant, eslatma bloklari</td></tr>
+        <tr><td>Telegram <code>#229ED9</code></td><td>Faqat Telegram tugmalari (<code>.btn--tg</code>) — Telegram brend rangi, identikaga kirmaydi</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <!-- TIPOGRAFIKA -->
+  <section id="tipografika">
+    <h2>Tipografika</h2>
+    <p class="sub">Sarlavhalar — <b>Manrope</b>, matn — <b>Inter</b>, raqam va kodlar — <b>JetBrains Mono</b>. Hammasi loyiha ichida (lotin + kirill). Oʻlchamlar <code>clamp()</code> bilan ekran kengligiga moslashadi — oʻng ustunda shu ekrandagi haqiqiy qiymat.</p>
+    <div id="typeRows"></div>
+  </section>
+
+  <!-- RADIUS -->
+  <section id="oraliq">
+    <h2>Radius va oraliq</h2>
+    <p class="sub">Konteyner kengligi <code>--wrap</code>, yon chekka 24px (telefonda 16–18px). Header balandligi <code>--nav-h</code>.</p>
+    <div class="grid g6" id="radii"></div>
+    <div class="spec-wrap" style="margin-top:18px"><table class="spec"><tbody id="layoutTok"></tbody></table></div>
+  </section>
+
+  <!-- SOYALAR -->
+  <section id="soyalar">
+    <h2>Soyalar</h2>
+    <p class="sub">Barcha soyalar yashil-qora tusda (<code>rgba(11,42,31,…)</code>) — sof qora soya ishlatilmaydi.</p>
+    <div class="stage stage--paper"><div class="grid g4" style="width:100%" id="shadows"></div></div>
+  </section>
+
+  <!-- GLASS -->
+  <section id="glass">
+    <h2>Liquid glass</h2>
+    <p class="sub">Faqat asosiy qismlarda: header kapsulasi, ochiluvchi menyular, rasm ustidagi kartochkalar, qorongʻi boʻlim kartochkalari, oynalar, cookie paneli, ovoz paneli. Kompyuterda yorugʻlik nuqtasi kursorga ergashadi (<code>--mx/--my</code>). <code>backdrop-filter</code> qoʻllanmaydigan brauzerda toʻq fonga qaytadi.</p>
+    <div class="grid g2">
+      <div>
+        <div class="stage stage--photo">
+          <div class="hero__float" style="position:relative;left:auto;top:auto;animation:none">
+            <span class="ic ic-green" data-ico="check"></span>
+            <span><b>Ish yutildi</b><span>FIFA DRC · 214 000 USD</span></span>
+          </div>
+        </div>
+        <div class="cap">Yorugʻ shisha — blur(20px) saturate(185%), ichki qirra yorugʻligi + tashqi soya</div>
+      </div>
+      <div>
+        <div class="stage stage--dark" style="min-height:220px;position:relative;overflow:hidden;isolation:isolate">
+          <div style="position:absolute;inset:-40% -20% auto auto;width:420px;height:420px;border-radius:50%;background:radial-gradient(closest-side,rgba(200,240,60,.3),transparent);z-index:-1"></div>
+          <div class="card card--dark card--pad" style="max-width:280px">
+            <span class="ic-box ic-dark" data-ico="shield"></span>
+            <b style="display:block;margin-top:12px">Anonim kanal</b>
+            <span class="small" style="opacity:.7">Qorongʻi shisha — blur(18px) saturate(160%)</span>
+          </div>
+        </div>
+        <div class="cap">Qorongʻi shisha — ortida lime/yashil yorugʻlik dogʻi boʻlishi shart, aks holda effekt koʻrinmaydi</div>
+      </div>
+    </div>
+    <h3>Header kapsulasi</h3>
+    <div class="stage stage--paper" style="padding:22px 12px">
+      <div class="hdr" style="position:relative;width:100%;margin:0;padding:0;pointer-events:auto">
+        <div class="wrap" style="width:100%">
+          <a href="#glass" class="brand"><span id="dsMark"></span><span class="brand__txt"><b>UFU</b><span>Futbolchilar uyushmasi</span></span></a>
+          <div class="hdr__actions" style="margin-left:auto">
+            <div class="lang"><button class="lang__btn" type="button"><span data-ico="globe"></span><span>UZ</span></button></div>
+            <a href="#glass" class="btn btn--dark btn--sm"><span data-ico="telegram"></span><span>Kirish</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cap">Kapsula: radius 999px, balandlik 64px (telefonda 58px), ichki chekka 12px; tugmalar chetdan kamida 9px ichkarida</div>
+  </section>
+
+  <!-- TUGMALAR -->
+  <section id="tugmalar">
+    <h2>Tugmalar</h2>
+    <p class="sub">Balandlik: <code>.btn--sm</code> 40px · standart 50px · <code>.btn--lg</code> 58px. Radius — toʻliq (pill). Hover: 2px yuqoriga + soya. Faol emas: <code>.is-disabled</code> (45% shaffoflik).</p>
+    <div class="stage stage--paper">
+      <button class="btn btn--dark">Asosiy</button>
+      <button class="btn btn--ghost">Ikkilamchi</button>
+      <button class="btn btn--blue">Yashil</button>
+      <button class="btn btn--tg"><span data-ico="telegram"></span><span>Telegram</span></button>
+      <button class="btn btn--dark is-disabled">Faol emas</button>
+    </div>
+    <div class="stage stage--paper" style="margin-top:12px">
+      <button class="btn btn--dark btn--sm">Kichik</button>
+      <button class="btn btn--dark">Standart</button>
+      <button class="btn btn--dark btn--lg">Katta</button>
+      <span class="hero__cta" style="margin:0"><a href="#tugmalar" class="btn btn--dark btn--lg">Hero CTA (lime)</a></span>
+    </div>
+    <div class="stage stage--dark" style="margin-top:12px">
+      <button class="btn btn--white">Oq</button>
+      <button class="btn btn--onDark">Qorongʻi fonda</button>
+      <a href="#tugmalar" class="link-arrow" style="color:#C8F03C">Havola-strelka <span data-ico="arrowRight"></span></a>
+    </div>
+  </section>
+
+  <!-- FORMA -->
+  <section id="forma">
+    <h2>Forma elementlari</h2>
+    <p class="sub">Maydon balandligi 50px, radius 10px. Telefonda shrift 16px — iOS maydonga bosilganda sahifani kattalashtirmaydi. Fokus: yashil chegara + 4px halqa.</p>
+    <div class="grid g3">
+      <div class="field"><label class="field__lbl">Oddiy holat <span class="req">*</span></label><input class="inp" placeholder="Familiya"></div>
+      <div class="field"><label class="field__lbl">Fokus</label><input class="inp" value="Rahimov" style="border-color:var(--blue);box-shadow:0 0 0 4px rgba(31,122,77,.12)"></div>
+      <div class="field is-error"><label class="field__lbl">Xato</label><input class="inp" value="R"><span class="field__err" style="display:flex"><span data-ico="alert"></span>Kamida 2 ta harf</span></div>
+      <div class="field"><label class="field__lbl">Roʻyxat</label><select class="sel"><option>Toshkent</option><option>Samarqand</option></select></div>
+      <div class="field"><label class="field__lbl">Matn maydoni</label><textarea class="txt" placeholder="Holatni batafsil yozing"></textarea><span class="field__hint">Kamida 40 belgi</span></div>
+      <div class="field"><label class="field__lbl">Faol emas</label><input class="inp" value="+998 90 123 42 17" disabled style="opacity:.55"></div>
+    </div>
+    <h3>Tanlov variantlari va kalitlar</h3>
+    <div class="grid g2">
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="dsopt" checked><span class="ic" data-ico="wallet"></span><span><span class="opt__t">Oylik qarzdorligi</span><span class="opt__d">Tanlangan holat</span></span><span class="opt__box"></span></label>
+        <label class="opt"><input type="radio" name="dsopt"><span class="ic" data-ico="fileText"></span><span><span class="opt__t">Kontrakt shartlari</span><span class="opt__d">Oddiy holat</span></span><span class="opt__box"></span></label>
+      </div>
+      <div class="box" style="display:grid;gap:14px">
+        <label class="switch"><input type="checkbox" checked><span class="switch__tr"></span><span class="small">Yoqilgan</span></label>
+        <label class="switch"><input type="checkbox"><span class="switch__tr"></span><span class="small">Oʻchirilgan</span></label>
+        <div><span class="small muted">Jarayon chizigʻi</span><div class="bar mt-s"><i style="width:64%"></i></div></div>
+        <div><span class="small muted">Oltin variant</span><div class="bar bar--gold mt-s"><i style="width:82%"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEGLAR -->
+  <section id="belgilar">
+    <h2>Teglar, chiplar, holatlar</h2>
+    <div class="stage stage--paper">
+      <span class="tag tag--blue">Reglament</span><span class="tag tag--green">Hal qilindi</span><span class="tag tag--amber">Kutilmoqda</span>
+      <span class="tag tag--red">Shoshilinch</span><span class="tag tag--gold">Symbolic XI</span><span class="tag tag--grey">Asosiy material</span>
+    </div>
+    <div class="stage stage--paper" style="margin-top:12px">
+      <button class="chip is-active">Barchasi</button><button class="chip">Kontrakt</button><button class="chip">Transfer <span class="cnt">12</span></button>
+    </div>
+    <div class="stage stage--paper" style="margin-top:12px">
+      <span class="status status--new">Yangi</span><span class="status status--review">Koʻrib chiqilmoqda</span>
+      <span class="status status--info">Qoʻshimcha maʼlumot soʻraldi</span><span class="status status--done">Hal qilindi</span><span class="status status--closed">Yopildi</span>
+    </div>
+    <div class="cap">Murojaat holatlari — 5 ta, kabinet va boshqaruv panelida bir xil ranglarda</div>
+  </section>
+
+  <!-- KARTOCHKALAR -->
+  <section id="kartochka">
+    <h2>Kartochkalar va ikonka konteynerlari</h2>
+    <p class="sub">Radius 20px, chegara <code>--line</code>. Hover (<code>.card--hover</code>): 4px yuqoriga, <code>--sh-3</code> soya, rasm 1.05 marta kattalashadi.</p>
+    <div class="grid g3">
+      <div class="card card--pad"><span class="ic-box ic-blue" data-ico="fileText"></span><b style="display:block;margin-top:12px">Oddiy</b><span class="small muted">.card .card--pad</span></div>
+      <div class="card card--pad card--flat"><span class="ic-box ic-amber" data-ico="clock"></span><b style="display:block;margin-top:12px">Tekis</b><span class="small muted">.card--flat</span></div>
+      <a href="#kartochka" class="card card--hover news-card"><div class="card__media" style="aspect-ratio:16/9"><img src="assets/img/photos/photo-7.webp" alt=""></div>
+        <div class="news-card__body" style="padding:16px 18px"><span class="tag tag--blue">Hover</span><b style="display:block;margin-top:8px">Yangilik kartochkasi</b></div></a>
+    </div>
+    <div class="stage stage--paper" style="margin-top:14px">
+      <span class="ic-box ic-blue" data-ico="shield"></span><span class="ic-box ic-green" data-ico="checkCircle"></span>
+      <span class="ic-box ic-amber" data-ico="clock"></span><span class="ic-box ic-red" data-ico="alert"></span>
+    </div>
+    <div class="stage stage--dark" style="margin-top:12px">
+      <span class="ic-box ic-dark" data-ico="trophy"></span><span class="small" style="opacity:.7">.ic-dark — faqat qorongʻi fonda</span>
+    </div>
+  </section>
+
+  <!-- IKONKALAR -->
+  <section id="ikonkalar">
+    <h2>Ikonkalar</h2>
+    <p class="sub">Loyiha uchun chizilgan SVG toʻplam: 24×24 maydon, chiziq qalinligi 1.7px, uchlari yumaloq, rang — <code>currentColor</code>. Ikonkani bossangiz — nomi nusxalanadi. Ijtimoiy tarmoqlar: Instagram, Telegram, Facebook, YouTube (LinkedIn yoʻq).</p>
+    <div class="icg" id="icons"></div>
+  </section>
+
+  <!-- TOP -->
+  <section id="top">
+    <h2>3D futbol toʻpi</h2>
+    <p class="sub">Klassik 32 panelli toʻp (12 beshburchak + 20 oltiburchak) canvas'da har kadrda chiziladi: yorugʻlik, yaltirash, qirra soyasi, pastda maysa aksi. Tashqi kutubxona yoʻq. Retina ekranlar uchun piksel zichligi hisobga olinadi.</p>
+    <div class="stage stage--paper ball-row" id="balls"></div>
+    <div class="spec-wrap" style="margin-top:16px"><table class="spec"><tbody>
+      <tr><td>Bosh sahifa</td><td>64px (telefonda 52px). Oʻng tomondan tushadi, klublar qatori ustida toʻxtaydi. Bosib tepish, sudrab otish, kursor bilan urish. Tepilgan joyi skrollda saqlanadi</td></tr>
+      <tr><td>Header</td><td>14px, skroll boʻyicha dumalaydi (lime progress chizigʻi bilan)</td></tr>
+      <tr><td>“Yuqoriga” tugmasi</td><td>30px toʻp, 52px shisha doira; 900px skrolldan keyin chiqadi</td></tr>
+      <tr><td>Sarlavha markeri</td><td>Toʻp tushayotganda “huquqi” va “himoyada” ostidagi lime chiziq chapdan oʻngga chiziladi (0.8s, ikkinchisi 0.35s kechikib)</td></tr>
+      <tr><td>Harakatni kamaytirish</td><td><code>prefers-reduced-motion</code> yoqilgan boʻlsa: aylanish va chizish animatsiyalari oʻchadi</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <!-- MEDIA -->
+  <section id="media">
+    <h2>Rasm va video</h2>
+    <p class="sub">Maketdagi fotolar — namoyish uchun (1200px, WebP). Realizatsiyada quyidagi talablar boʻyicha buyurtmachining asl materiallari bilan almashtiriladi.</p>
+    <div class="spec-wrap"><table class="spec">
+      <thead><tr><th>Joy</th><th>Nisbat</th><th>Asl manba (minimal)</th><th>Eksport</th></tr></thead>
+      <tbody>
+        <tr><td>Hero fotosi</td><td>4 : 3.6</td><td>2400 × 2160 px</td><td>WebP/AVIF, 1200 va 2400px (srcset), ≤ 250 KB</td></tr>
+        <tr><td>Kirish / Free Agent Camp foni</td><td>toʻliq ekran</td><td>2800 px kenglik</td><td>WebP, 1400 va 2800px, ustida qorongʻi gradient</td></tr>
+        <tr><td>Maqola va yangilik muqovasi</td><td>16 : 9 / 16 : 10</td><td>2400 × 1350 px</td><td>WebP, 800 / 1600px</td></tr>
+        <tr><td>Keys kartochkasi</td><td>16 : 10</td><td>1600 × 1000 px</td><td>WebP, 800 / 1600px</td></tr>
+        <tr><td>Video muqovasi</td><td>16 : 9</td><td>1920 × 1080 px</td><td>WebP, 960 / 1920px</td></tr>
+        <tr><td>Futbolchi portreti</td><td>1 : 1</td><td>800 × 800 px, yuz tepada</td><td>WebP 400px, <code>object-position: top</code></td></tr>
+        <tr><td>Klub gerbi</td><td>1 : 1</td><td>SVG yoki 512px PNG, shaffof fon</td><td>SVG / WebP 160px</td></tr>
+      </tbody></table></div>
+    <h3>Video pleyer holatlari</h3>
+    <div class="grid g2">
+      <div class="vplayer"><div class="player"><img src="assets/img/photos/photo-5.webp" alt=""><button class="play" data-ico="play" aria-label="Ijro etish"></button></div><div class="cap">1. Toʻxtatilgan — muqova 55% yorqinlikda, markazda oq play (74px)</div></div>
+      <div class="vplayer"><div class="player"><img src="assets/img/photos/photo-5.webp" alt="" style="opacity:.9">
+        <div class="player__ui"><div class="track"><i></i></div><div class="flex" style="justify-content:space-between;margin-top:10px"><span class="tiny">01:24 / 04:12</span><span class="flex" style="gap:14px;opacity:.85"><span data-ico="settings"></span><span data-ico="external"></span></span></div></div></div>
+        <div class="cap">2. Ijro — pastki panel: lime progress, vaqt, sozlamalar, YouTube'da ochish</div></div>
+    </div>
+    <div class="cap" style="margin-top:12px">Realizatsiya: YouTube (nocookie) yoki Vimeo embed; subtitrlar uz/ru; muqova oldindan yuklanadi, video faqat bosilganda yuklanadi.</div>
+  </section>
+
+  <!-- HARAKAT -->
+  <section id="harakat">
+    <h2>Harakat (animatsiya)</h2>
+    <div class="spec-wrap"><table class="spec"><tbody id="motion"></tbody></table></div>
+  </section>
+
+  <!-- EKRANLAR -->
+  <section id="ekranlar">
+    <h2>Ekranlar (breakpoint)</h2>
+    <div class="spec-wrap"><table class="spec">
+      <thead><tr><th>Kenglik</th><th>Oʻzgarish</th></tr></thead>
+      <tbody>
+        <tr><td><code>≤ 1080px</code></td><td>Desktop menyu → ☰ toʻliq ekranli panel; hero bitta ustun; murojaat qadamlari gorizontal suriladi</td></tr>
+        <tr><td><code>≤ 820px</code></td><td>3 va 2 ustunli qatorlar bitta ustunga; statistika 2 ustun</td></tr>
+        <tr><td><code>≤ 760px</code></td><td>Header 58px; “Kirish” menyuga oʻtadi; forma shrifti 16px; oynalar pastdan ochiladi; bildirishnomalar header ostida</td></tr>
+        <tr><td><code>≤ 620px</code></td><td>Yon chekka 18px; footer bitta ustun</td></tr>
+        <tr><td><code>≤ 420px</code></td><td>Yon chekka 16px; logo ostidagi yozuv yashiriladi</td></tr>
+        <tr><td>Tekshirilgan</td><td>320 · 360 · 375 · 390 · 412 · 430 · 568 · 667 · 768 · 844 · 1024 · 1440px; iOS Safari xavfsiz zonalari (<code>env(safe-area-inset-*)</code>)</td></tr>
+      </tbody></table></div>
+  </section>
+
+</main>
+
+<div class="copied" id="copied">Nusxalandi</div>
+
+<script src="assets/js/icons.js"></script>
+<script>
+(function(){
+  var root = getComputedStyle(document.documentElement);
+  var tok = function(n){ return root.getPropertyValue('--' + n).trim(); };
+  var copied = document.getElementById('copied'), ct = 0;
+  function copy(text){
+    try { navigator.clipboard.writeText(text); } catch(e) {}
+    copied.textContent = 'Nusxalandi: ' + text; copied.classList.add('is-on');
+    clearTimeout(ct); ct = setTimeout(function(){ copied.classList.remove('is-on'); }, 1400);
+  }
+  function hex(c){
+    var m = c.match(/\d+(\.\d+)?/g); if (!m || c.charAt(0) === '#') return c.toUpperCase();
+    return '#' + m.slice(0,3).map(function(x){ return (+x).toString(16).padStart(2,'0'); }).join('').toUpperCase();
+  }
+  var NOTE = { navy:'asosiy toʻq', blue:'havola, fokus', lime:'aksent', paper:'sahifa foni', ink:'asosiy matn', muted:'ikkilamchi matn',
+    line:'chegara', sky:'yumshoq fon', green:'muvaffaqiyat', amber:'kutish', red:'xato' };
+
+  /* ranglar */
+  document.querySelectorAll('[data-tokens]').forEach(function(g){
+    g.innerHTML = g.getAttribute('data-tokens').split(',').map(function(n){
+      var v = hex(tok(n));
+      return '<button class="sw" type="button" data-copy="' + v + '" style="text-align:left;cursor:pointer">' +
+        '<i style="background:var(--' + n + ')' + (n === 'white' || n === 'paper' ? ';border-bottom:1px solid var(--line)' : '') + '"></i>' +
+        '<div><b>' + v + '</b><code>--' + n + '</code>' + (NOTE[n] ? '<span>' + NOTE[n] + '</span>' : '') + '</div></button>';
+    }).join('');
+  });
+
+  /* tipografika — haqiqiy hisoblangan qiymatlar */
+  var TY = [
+    ['h-hero','Futbolchining <b>huquqi</b>','Manrope 300/600'],
+    ['h-1','Sahifa sarlavhasi','Manrope'],['h-2','Boʻlim sarlavhasi','Manrope'],['h-3','Blok sarlavhasi','Manrope'],['h-4','Kartochka sarlavhasi','Manrope'],
+    ['lead','Kirish matni — sahifa va boʻlim tavsifi uchun kattaroq, oʻqish qulay.','Inter'],
+    ['','Asosiy matn: futbolchining huquqlari, shartnoma va murojaatlar haqida.','Inter'],
+    ['small','Kichik matn — kartochka tavsifi, izohlar','Inter'],['tiny','Juda kichik — sana, meta maʼlumot','Inter'],
+    ['eyebrow','Boʻlim ustki yozuvi','Inter 600, katta harf']
+  ];
+  var tr = document.getElementById('typeRows');
+  tr.innerHTML = TY.map(function(t, i){
+    var tag = { 'h-hero':'h1', 'h-1':'h1', 'h-2':'h2', 'h-3':'h3', 'h-4':'h4', 'lead':'p', '':'p', 'small':'p', 'tiny':'p', 'eyebrow':'span' }[t[0]] || 'div';
+    return '<div class="row-ty"><div class="meta" data-ty="' + i + '"></div><div><' + tag + ' class="' + t[0] + '" data-tyel="' + i + '" style="margin:0">' + t[1] + '</' + tag + '></div></div>';
+  }).join('');
+  function typeMeta(){
+    TY.forEach(function(t, i){
+      var el = tr.querySelector('[data-tyel="' + i + '"]'), cs = getComputedStyle(el);
+      tr.querySelector('[data-ty="' + i + '"]').innerHTML = '<b style="color:var(--ink);font-family:var(--ff)">.' + (t[0] || 'body') + '</b><br>' +
+        t[2] + '<br>' + Math.round(parseFloat(cs.fontSize)) + 'px · ' + cs.fontWeight + ' · qator ' + (cs.lineHeight === 'normal' ? 'normal' : (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2)) +
+        '<br>harf oraligʻi ' + cs.letterSpacing;
+    });
+  }
+  typeMeta(); addEventListener('resize', typeMeta);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(typeMeta);
+
+  /* radiuslar */
+  document.getElementById('radii').innerHTML = ['r-xs','r-sm','r-md','r-lg','r-xl','r-pill'].map(function(n){
+    return '<button class="rad" type="button" data-copy="var(--' + n + ')" style="border-radius:var(--' + n + ');cursor:pointer">--' + n + '<br>' + tok(n) + '</button>';
+  }).join('');
+  document.getElementById('layoutTok').innerHTML = [['wrap','Konteyner maksimal kengligi'],['nav-h','Header balandligi (desktop)']].map(function(r){
+    return '<tr><td><code>--' + r[0] + '</code></td><td>' + tok(r[0]) + '</td><td>' + r[1] + '</td></tr>';
+  }).join('');
+
+  /* soyalar */
+  document.getElementById('shadows').innerHTML = ['sh-1','sh-2','sh-3','sh-4','sh-blue','sh-lime'].map(function(n){
+    return '<div><button class="sh" type="button" data-copy="' + tok(n) + '" style="width:100%;box-shadow:var(--' + n + ');cursor:pointer">--' + n + '</button>' +
+      '<div class="cap">' + tok(n) + '</div></div>';
+  }).join('');
+
+  /* harakat */
+  document.getElementById('motion').innerHTML = [
+    ['<code>--ease</code>', tok('ease'), 'Hover, menyu, tugma — 0.2–0.3s'],
+    ['<code>--ease-out</code>', tok('ease-out'), 'Oyna ochilishi, bildirishnoma, sahifa elementlari — 0.4–0.75s'],
+    ['Boʻlim paydo boʻlishi', 'cubic-bezier(.2,1.28,.34,1) · 0.95s', '34px pastdan + 0.975 masshtab, yengil “sakrash”; 0.09s qadam bilan ketma-ket'],
+    ['Toʻp fizikasi', 'tortishish 2300 px/s² · sakrash 0.62', 'Havo qarshiligi 0.9985, dumalash ishqalanishi 0.985'],
+    ['Marker chizigʻi', 'cubic-bezier(.6,0,.2,1) · 0.8s', 'background-size 0% → 100%']
+  ].map(function(r){ return '<tr><td>' + r[0] + '</td><td><code>' + r[1] + '</code></td><td>' + r[2] + '</td></tr>'; }).join('');
+
+  /* ikonkalar */
+  var names = Object.keys(window.ICONS || {}).sort();
+  document.getElementById('icons').innerHTML = names.map(function(n){
+    return '<button type="button" data-copy="' + n + '" title="' + n + '"><span data-ico="' + n + '"></span>' + n + '</button>';
+  }).join('');
+  var ih = document.querySelector('#ikonkalar .sub'); ih.innerHTML = ih.innerHTML.replace('SVG toʻplam', 'SVG toʻplam (' + names.length + ' ta)');
+
+  document.getElementById('dsMark').outerHTML = window.BRAND_MARK || '';
+  document.addEventListener('click', function(e){
+    var c = e.target.closest('[data-copy]'); if (c) { e.preventDefault(); copy(c.getAttribute('data-copy')); }
+  });
+})();
+</script>
+<script src="assets/js/fx.js"></script>
+<script>
+/* 3D toʻp namunalari — sekin aylanadi */
+(function(){
+  var host = document.getElementById('balls'); if (!window.UFU_FX || !host) return;
+  var sizes = [[14,'Header'],[30,'“Yuqoriga”'],[52,'Telefon'],[64,'Kompyuter'],[120,'Yaqin koʻrinish']];
+  var list = sizes.map(function(s){
+    var wrap = document.createElement('div'); wrap.style.cssText = 'display:grid;justify-items:center;gap:10px';
+    var el = UFU_FX.ball(s[0], 2); el.style.width = el.style.height = s[0] + 'px';
+    wrap.appendChild(el);
+    var cap = document.createElement('div'); cap.className = 'cap'; cap.style.marginTop = '0'; cap.textContent = s[1] + ' · ' + s[0] + 'px';
+    wrap.appendChild(cap); host.appendChild(wrap);
+    return el.ball;
+  });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* faqat ekranda koʻrinib turganda aylanadi — batareya va protsessor tejaladi */
+  var visible = false, raf = 0, last = 0;
+  function spin(now){
+    var dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
+    list.forEach(function(b, i){ b.spin([0.9 + i * .1, 1.6, 0.35], dt); b.render(); });
+    raf = visible ? requestAnimationFrame(spin) : 0;
+  }
+  new IntersectionObserver(function(e){
+    visible = e[0].isIntersecting;
+    if (visible && !raf) { last = 0; raf = requestAnimationFrame(spin); }
+  }).observe(host);
+})();
+</script>
+<script>
+/* ikonkalarni chizish (app.js yuklanmagan sahifa) */
+document.querySelectorAll('[data-ico]').forEach(function(el){
+  if (el.querySelector('svg')) return;
+  var p = (window.ICONS || {})[el.getAttribute('data-ico')]; if (!p) return;
+  el.insertAdjacentHTML('afterbegin', window.ico(el.getAttribute('data-ico')));
+});
+</script>
+</body>
+</html>

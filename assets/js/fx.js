@@ -443,6 +443,9 @@
     };
   }
 
+  /* dizayn tizimi sahifasi uchun: 3D to'pni istalgan joyga qo'yish */
+  window.UFU_FX = { ball: ballEl };
+
   /* ---------- ishga tushirish ---------- */
   function init() {
     glassLight();

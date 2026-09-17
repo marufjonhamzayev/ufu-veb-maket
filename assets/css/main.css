@@ -105,13 +105,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 .section--dark .eyebrow{color:rgba(255,255,255,.62)}
 .section--dark .eyebrow::before{background:#C8F03C}
 
+.h-hero,.h-1,.h-2,.h-3,.h-4{font-family:var(--fd)}
 .h-hero{font-size:clamp(38px,6.2vw,80px);font-weight:300;letter-spacing:-.035em;line-height:1.02}
 .h-hero b{font-weight:600}
 .h-1{font-size:clamp(30px,4.2vw,56px);font-weight:400;letter-spacing:-.03em;line-height:1.06}
 .h-1 b{font-weight:600}
-.h-2{font-size:clamp(24px,2.6vw,36px);font-weight:500;letter-spacing:-.025em}
-.h-3{font-size:clamp(19px,1.5vw,23px);font-weight:600;letter-spacing:-.015em}
-.h-4{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.h-2{font-size:clamp(24px,2.6vw,36px);font-weight:500;letter-spacing:-.025em;line-height:1.1}
+.h-3{font-size:clamp(19px,1.5vw,23px);font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.h-4{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
 .lead{font-size:clamp(16px,1.35vw,19px);color:var(--ink-2);line-height:1.6;max-width:62ch}
 .small{font-size:14px}
 .tiny{font-size:12.5px}
@@ -464,7 +465,7 @@ html.is-locked,html.is-locked body{overscroll-behavior:none}
 .opt-grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .opt{display:flex;gap:13px;padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;
   cursor:pointer;transition:.24s var(--ease);position:relative;align-items:flex-start}
-.opt:hover{border-color:#C3CEEA;background:var(--sky-2)}
+.opt:hover{border-color:#C5DDCB;background:var(--sky-2)}
 .opt input{position:absolute;opacity:0;pointer-events:none}
 .opt__box{width:20px;height:20px;border-radius:50%;border:1.6px solid var(--line);flex:none;margin-top:2px;
   display:grid;place-items:center;transition:.22s}
@@ -488,9 +489,9 @@ html.is-locked,html.is-locked body{overscroll-behavior:none}
 .switch input:checked+.switch__tr{background:var(--blue)}
 .switch input:checked+.switch__tr::after{transform:translateX(19px)}
 
-.drop{border:1.6px dashed #CFD6E4;border-radius:var(--r-md);background:var(--sky-2);padding:30px 22px;text-align:center;
+.drop{border:1.6px dashed #C9D6CC;border-radius:var(--r-md);background:var(--sky-2);padding:30px 22px;text-align:center;
   transition:.26s var(--ease);cursor:pointer}
-.drop:hover,.drop.is-over{border-color:var(--blue);background:#E9F0FF}
+.drop:hover,.drop.is-over{border-color:var(--blue);background:var(--sky)}
 .drop .ic{width:50px;height:50px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;
   margin:0 auto 13px;box-shadow:var(--sh-1)}
 .file-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff}
@@ -628,9 +629,14 @@ table.tbl tbody tr:last-child td{border-bottom:0}
 .ftr__brand{font-family:var(--fd);font-size:clamp(22px,2.4vw,30px);font-weight:300;color:#fff;line-height:1.2;letter-spacing:-.025em}
 .ftr__brand b{font-weight:600;display:block}
 .ftr__soc{display:flex;gap:10px;margin-top:22px}
-.ftr__soc a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;
-  transition:.26s var(--ease)}
-.ftr__soc a:hover{background:#fff;color:var(--navy);border-color:#fff;transform:translateY(-3px)}
+.ftr__soc a,.ftr__soc button{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;
+  color:inherit;transition:.26s var(--ease)}
+.ftr__soc a:hover,.ftr__soc button:hover,.ftr__soc button:focus-visible{background:#fff;color:var(--navy);border-color:#fff;transform:translateY(-3px)}
+.ftr__tip{position:absolute;bottom:calc(100% + 9px);left:50%;transform:translate(-50%,4px);white-space:nowrap;pointer-events:none;
+  background:#fff;color:var(--navy);font-size:11.5px;font-weight:600;padding:5px 9px;border-radius:7px;box-shadow:var(--sh-3);
+  opacity:0;visibility:hidden;transition:.2s var(--ease)}
+.ftr__tip::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#fff}
+.ftr__soc button:hover .ftr__tip,.ftr__soc button:focus-visible .ftr__tip{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .ftr__soc svg{width:17px;height:17px}
 .ftr__bot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding-block:24px;font-size:13px}
 .ftr__legal{display:flex;flex-wrap:wrap;gap:8px 18px}

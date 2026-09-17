@@ -92,6 +92,16 @@
     nm: function (s) { return App.lang === "uzc" ? window.toCyrillic(s) : s; }
   };
 
+  /* ---------- rasmiy sahifalar ----------
+     Uyushmaning rasmiy havolalari shu yerga yoziladi — footer'dagi ikonkalar avtomatik ulanadi.
+     url bo'sh bo'lsa, ikonka "Tez orada" holatida ko'rinadi va hech qayerga olib ketmaydi. */
+  var SOCIAL = [
+    { id: "instagram", name: "Instagram", url: "" },
+    { id: "telegram",  name: "Telegram",  url: "" },
+    { id: "facebook",  name: "Facebook",  url: "" },
+    { id: "youtube",   name: "YouTube",   url: "" }
+  ];
+
   /* ---------- shell markup ---------- */
   var PAGES = {
     home: "index.html", about: "uyushma.html", news: "yangiliklar.html", article: "maqola.html",
@@ -258,15 +268,16 @@
         links.map(function (l) { return '<a href="' + l[0] + '" data-i18n="' + l[1] + '">' + t(l[1]) + '</a>'; }).join("") +
         '</div></div>';
     }
-    var soc = [["instagram", "https://instagram.com"], ["telegram", "https://t.me"], ["youtube", "https://youtube.com"],
-               ["facebook", "https://facebook.com"], ["linkedin", "https://linkedin.com"]];
+    var soc = SOCIAL.map(function (s) { return [s.id, s.url, s.name]; });
     return '<footer class="ftr"><div class="wrap">' +
       '<div class="ftr__top">' +
         '<div>' +
           '<div class="ftr__brand" data-i18n="ftr.tagline">' + t("ftr.tagline") + '</div>' +
           '<div class="small" style="margin-top:16px;opacity:.6" data-i18n="ftr.since">' + t("ftr.since") + '</div>' +
           '<div class="ftr__soc">' + soc.map(function (s) {
-            return '<a href="' + s[1] + '" target="_blank" rel="noopener" aria-label="' + s[0] + '">' + ico(s[0]) + '</a>';
+            if (s[1]) return '<a href="' + s[1] + '" target="_blank" rel="noopener" aria-label="' + s[2] + '">' + ico(s[0]) + '</a>';
+            return '<button type="button" class="is-soon" data-soc="' + s[2] + '" aria-label="' + s[2] + ' — ' + t("soc.soon") + '">' +
+              ico(s[0]) + '<span class="ftr__tip" data-i18n="soc.soon">' + t("soc.soon") + '</span></button>';
           }).join("") + '</div>' +
         '</div>' +
         col("ftr.nav", [[PAGES.about, "nav.union.about"], [PAGES.news, "nav.media.news"], [PAGES.cases, "nav.help.cases"],
@@ -360,6 +371,8 @@
       var pick = e.target.closest(".lang__menu button");
       if (pick) { setLang(pick.dataset.lang); document.getElementById("lang").classList.remove("is-open"); }
 
+      var soon = e.target.closest("[data-soc]");
+      if (soon) App.toast(soon.getAttribute("data-soc"), t("soc.soon.d"), "info");
       if (e.target.closest("#burger")) mobMenu(!mobState.open);
       if (e.target.closest("[data-mobnav-close]")) mobMenu(false);
       var mlang = e.target.closest(".mobnav__langs button");

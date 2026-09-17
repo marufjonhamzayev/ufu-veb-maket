@@ -73,6 +73,8 @@ window.CORE_I18N = {
     /* footer */
     'ftr.tagline': 'Futbolchining huquqi —<br>maydondan tashqarida ham.',
     'ftr.since': '2017 yildan beri · FIFPRO toʻliq aʼzosi',
+    'soc.soon': 'Tez orada',
+    'soc.soon.d': 'Rasmiy sahifa havolasi tez orada qoʻshiladi.',
     'ftr.addr.t': 'Manzil',
     'ftr.addr': 'Toshkent shahri, Mirobod tumani,<br>Bunyodkor shoh koʻchasi, 47',
     'ftr.contacts': 'Kontaktlar',
@@ -227,6 +229,8 @@ window.CORE_I18N = {
 
     'ftr.tagline': 'Права футболиста —<br>и за пределами поля.',
     'ftr.since': 'с 2017 года · полноправный член FIFPRO',
+    'soc.soon': 'Скоро',
+    'soc.soon.d': 'Ссылка на официальную страницу скоро появится.',
     'ftr.addr.t': 'Адрес',
     'ftr.addr': 'г. Ташкент, Мирабадский район,<br>проспект Бунёдкор, 47',
     'ftr.contacts': 'Контакты',
@@ -377,6 +381,8 @@ window.CORE_I18N = {
 
     'ftr.tagline': 'A player’s rights —<br>off the pitch as well.',
     'ftr.since': 'since 2017 · full FIFPRO member',
+    'soc.soon': 'Coming soon',
+    'soc.soon.d': 'The link to the official page will be added soon.',
     'ftr.addr.t': 'Address',
     'ftr.addr': 'Tashkent, Mirobod district,<br>47 Bunyodkor avenue',
     'ftr.contacts': 'Contacts',
@@ -498,7 +504,7 @@ window.CORE_I18N = {
     "PDF", "JPG", "PNG", "DOCX", "ID", "SMS", "OK", "USD", "UZS", "EUR", "VIP", "U21", "U19", "U17", "MB", "KB", "GK", "DF", "MF", "FW",
     /* xalqaro nomlar */
     "Football", "Tribunal", "Free", "Agent", "Camp", "Symbolic", "World", "Fund", "for", "Players",
-    "Telegram", "Wyscout", "YouTube", "Google", "Drive", "Court", "Arbitration", "Instagram", "Facebook", "LinkedIn",
+    "Telegram", "Wyscout", "YouTube", "Google", "Drive", "Court", "Arbitration", "Instagram", "Facebook",
     "Cookie", "cookie", "cookies", "Email", "email"
   ].join("|") + ")$");
 

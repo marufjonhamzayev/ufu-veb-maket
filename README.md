@@ -6,8 +6,9 @@ interaktiv, toʻrt tilda ishlaydi. Freymvork ishlatilmagan — sof HTML, CSS va 
 ## Qanday ochiladi
 
 **`index.html`** — maketning bosh sahifasi (brauzerda ochish kifoya, internet talab qilinmaydi).
-**`hisobot.html`** — TZ bandlari bo'+T+'yicha bajarilish hisoboti: har bir talab qaysi sahifada hal qilingani,
+**`hisobot.html`** — TZ bandlari boʻyicha bajarilish hisoboti: har bir talab qaysi sahifada hal qilingani,
 havolalar bilan. Komissiya uchun shu fayldan boshlash qulay. Lokal server orqali ham koʻrish mumkin:
+**`dizayn-tizimi.html`** — realizatsiya uchun spetsifikatsiya: ranglar, tipografika, soyalar, liquid glass, komponent holatlari, ikonkalar, 3D toʻp, rasm/video talablari.
 
 ```
 npx serve .          # yoki: python -m http.server 4173
@@ -117,7 +118,8 @@ assets/img/photos/                        — 36 ta oʻyin fotosi (manba: pfl.uz
 assets/img/clubs/                         — 16 ta Superliga klubi gerbi, nomi boʻyicha
 assets/img/players/                       — futbolchi portretlari
 assets/fonts/                             — Inter, Manrope, JetBrains Mono (kirill subseti bilan)
-hisobot.html                              — TZ bo'+T+'yicha bajarilish hisoboti
+hisobot.html                              — TZ boʻyicha bajarilish hisoboti
+dizayn-tizimi.html                        — dizayn tizimi: ranglar, shriftlar, soyalar, komponentlar, ikonkalar, media talablari
 ```
 
 Header va footer barcha sahifalarda `app.js` orqali bitta manbadan chiziladi.

@@ -20,6 +20,9 @@ QAYERDAN BOSHLASH
 ---------------------------------------------------------
   index.html     — maketning bosh sahifasi
 
+  dizayn-tizimi.html — ranglar, shriftlar, soyalar, ikonkalar,
+                   komponentlar va media talablari (dasturchilar uchun)
+
   hisobot.html   — TZ bo'yicha bajarilish hisoboti:
                    qaysi band qaysi sahifada hal qilingan,
                    havolalar bilan. Baholash uchun qulay.
@@ -37,7 +40,7 @@ TAVSIYA ETILGAN KO'RISH TARTIBI
 
 TARKIBI
 ---------------------------------------------------------
-  20 ta HTML sahifa
+  21 ta HTML sahifa (19 maket + hisobot + dizayn tizimi)
   4 ta til (o'zbek lotin va kirill, rus, ingliz)
   assets/  — uslublar, skriptlar, shriftlar, rasmlar
 

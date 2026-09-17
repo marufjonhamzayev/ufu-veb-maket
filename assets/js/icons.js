@@ -89,8 +89,7 @@ window.ICONS = {
   instagram:'<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/>',
   facebook:'<path d="M14.5 21v-8h2.7l.5-3.3h-3.2V7.6c0-1 .3-1.6 1.7-1.6h1.6V3.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2.5H8.6V13h2.8v8h3.1Z"/>',
   youtube:'<path d="M21.2 8.2a2.6 2.6 0 0 0-1.8-1.9C17.8 5.9 12 5.9 12 5.9s-5.8 0-7.4.4a2.6 2.6 0 0 0-1.8 1.9A27 27 0 0 0 2.4 12c0 1.3.1 2.5.4 3.8a2.6 2.6 0 0 0 1.8 1.9c1.6.4 7.4.4 7.4.4s5.8 0 7.4-.4a2.6 2.6 0 0 0 1.8-1.9c.3-1.3.4-2.5.4-3.8s-.1-2.5-.4-3.8Z"/><path d="M10.2 14.8 15 12l-4.8-2.8v5.6Z" fill="currentColor" stroke="none"/>',
-  twitter:'<path d="m3.5 3.5 7.1 9.4L4 20.5h2.2l5.4-5.8 4.4 5.8h4.5l-7.5-9.9 6.2-6.6h-2.2l-5 5.4-4.1-5.4H3.5Z"/>',
-  linkedin:'<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V17M8 7.4v.1"/><path d="M12 17v-3.6a2.4 2.4 0 0 1 4.8 0V17M12 10.5V17"/>'
+  twitter:'<path d="m3.5 3.5 7.1 9.4L4 20.5h2.2l5.4-5.8 4.4 5.8h4.5l-7.5-9.9 6.2-6.6h-2.2l-5 5.4-4.1-5.4H3.5Z"/>'
 };
 
 window.ico = function (name, cls) {

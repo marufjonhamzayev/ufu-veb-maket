@@ -143,10 +143,9 @@ document.addEventListener('DOMContentLoaded',function(){
         <div class="card card--pad">
           <b class="small muted" data-i18n="ar.share">Ulashish</b>
           <div class="flex share mt-s" style="gap:8px">
-            <a href="#" data-ico="telegram" aria-label="Telegram"></a>
-            <a href="#" data-ico="twitter" aria-label="X"></a>
-            <a href="#" data-ico="facebook" aria-label="Facebook"></a>
-            <a href="#" data-ico="instagram" aria-label="Instagram"></a>
+            <a href="https://t.me/share/url" data-share="tg" target="_blank" rel="noopener" data-ico="telegram" aria-label="Telegram"></a>
+            <a href="https://twitter.com/intent/tweet" data-share="x" target="_blank" rel="noopener" data-ico="twitter" aria-label="X"></a>
+            <a href="https://www.facebook.com/sharer/sharer.php" data-share="fb" target="_blank" rel="noopener" data-ico="facebook" aria-label="Facebook"></a>
           </div>
           <button class="btn btn--ghost btn--sm btn--block mt-m" id="copyLink" data-ico="paperclip"><span data-i18n="ar.copy">Havolani nusxalash</span></button>
         </div>
@@ -279,6 +278,16 @@ window.PAGE_I18N={
 </script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/fx.js"></script>
+<script>
+/* Ulashish: joriy sahifa manzili va sarlavhasi bilan */
+(function(){
+  var u = encodeURIComponent(location.href), ti = encodeURIComponent(document.title);
+  var map = { tg: 'https://t.me/share/url?url=' + u + '&text=' + ti,
+              x:  'https://twitter.com/intent/tweet?url=' + u + '&text=' + ti,
+              fb: 'https://www.facebook.com/sharer/sharer.php?u=' + u };
+  document.querySelectorAll('[data-share]').forEach(function(a){ a.href = map[a.getAttribute('data-share')]; });
+})();
+</script>
 <script>
 (function(){
   var p=document.getElementById('prog');
