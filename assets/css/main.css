@@ -609,7 +609,7 @@ table.tbl tbody tr:last-child td{border-bottom:0}
 .modal__x:hover{background:#F0F0EC;color:var(--ink)}
 .modal__x svg{width:17px;height:17px}
 
-.toasts{position:fixed;right:22px;bottom:22px;z-index:300;display:grid;gap:10px;width:min(360px,calc(100vw - 44px))}
+.toasts{position:fixed;right:22px;bottom:22px;z-index:300;display:grid;gap:10px;width:min(360px,calc(100vw - 44px));pointer-events:none}
 .toast{display:flex;gap:13px;padding:15px 17px;background:var(--navy);color:#fff;border-radius:var(--r-md);
   box-shadow:var(--sh-4);animation:slideIn .4s var(--ease-out);align-items:flex-start}
 @keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
@@ -768,7 +768,7 @@ table.tbl tbody tr:last-child td{border-bottom:0}
   .modal{padding:12px;align-items:end}
   .modal__box{max-height:calc(100dvh - 24px);overflow-y:auto}
   .cookie{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
-  .toasts{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .toasts{bottom:auto;top:calc(114px + env(safe-area-inset-top,0px))}
   h1,h2,h3{overflow-wrap:break-word;hyphens:auto}
   .btn{max-width:100%}
   table{max-width:100%}

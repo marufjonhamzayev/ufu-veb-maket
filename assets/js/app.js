@@ -498,6 +498,7 @@
     el.innerHTML = '<span class="ic">' + ico(icon || "checkCircle") + '</span><div><b>' + title + '</b>' +
                    (text ? '<span>' + text + '</span>' : '') + '</div>';
     w.appendChild(el);
+    while (w.children.length > 2) w.removeChild(w.firstChild);   /* bir vaqtda ko'pi bilan 2 ta */
     setTimeout(function () {
       el.style.transition = ".4s"; el.style.opacity = "0"; el.style.transform = "translateX(24px)";
       setTimeout(function () { el.remove(); }, 400);
