@@ -14,15 +14,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0B2A1F">
-<script>
-/* Intro: sessiyada bir marta. Ekran darhol yashil bilan yopiladi (sayt "miltillamasin"),
-   fx.js 4 soniyada ishga tushmasa — qopqoq o'zi olinadi. */
-(function(){try{
-  if(sessionStorage.getItem('ufu-intro')||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;
-  var h=document.documentElement;h.classList.add('fx-intro');
-  setTimeout(function(){if(!window.__fxIntro)h.classList.remove('fx-intro');},4000);
-}catch(e){}})();
-</script>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/fx.css">

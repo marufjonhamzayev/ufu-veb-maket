@@ -108,11 +108,11 @@ Bular maketda haqiqatan ishlaydi:
 ```
 index.html, kabinet.html, royxat.html …   — 19 ta sahifa
 assets/css/main.css                       — dizayn tizimi (ranglar, tipografika, komponentlar)
-assets/css/fx.css                         — liquid glass, intro va futbol to'pi uslublari
+assets/css/fx.css                         — liquid glass va futbol toʻpi uslublari
 assets/js/app.js                          — header/footer, i18n, umumiy interaksiyalar
 assets/js/i18n.js                         — lugʻat (uz/ru/en) + lotin→kirill transliteratsiya
 assets/js/icons.js                        — 70+ SVG ikonka, loyiha uchun chizilgan
-assets/js/fx.js                           — 3D toʻp (canvas, 32 panel), penalti intro, hero'dagi interaktiv toʻp, skroll toʻpi
+assets/js/fx.js                           — 3D toʻp (canvas, 32 panel), hero'dagi interaktiv toʻp, skroll toʻpi
 assets/img/photos/                        — 36 ta oʻyin fotosi (manba: pfl.uz)
 assets/img/clubs/                         — 16 ta Superliga klubi gerbi, nomi boʻyicha
 assets/img/players/                       — futbolchi portretlari
@@ -132,7 +132,6 @@ Header va footer barcha sahifalarda `app.js` orqali bitta manbadan chiziladi.
 - `prefers-reduced-motion` qoʻllab-quvvatlanadi
 - Telefonlarga moslashtirilgan: iPhone SE (320px) dan iPhone Pro Max / Samsung Galaxy (430px) gacha, yotqizilgan telefon va planshetda tekshirilgan; iOS'da maydonga bosilganda sahifa kattalashib ketmaydi
 - Identika: maydon yashili + lime, asosiy qismlarda liquid glass (header, kartochkalar, menyular, oynalar)
-- Bosh sahifa intro (~1,8 s): kamera tushayotgan 3D toʻpga ergashadi — kechki osmon, projektor minoralari, tribunalar — va hech qanday kesilmasdan saytga kiradi; toʻp oʻng tomonda saytdagi oʻyin toʻpiga aylanadi. Sessiyada bir marta, "Oʻtkazib yuborish" bor, harakatni kamaytirish sozlamasi hurmat qilinadi
 - Hero'dagi to'pni bosib tepish, sudrab otish mumkin (sichqoncha va barmoq)
 - Shriftlar loyiha ichida (282 KB) — internetsiz ham bir xil koʻrinish, tashqi soʻrov umuman yoʻq
 - «Namoyish maketi» belgisi faqat onlayn taqdimot havolasida chiqadi; topshiriladigan fayllarda koʻrinmaydi

@@ -470,7 +470,7 @@
     try { shown = !!localStorage.getItem("ufu_cookie"); } catch (e) {}
     if (!shown) setTimeout(function () {
       var c = document.getElementById("cookie"); if (c) c.classList.add("is-in");
-    }, document.documentElement.classList.contains("fx-intro") ? 4800 : 1800);   /* intro bo'lsa, u tugagach */
+    }, 1800);
   }
 
   /* ---------- public helpers ---------- */
