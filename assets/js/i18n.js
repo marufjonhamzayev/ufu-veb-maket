@@ -154,7 +154,9 @@ window.CORE_I18N = {
     'c.review': 'Koʻrib chiqilmoqda',
     'c.info': 'Qoʻshimcha maʼlumot soʻraldi',
     'c.done': 'Hal qilindi',
-    'c.closed': 'Yopildi'
+    'c.closed': 'Yopildi',
+    'm.close': 'Yopish',
+    'm.lang': 'Til'
   },
 
   ru: {
@@ -297,7 +299,9 @@ window.CORE_I18N = {
     'c.review': 'На рассмотрении',
     'c.info': 'Запрошена доп. информация',
     'c.done': 'Решено',
-    'c.closed': 'Закрыто'
+    'c.closed': 'Закрыто',
+    'm.close': 'Закрыть',
+    'm.lang': 'Язык'
   },
 
   en: {
@@ -440,7 +444,9 @@ window.CORE_I18N = {
     'c.review': 'In review',
     'c.info': 'More information requested',
     'c.done': 'Resolved',
-    'c.closed': 'Closed'
+    'c.closed': 'Closed',
+    'm.close': 'Close',
+    'm.lang': 'Language'
   }
 };
 

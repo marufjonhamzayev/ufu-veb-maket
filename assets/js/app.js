@@ -183,14 +183,74 @@
       [PAGES.jobs, "nav.projects.jobs"], [PAGES.partners, "nav.union.partners"], [PAGES.docs, "nav.union.docs"],
       [PAGES.contact, "nav.contact"]
     ];
-    return '<div class="mobnav" id="mobnav">' + items.map(function (i) {
-      return '<a href="' + i[0] + '"><span data-i18n="' + i[1] + '">' + t(i[1]) + '</span>' + ico("chevronRight") + '</a>';
-    }).join("") +
-    '<a href="' + PAGES.login + '" class="btn btn--dark btn--block">' + ico("telegram") +
-      '<span data-i18n="cta.login">' + t("cta.login") + '</span></a>' +
-    '<a href="' + PAGES.appeal + '" class="btn btn--ghost btn--block" style="margin-top:10px">' +
-      '<span data-i18n="cta.appeal">' + t("cta.appeal") + '</span></a></div>';
+    return '<div class="mobnav" id="mobnav" role="dialog" aria-modal="true" aria-hidden="true">' +
+      '<div class="mobnav__head">' +
+        '<a href="' + PAGES.home + '" class="brand">' + window.BRAND_MARK +
+          '<span class="brand__txt"><b data-i18n="brand.name">' + t("brand.name") + '</b></span></a>' +
+        '<button class="mobnav__close" type="button" data-mobnav-close>' +
+          '<span data-i18n="m.close">' + t("m.close") + '</span><i aria-hidden="true"></i></button>' +
+      '</div>' +
+      '<div class="mobnav__body">' +
+        '<nav class="mobnav__list">' + items.map(function (i) {
+          return '<a href="' + i[0] + '"><span data-i18n="' + i[1] + '">' + t(i[1]) + '</span>' + ico("chevronRight") + '</a>';
+        }).join("") + '</nav>' +
+        '<div class="mobnav__langs"><span class="mobnav__lbl" data-i18n="m.lang">' + t("m.lang") + '</span><div>' +
+          LANGS.map(function (l) { return '<button type="button" data-lang="' + l.id + '">' + l.code + '</button>'; }).join("") +
+        '</div></div>' +
+      '</div>' +
+      '<div class="mobnav__foot">' +
+        '<a href="' + PAGES.login + '" class="btn btn--dark">' + ico("telegram") +
+          '<span data-i18n="cta.login">' + t("cta.login") + '</span></a>' +
+        '<a href="' + PAGES.appeal + '" class="btn btn--ghost">' +
+          '<span data-i18n="cta.appeal">' + t("cta.appeal") + '</span></a>' +
+      '</div>' +
+    '</div>';
   }
+
+  /* ---- mobil menyu: to'liq ekranli panel, orqa sahifa qotiriladi (iOS Safari'da ham) ---- */
+  var mobState = { open: false, y: 0, pushed: false };
+  function markMobLang() {
+    document.querySelectorAll(".mobnav__langs button").forEach(function (b) {
+      b.classList.toggle("is-active", b.dataset.lang === App.lang);
+    });
+  }
+  function mobMenu(open, viaLink) {
+    var mn = document.getElementById("mobnav"), bg = document.getElementById("burger");
+    if (!mn || open === mobState.open) return;
+    mobState.open = open;
+    mn.classList.toggle("is-open", open);
+    mn.setAttribute("aria-hidden", open ? "false" : "true");
+    if (bg) { bg.classList.toggle("is-open", open); bg.setAttribute("aria-expanded", open ? "true" : "false"); }
+    var b = document.body, html = document.documentElement;
+    if (open) {
+      mobState.y = window.scrollY || window.pageYOffset || 0;
+      b.style.position = "fixed"; b.style.top = -mobState.y + "px";
+      b.style.left = "0"; b.style.right = "0"; b.style.width = "100%";
+      html.classList.add("is-locked");
+      markMobLang();
+      mn.querySelector(".mobnav__body").scrollTop = 0;
+      /* telefonning "orqaga" tugmasi ham menyuni yopadi */
+      try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; history.pushState({ mobnav: 1 }, ""); mobState.pushed = true; } catch (err) { mobState.pushed = false; }
+    } else {
+      b.style.position = ""; b.style.top = ""; b.style.left = ""; b.style.right = ""; b.style.width = "";
+      html.classList.remove("is-locked");
+      restoreScroll(mobState.y);
+      if (mobState.pushed) {
+        mobState.pushed = false;
+        if (!viaLink && history.state && history.state.mobnav) { try { history.back(); } catch (err) {} }
+      }
+    }
+  }
+  function restoreScroll(y) {
+    var html = document.documentElement;
+    function go() { var prev = html.style.scrollBehavior; html.style.scrollBehavior = "auto"; window.scrollTo(0, y); html.style.scrollBehavior = prev; }
+    go(); requestAnimationFrame(go); setTimeout(go, 60);
+  }
+  window.addEventListener("popstate", function () {
+    if (mobState.open) { mobState.pushed = false; mobMenu(false); } else { restoreScroll(mobState.y); }
+    setTimeout(function () { try { history.scrollRestoration = "auto"; } catch (err) {} }, 120);
+  });
+  window.addEventListener("resize", function () { if (mobState.open && window.innerWidth > 1080) mobMenu(false); });
 
   function footer() {
     function col(title, links) {
@@ -300,14 +360,11 @@
       var pick = e.target.closest(".lang__menu button");
       if (pick) { setLang(pick.dataset.lang); document.getElementById("lang").classList.remove("is-open"); }
 
-      var burger = e.target.closest("#burger");
-      if (burger) {
-        burger.classList.toggle("is-open");
-        var mn = document.getElementById("mobnav"), hb = document.querySelector(".hdr");
-        if (hb) mn.style.top = Math.max(0, hb.getBoundingClientRect().bottom) + "px";
-        mn.classList.toggle("is-open");
-        document.body.style.overflow = burger.classList.contains("is-open") ? "hidden" : "";
-      }
+      if (e.target.closest("#burger")) mobMenu(!mobState.open);
+      if (e.target.closest("[data-mobnav-close]")) mobMenu(false);
+      var mlang = e.target.closest(".mobnav__langs button");
+      if (mlang) { setLang(mlang.dataset.lang); markMobLang(); }
+      if (e.target.closest(".mobnav a")) mobMenu(false, true);
 
       /* accordion */
       var accHead = e.target.closest(".acc__head");
@@ -371,6 +428,7 @@
     /* esc */
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
+        if (mobState.open) mobMenu(false);
         var open = document.querySelector(".modal.is-open");
         if (open) App.modal(open.id, false);
         document.querySelectorAll(".nav__item.is-open").forEach(function (n) { n.classList.remove("is-open"); });
