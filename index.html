@@ -13,9 +13,19 @@
 <meta property="og:locale" content="uz_UZ">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#0A1A33">
+<meta name="theme-color" content="#0B2A1F">
+<script>
+/* Intro: sessiyada bir marta. Ekran darhol yashil bilan yopiladi (sayt "miltillamasin"),
+   fx.js 4 soniyada ishga tushmasa — qopqoq o'zi olinadi. */
+(function(){try{
+  if(sessionStorage.getItem('ufu-intro')||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;
+  var h=document.documentElement;h.classList.add('fx-intro');
+  setTimeout(function(){if(!window.__fxIntro)h.classList.remove('fx-intro');},4000);
+}catch(e){}})();
+</script>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/fx.css">
 <script>
 /* Agar sahifa arxiv ichidan yoki assets papkasisiz ochilsa — tushunarli ko'rsatma chiqaramiz */
 document.addEventListener('DOMContentLoaded',function(){
@@ -26,7 +36,7 @@ document.addEventListener('DOMContentLoaded',function(){
   probe.remove();
   if(ok) return;
   document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
-    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    'background:#0B2A1F;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
     '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
     '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
     'justify-content:center;font-size:26px">&#128193;</div>'+
@@ -224,13 +234,13 @@ document.addEventListener('DOMContentLoaded',function(){
             <span class="ic-box ic-dark" data-ico="mask"></span>
             <h4 class="h-4 mt-s" data-i18n="hw.a.t">Anonim kanal</h4>
             <p class="small muted mt-s" data-i18n="hw.a.d">Ismingizni koʻrsatmasdan xabar bering — shartnoma matnini yoki kvitansiyani biriktirish kifoya.</p>
-            <a href="anonim.html" class="link-arrow mt-s" style="color:#7FA6FF" data-i18n="hw.a.link">Anonim yozish</a>
+            <a href="anonim.html" class="link-arrow mt-s" style="color:#C8F03C" data-i18n="hw.a.link">Anonim yozish</a>
           </div>
           <div class="card card--dark card--pad reveal" data-d="3">
             <span class="ic-box ic-dark" data-ico="paperclip"></span>
             <h4 class="h-4 mt-s" data-i18n="hw.b.t">Hujjat biriktirish</h4>
             <p class="small muted mt-s" data-i18n="hw.b.d">Kontrakt, toʻlov kvitansiyasi, yozishma skrinshoti — PDF, JPG yoki PNG, 20 MB gacha.</p>
-            <a href="murojaat.html" class="link-arrow mt-s" style="color:#7FA6FF" data-i18n="hw.b.link">Murojaat ochish</a>
+            <a href="murojaat.html" class="link-arrow mt-s" style="color:#C8F03C" data-i18n="hw.b.link">Murojaat ochish</a>
           </div>
         </div>
       </div>
@@ -882,6 +892,7 @@ window.PAGE_I18N = {
 };
 </script>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/fx.js"></script>
 <script>
 (function(){
   /* Bosh sahifadagi ramziy tarkib — PFL.UZ 2026 statistikasidagi real o'yinchilar.

@@ -102,10 +102,10 @@ window.ico = function (name, cls) {
 
 /* Brand mark — UFU emblem (shield + ball + wings) */
 window.BRAND_MARK = '<svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">' +
-  '<path d="M24 3 6 9.6v13.1C6 33.6 13.5 42.8 24 45.5c10.5-2.7 18-11.9 18-22.8V9.6L24 3Z" fill="#0A1A33"/>' +
-  '<path d="M24 6.6 9.4 11.9v10.8c0 9 6.1 16.7 14.6 19.2 8.5-2.5 14.6-10.2 14.6-19.2V11.9L24 6.6Z" fill="#1B5CFF" fill-opacity=".16"/>' +
+  '<path d="M24 3 6 9.6v13.1C6 33.6 13.5 42.8 24 45.5c10.5-2.7 18-11.9 18-22.8V9.6L24 3Z" fill="#0B2A1F"/>' +
+  '<path d="M24 6.6 9.4 11.9v10.8c0 9 6.1 16.7 14.6 19.2 8.5-2.5 14.6-10.2 14.6-19.2V11.9L24 6.6Z" fill="#1F7A4D" fill-opacity=".16"/>' +
   '<circle cx="24" cy="21" r="7.6" stroke="#fff" stroke-width="1.6"/>' +
   '<path d="m24 16.4 4.4 3.2-1.7 5.2h-5.4l-1.7-5.2 4.4-3.2Z" fill="#fff"/>' +
   '<path d="M24 13.4v3M17.1 18.6l2.9.5M30.9 18.6l-2.9.5M20.1 27.9l1.8-3.1M27.9 27.9l-1.8-3.1" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>' +
-  '<path d="M15 32.5h18M18 36h12" stroke="#1B5CFF" stroke-width="2" stroke-linecap="round"/>' +
+  '<path d="M15 32.5h18M18 36h12" stroke="#1F7A4D" stroke-width="2" stroke-linecap="round"/>' +
   '</svg>';

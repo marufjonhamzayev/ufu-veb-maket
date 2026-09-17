@@ -13,9 +13,10 @@
 <meta property="og:locale" content="uz_UZ">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#0A1A33">
+<meta name="theme-color" content="#0B2A1F">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/fx.css">
 <style>
   .vote{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,3vw,44px);align-items:start}
   .countdown{display:flex;gap:10px}
@@ -24,7 +25,7 @@
   .cd b{display:block;font-family:var(--fd);font-size:24px;font-weight:600;line-height:1;color:#fff}
   .cd span{font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.05em;text-transform:uppercase}
   .res-row{display:grid;grid-template-columns:34px 44px minmax(0,1fr) 56px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line-2)}
-  .res-row img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top center;background:#EDEDE8}
+  .res-row img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top center;background:#E9EDE6}
   .res-row .pos{font-family:var(--fd);font-weight:700;color:var(--muted-2);font-size:13px}
   .sticky-vote{position:sticky;bottom:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
     border-top:1px solid var(--line);padding:14px 0;z-index:40;margin-top:24px}
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded',function(){
   probe.remove();
   if(ok) return;
   document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;'+
-    'background:#0A1A33;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
+    'background:#0B2A1F;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px">'+
     '<div style="max-width:560px;background:#fff;border-radius:20px;padding:36px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35)">'+
     '<div style="width:52px;height:52px;border-radius:14px;background:#FBF2DF;display:flex;align-items:center;'+
     'justify-content:center;font-size:26px">&#128193;</div>'+
@@ -275,6 +276,7 @@ window.PAGE_I18N={
 };
 </script>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/fx.js"></script>
 <script>
 (function(){
   /* --- ma'lumot --- */

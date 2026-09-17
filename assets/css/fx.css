@@ -1,0 +1,215 @@
+/* =========================================================
+   FX — liquid glass, futbol to'pi intro va interaktiv to'p
+   main.css'dan keyin ulanadi
+   ========================================================= */
+
+:root{
+  --glass-bg:linear-gradient(160deg,rgba(255,255,255,.66),rgba(255,255,255,.30));
+  --glass-rim:inset 0 1px 1px rgba(255,255,255,.95),inset 0 0 0 1px rgba(255,255,255,.42),inset 0 -10px 18px -12px rgba(255,255,255,.55);
+  --glass-drop:0 18px 40px -14px rgba(11,42,31,.28),0 2px 6px rgba(11,42,31,.06);
+  --glass-blur:blur(20px) saturate(185%) brightness(1.03);
+  --glassd-bg:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.035));
+  --glassd-rim:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.10),inset 0 -12px 22px -16px rgba(200,240,60,.22);
+}
+
+/* ---------- 1. Liquid glass: umumiy qatlam ---------- */
+.hero__float,.nav__drop,.lang__menu,.cookie,.modal__box,.sticky-vote,.fx-hint,.fx-top{
+  background:
+    radial-gradient(140% 90% at var(--mx,18%) var(--my,0%),rgba(255,255,255,.62),rgba(255,255,255,0) 58%),
+    var(--glass-bg);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-color:rgba(255,255,255,.55);
+  box-shadow:var(--glass-rim),var(--glass-drop);
+}
+/* o'qilishi muhim bo'lgan joylarda shisha zichroq */
+.nav__drop,.lang__menu,.modal__box{background:
+    radial-gradient(140% 90% at var(--mx,18%) var(--my,0%),rgba(255,255,255,.7),rgba(255,255,255,0) 58%),
+    linear-gradient(160deg,rgba(255,255,255,.9),rgba(255,255,255,.74))}
+.cookie{background:
+    radial-gradient(140% 90% at 20% 0%,rgba(255,255,255,.7),rgba(255,255,255,0) 58%),
+    linear-gradient(160deg,rgba(255,255,255,.88),rgba(255,255,255,.7))}
+
+/* qorong'i bo'limlardagi shisha */
+.section--dark .card--dark,.card--dark,.toast,.cd,.hero__caption .tag--dark,.fx-glass-dark{
+  background:
+    radial-gradient(120% 80% at var(--mx,15%) var(--my,0%),rgba(255,255,255,.14),rgba(255,255,255,0) 60%),
+    var(--glassd-bg);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border-color:rgba(255,255,255,.13);
+  box-shadow:var(--glassd-rim),0 24px 50px -24px rgba(0,0,0,.55);
+}
+.toast{background:linear-gradient(160deg,rgba(15,53,40,.92),rgba(11,42,31,.86))}
+
+/* qorong'i bo'limlar ortida yorug'lik — shisha "sinishi" ko'rinsin */
+.section--dark,.page-head--dark{position:relative;overflow:hidden;isolation:isolate}
+.section--dark::before,.page-head--dark::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:760px;height:760px;right:-220px;top:-260px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(200,240,60,.20),rgba(200,240,60,0));filter:blur(10px)}
+.section--dark::after,.page-head--dark::after{content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:620px;height:620px;left:-240px;bottom:-280px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(31,157,87,.35),rgba(31,157,87,0))}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .hero__float,.nav__drop,.lang__menu,.cookie,.modal__box,.sticky-vote,.fx-hint,.fx-top{background:#fff}
+  .card--dark,.toast,.cd{background:var(--navy-2)}
+}
+
+/* ---------- 2. Header: suzuvchi shisha kapsula ---------- */
+.hdr{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  border-bottom:0!important;box-shadow:none!important;padding-top:10px;pointer-events:none}
+.hdr>.wrap{pointer-events:auto;position:relative;width:calc(100% - 32px);max-width:1296px;
+  height:64px;padding:0 10px 0 22px;border-radius:999px}
+.hdr>.wrap::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:
+    radial-gradient(60% 140% at var(--mx,12%) var(--my,0%),rgba(255,255,255,.7),rgba(255,255,255,0) 60%),
+    linear-gradient(160deg,rgba(255,255,255,.72),rgba(255,255,255,.42));
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  box-shadow:var(--glass-rim),0 10px 30px -12px rgba(11,42,31,.22);transition:box-shadow .35s var(--ease),background .35s var(--ease)}
+.hdr.is-scrolled>.wrap::before{box-shadow:var(--glass-rim),0 16px 40px -14px rgba(11,42,31,.32)}
+.hdr .nav__link{border-radius:999px}
+.hdr .lang__btn{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.8)}
+.burger{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.8)}
+
+/* skroll bo'yicha dumalaydigan mini to'p (header kapsulasi ichida) */
+.fx-track{position:absolute;left:30px;right:30px;bottom:5px;height:2px;border-radius:2px;pointer-events:none;
+  background:linear-gradient(90deg,rgba(31,122,77,.0),rgba(31,122,77,.16) 12%,rgba(31,122,77,.16) 88%,rgba(31,122,77,0));
+  opacity:0;transition:opacity .4s var(--ease)}
+.fx-track.is-on{opacity:1}
+.fx-track__fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;
+  background:linear-gradient(90deg,rgba(200,240,60,0),var(--lime))}
+.fx-track .fx-ball{position:absolute;left:0;bottom:-5px;width:12px;height:12px;will-change:transform}
+
+/* kontent kapsula ostidan boshlanadi: birinchi bo'lim foni header ortiga ham yoyiladi */
+.hdr{margin-bottom:-74px}
+#main>:first-child{border-top:74px solid transparent}
+@media (max-width:760px){
+  .hdr{padding-top:8px;margin-bottom:-64px}
+  #main>:first-child{border-top-width:64px}
+  .hdr>.wrap{width:calc(100% - 20px);height:56px;padding:0 6px 0 14px}
+  .fx-track{left:22px;right:22px;bottom:4px}
+}
+
+/* ---------- 3. Hero: lime aksent, fon, shisha ---------- */
+.hero{isolation:isolate}
+.hero::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-10% -10% auto auto;
+  width:min(900px,90vw);height:min(900px,90vw);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(200,240,60,.30),rgba(200,240,60,0) 70%);transform:translate(12%,-18%)}
+.hero::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:-12%;bottom:-30%;
+  width:min(760px,80vw);height:min(760px,80vw);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(31,157,87,.16),rgba(31,157,87,0) 70%)}
+.hero__pitch{position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.55;
+  background:
+    radial-gradient(circle at 76% 58%,transparent 0 160px,rgba(31,122,77,.10) 161px 162px,transparent 163px),
+    linear-gradient(90deg,transparent calc(76% - 1px),rgba(31,122,77,.08) calc(76% - 1px) 76%,transparent 76%);
+  -webkit-mask:linear-gradient(180deg,#000 40%,transparent);mask:linear-gradient(180deg,#000 40%,transparent)}
+.h-hero b{background:linear-gradient(180deg,transparent 64%,rgba(200,240,60,.85) 64% 90%,transparent 90%) no-repeat 0 0/100% 100%;
+  transition:background-size .7s cubic-bezier(.6,0,.2,1);
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .04em}
+.fx-mark-off b{background-size:0% 100%;transition:none}
+.hero__cta .btn--dark{background:var(--lime);color:var(--navy);box-shadow:var(--sh-lime)}
+.hero__cta .btn--dark:hover{background:var(--lime-2)}
+.hero__cta .btn--ghost{background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 8px 24px -12px rgba(11,42,31,.25)}
+.hero__float{border:1px solid rgba(255,255,255,.7);background:radial-gradient(140% 90% at var(--mx,18%) var(--my,0%),rgba(255,255,255,.7),rgba(255,255,255,0) 58%),linear-gradient(160deg,rgba(255,255,255,.84),rgba(255,255,255,.6))}
+.hero__float span{color:var(--ink-2)}
+.eyebrow::before{background:var(--lime);box-shadow:0 0 0 3px rgba(200,240,60,.25)}
+.section--dark .stat__num small,.stat__num small{color:var(--blue)}
+.section--dark .stat__num small{color:var(--lime)}
+
+/* ---------- 4. Bo'limlar to'p kabi "sakrab" chiqadi ---------- */
+.reveal{transform:translateY(34px) scale(.975);
+  transition:opacity .6s var(--ease-out),transform .95s cubic-bezier(.2,1.28,.34,1)}
+.reveal.is-in{transform:none}
+
+/* ---------- 5. Futbol to'pi ---------- */
+.fx-ball{display:block;position:relative;border-radius:50%;contain:layout paint}
+.fx-ball__pat{position:absolute;inset:0;width:100%;height:100%;will-change:transform}
+.fx-ball__shade{position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(circle at 32% 26%,rgba(255,255,255,.95) 0 6%,rgba(255,255,255,0) 26%),
+    radial-gradient(circle at 50% 50%,rgba(0,0,0,0) 52%,rgba(8,30,20,.30) 100%);
+  box-shadow:inset -6px -8px 16px rgba(8,30,20,.22)}
+
+/* hero ichidagi o'yin to'pi */
+.fx-play{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.fx-kick{position:absolute;left:0;top:0;width:64px;height:64px;pointer-events:auto;cursor:grab;touch-action:none;
+  will-change:transform;filter:drop-shadow(0 10px 14px rgba(11,42,31,.28));-webkit-tap-highlight-color:transparent}
+.fx-kick:active{cursor:grabbing}
+.fx-kick .fx-ball{width:100%;height:100%}
+.fx-shadow{position:absolute;left:0;top:0;width:64px;height:12px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(11,42,31,.35),rgba(11,42,31,0));will-change:transform,opacity}
+.fx-trail{position:absolute;left:0;top:0;width:64px;height:64px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(200,240,60,.55),rgba(200,240,60,0));opacity:0;will-change:transform,opacity}
+.fx-ground{position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(31,122,77,.22) 20%,rgba(31,122,77,.22) 80%,transparent)}
+.fx-hint{position:absolute;left:0;top:0;z-index:5;pointer-events:none;white-space:nowrap;
+  padding:8px 13px 8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.6);
+  font-size:13px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:7px;
+  opacity:0;transition:opacity .45s var(--ease)}
+.fx-hint.is-on{opacity:1}
+.fx-hint i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(200,240,60,.35);
+  animation:fxPulse 1.6s ease-in-out infinite}
+@keyframes fxPulse{50%{box-shadow:0 0 0 8px rgba(200,240,60,0)}}
+@media (max-width:1079px){.hero{padding-bottom:78px}}
+@media (max-width:760px){
+  .fx-kick,.fx-trail{width:50px;height:50px}
+  .fx-shadow{width:50px}
+  .fx-hint{font-size:12px;padding:7px 11px 7px 9px}
+}
+
+/* "yuqoriga" — to'p tugma */
+.fx-top{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:120;
+  width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.6);display:grid;place-items:center;
+  opacity:0;visibility:hidden;transform:translateY(16px) scale(.9);cursor:pointer;
+  transition:opacity .35s var(--ease),transform .5s cubic-bezier(.2,1.3,.35,1),visibility 0s linear .35s}
+.fx-top.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .35s var(--ease),transform .5s cubic-bezier(.2,1.3,.35,1)}
+.fx-top .fx-ball{width:30px;height:30px;transition:transform .5s var(--ease-out)}
+.fx-top:hover .fx-ball{transform:translateY(-3px) rotate(-90deg)}
+.fx-top.is-kicked .fx-ball{transform:translateY(-60px) rotate(-540deg) scale(.6);opacity:0;
+  transition:transform .55s cubic-bezier(.3,0,.6,1),opacity .5s ease .1s}
+.fx-top.is-raised{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+
+/* ---------- 6. Intro ---------- */
+html.fx-intro body{overflow:hidden}
+html.fx-intro body::before{content:"";position:fixed;inset:0;z-index:9998;background:#0B2A1F}
+.fx-intro{position:fixed;inset:0;z-index:9999;overflow:hidden;color:#fff;
+  background:radial-gradient(120% 90% at 50% 100%,#16452F 0%,#0B2A1F 55%,#06190F 100%)}
+.fx-intro__pitch{position:absolute;inset:0;opacity:.5}
+.fx-intro__glow{position:absolute;left:50%;top:68%;width:70vmax;height:70vmax;transform:translate(-50%,-50%);
+  border-radius:50%;background:radial-gradient(closest-side,rgba(200,240,60,.22),rgba(200,240,60,0))}
+.fx-intro__brand{position:absolute;left:50%;top:calc(34px + env(safe-area-inset-top,0px));transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;white-space:nowrap;font-family:var(--fd);font-weight:600;font-size:14px;
+  letter-spacing:.02em;color:rgba(255,255,255,.85);opacity:0}
+.fx-intro__brand .brand__mark{width:30px;height:30px}
+.fx-intro__ground{position:absolute;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent)}
+.fx-intro__ball{position:absolute;left:0;top:0;will-change:transform,opacity}
+.fx-intro__ball .fx-ball{width:100%;height:100%}
+.fx-intro__ghost{position:absolute;left:0;top:0;border-radius:50%;opacity:0;will-change:transform,opacity;
+  background:radial-gradient(closest-side,rgba(200,240,60,.7),rgba(200,240,60,0))}
+.fx-intro__swoosh{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.fx-intro__swoosh path{fill:none;stroke:var(--lime);stroke-width:5;stroke-linecap:round;
+  filter:drop-shadow(0 0 12px rgba(200,240,60,.8))}
+.fx-intro__ring{position:absolute;left:0;top:0;border-radius:50%;border:3px solid var(--lime);opacity:0;
+  box-shadow:0 0 30px rgba(200,240,60,.6)}
+.fx-intro__flash{position:absolute;inset:0;background:radial-gradient(circle at var(--fx,50%) var(--fy,60%),rgba(200,240,60,.45),rgba(200,240,60,0) 40%);opacity:0}
+.fx-intro__skip{position:absolute;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  height:40px;padding:0 16px;border-radius:999px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;align-items:center;gap:8px}
+.fx-intro__skip:hover{background:rgba(255,255,255,.18)}
+
+/* intro paytida hero elementlari to'p zarbasidan "uchib" keladi */
+.fx-pre{opacity:0}
+.fx-w{display:inline-block;will-change:transform,opacity}
+.fx-fly{opacity:0;transform:translate(var(--dx,0),var(--dy,0)) scale(.15) rotate(var(--rot,0deg));filter:blur(6px)}
+.fx-land{opacity:1;transform:none;filter:none;
+  transition:opacity .35s ease var(--dl,0s),transform .95s cubic-bezier(.18,1.25,.32,1) var(--dl,0s),filter .6s ease var(--dl,0s)}
+.hdr.fx-drop>.wrap{transform:translateY(-140%)}
+.hdr.fx-drop.fx-drop--in>.wrap{transform:none;transition:transform .9s cubic-bezier(.2,1.3,.35,1)}
+
+@media (prefers-reduced-motion:reduce){
+  .fx-track .fx-ball,.fx-top .fx-ball{transition:none}
+  .fx-trail,.fx-hint i{display:none}
+}

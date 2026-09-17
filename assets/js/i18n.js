@@ -156,7 +156,12 @@ window.CORE_I18N = {
     'c.done': 'Hal qilindi',
     'c.closed': 'Yopildi',
     'm.close': 'Yopish',
-    'm.lang': 'Til'
+    'm.lang': 'Til',
+    'fx.skip': 'Oʻtkazib yuborish',
+    'fx.hint': 'Toʻpni tepib koʻring',
+    'fx.hint.touch': 'Toʻpni barmoq bilan tepib koʻring',
+    'fx.top': 'Yuqoriga',
+    'brand.full': 'Oʻzbekiston futbolchilar uyushmasi'
   },
 
   ru: {
@@ -301,7 +306,12 @@ window.CORE_I18N = {
     'c.done': 'Решено',
     'c.closed': 'Закрыто',
     'm.close': 'Закрыть',
-    'm.lang': 'Язык'
+    'm.lang': 'Язык',
+    'fx.skip': 'Пропустить',
+    'fx.hint': 'Попробуйте пнуть мяч',
+    'fx.hint.touch': 'Пните мяч пальцем',
+    'fx.top': 'Наверх',
+    'brand.full': 'Ассоциация футболистов Узбекистана'
   },
 
   en: {
@@ -446,7 +456,12 @@ window.CORE_I18N = {
     'c.done': 'Resolved',
     'c.closed': 'Closed',
     'm.close': 'Close',
-    'm.lang': 'Language'
+    'm.lang': 'Language',
+    'fx.skip': 'Skip',
+    'fx.hint': 'Try kicking the ball',
+    'fx.hint.touch': 'Flick the ball with your finger',
+    'fx.top': 'Back to top',
+    'brand.full': 'Football Players Association of Uzbekistan'
   }
 };
 
